@@ -283,34 +283,6 @@ body {
     border-radius: 5px 0 0 5px;
 }
 
-.menu-container1 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    width: 90%;
-    margin: 0 auto;
-}
-
-.menu-item1 {
-    text-align: center;
-    padding: 10px;
-}
-
-.igm1 {
-    width: 55px;
-    height: 55px;
-    margin-bottom: 5px;
-    border-radius: 0px;
-    background-color: transparent;
-    
-}
-
-.menu-item1 span {
-    font-size: 14px;
-    color: #000;
-    display: block;
-    text-decoration: none;
-}
 
 .On-Row {
     display: flex;
