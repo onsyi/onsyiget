@@ -183,7 +183,7 @@ body {
     left: -50%;
     width: 200%;
     height: 200%;
-    background-image: linear-gradient(45deg, #8bc24a 0%, #8bc24a 50%, #8bc24a 100%);
+    background-image: linear-gradient(45deg, #8bc24a 0%, #00AA12 50%, #8bc24a 100%);
     transform: translate(-50%, -50%) scale(1.5);
     z-index: -1;
     opacity: 0.8;
