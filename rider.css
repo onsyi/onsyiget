@@ -529,7 +529,7 @@ body {
   font-size: 15px;
   font-weight: 600;
   padding: 5px 10px;
-  background: #04510B;
+  background: #EE373C;
   border-radius: 15px 15px 15px 0;
   box-shadow: -1px 2px 3px rgba(0,0,0,.3);
   text-decoration: none !important;
@@ -544,7 +544,7 @@ body {
   top: 35%;
   left: 0px;
   padding: 0 0 7px;
-  background: #04510B ;
+  background: #EE373C ;
   border-radius: 100px 0 0 100px;
 }
 .ribbon5:after {
@@ -575,7 +575,7 @@ body {
 }
   .OnsyiText-Harga1 { text-align: left; width: auto; color: #444; font-size: 15px; border-radius: 5px; font-weight: bold; text-decoration: none; display: inline-block; margin-bottom: 8%; margin-top: -10%; margin-left: 52%; 
 }
-  .OnsyiNew1 { margin-top: 5%; float: left; margin-left: 52%; border-radius: 7px; opacity: 65%; width: auto; padding: 2px 5px; background: #04510B; color: #fff; font-size: 70%; display: inline-block; text-align: center; font-weight: bold;
+  .OnsyiNew1 { margin-top: 5%; float: left; margin-left: 52%; border-radius: 7px; opacity: 65%; width: auto; padding: 2px 5px; background: #EE373C; color: #fff; font-size: 70%; display: inline-block; text-align: center; font-weight: bold;
 }
 .star1 { margin-top: -7%; float: right; margin-right: 3%; padding: 2px 5px; border-radius: ; width: auto; background: ; color: #000; font-size: 12px; display: inline-block; text-align: center; font-weight: 500;
  }
