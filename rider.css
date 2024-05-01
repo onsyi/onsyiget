@@ -826,7 +826,7 @@ body {
 .tabbar {
     --black: #000;
     --white: transparent;
-    --primary: linear-gradient(to top,#04510B 20%,#00880C 80%);
+    --primary: linear-gradient(to top,#00aa12 20%,#8bc24a 80%);
     --background: rgba(255,255,255,0.3);
     --icon-active: #fff;
     width: 90%;
