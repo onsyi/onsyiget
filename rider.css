@@ -569,35 +569,27 @@ body {
     border-radius: 0 0 70px 70px;
 }
 
-.imgic {
-    width: 15%;
-    float: left;
-    margin: 0 auto;
-    border-radius: 0px;
-    padding: 10px;
-    filter: invert(30%);
-}
-
+.imgic,
 .imgi {
-    width: 15%;
-    float: left;
-    margin: 0;
-    border-radius: 0px;
-    padding: 0px;
-    filter: invert(30%);
+	width: 15%;
+	float: left;
+	margin: 0;
+	border-radius: 0px;
+	padding: 10px;
+	filter: invert(30%);
 }
 
 .cardos {
-    height: auto;
-    text-align: left;
-    border-radius: 5px;
-    margin-top: 0;
-    user-select: none;
-    width: 90%;
-    margin-left: 5%;
-    background-color: #;
-    border-bottom: 1px solid #777;
-    padding: 10px;
+	height: auto;
+	text-align: left;
+	border-radius: 5px;
+	margin-top: 0;
+	user-select: none;
+	width: 90%;
+	margin-left: 5%;
+	background-color: #FFF;
+	border-bottom: 1px solid #777;
+	padding: 10px;
 }
 
 .txt {
