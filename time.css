@@ -1,14 +1,114 @@
+ @import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
 
+    body {
+      background: var(--OnsyiBg);
+      text-decoration: none !important;
+      font-family: "Poppins", sans-serif !important;
+      -webkit-tap-highlight-color: transparent;
+      font-weight: 500;
+      margin: 0;
+      width: 100%;
+    }
+	:root {
+  --OnsyiBg:#F5F9FF;
+  --OnsyiB1:#63A7E6;
+  --OnsyiB2:#ED2736;
+  --gradient: repeating-linear-gradient(-45deg, #ff00e0 0%, #FF9800 7.14%, #FF9800 14.28%,#094D9E 21.4%, #5993CD 28.56%, #FF9800 35.7%, #FF9800 42.84%, #FF9800 50%);
+  --gradient2: repeating-linear-gradient(-45deg, #63A7E6 0%, #094D9E 7.14%, #5993CD 14.28%,#63A7E6 21.4%, #5993CD 28.56%, #5993CD 35.7%, #094D9E 42.84%, #63A7E6 50%);
+}
 
-  @import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
+,:after,*:before {
+    box-sizing: inherit;
+}
+a {
+text-decoration:none;
+}
+:not(svg) {
+    transform-origin: 0px 0px;
+}  
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}  
 
-  body {
-	background: #63a7e6;
-	text-decoration: none !important;
-	font-family: "Poppins", sans-serif !important;
-	-webkit-tap-highlight-color: transparent;
-	font-weight: 500;
-	margin: 0;
+  /* ...(SALDO CARD)... */
+
+.parent {
+    display: grid;
+    grid-template-columns: 2.5fr repeat(3, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    background: linear-gradient(to top, #0FAFB6 20%, #0DC2CA 80%);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin: 5% auto 5%;
+    border-radius: 19px;
+    width: 90%;
+    height: auto;
+    z-index: 1;
+}
+
+.slider4 {
+    width: 100%;
+    height: 20px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.slider4 {
+    height: 40px;
+    line-height: 0px;
+    overflow: hidden;
+}
+
+.slide4 {
+    height: 40px;
+    line-height: 0px;
+    overflow: hidden;
+}
+
+.slider4-2 .slide4 {
+    animation: slide4-2 12s ease-in-out infinite;
+}
+
+@keyframes slide4-2 {
+    100% {
+        transform: translateY(0);
+    }
+
+    50%,
+    95.4545454545% {
+        transform: translateY(-40px);
+    }
+
+    0%,
+    45.4545454545% {
+        transform: translateY(0);
+    }
+}
+
+.nama-penggun {
+    width: auto;
+    height: auto;
+    font-weight: 600;
+    font-size: 14px;
+    color: black;
+    margin: 4% 5% 0;
+}
+
+.ico {
+    padding: 0px;
+    margin-top: 15px;
+    width: 20px;
+    filter: invert(100%);
+}
+
+.t {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 6px;
+    font-weight: 450;
 }
 
 .lop {
@@ -167,98 +267,6 @@
 	color: #000;
 	display: block;
 	text-decoration: none;
-}
-
-.mySlides {
-	display: none;
-}
-
-.cardoo {
-	width: 90%;
-	height: 95px;
-	padding: 10px;
-	position: relative;
-	text-align: left;
-	border-radius: 15px;
-	margin: 23% auto 0;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background: linear-gradient(to top, #0FAFB6 20%, #0DC2CA 80%);
-	background-position: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-}
-
-.cardoo a {
-	cursor: none;
-}
-
-.cardoo5 {
-	background-color: #eaecf0;
-	text-align: left;
-	border-radius: 15px;
-	margin-bottom: 4%;
-	margin-left: 1.5%;
-	margin-right: 1.5%;
-	user-select: none;
-}
-
-.cardoo5 a {
-	cursor: none;
-}
-
-.slider4 {
-	width: 100%;
-	height: 35px;
-	overflow: hidden;
-	text-align: left;
-}
-
-.slider4 .slide4 {
-	height: 37px;
-	line-height: 40px;
-	color: #000;
-	overflow: hidden;
-}
-
-.slider4-2 .slide4 {
-	animation: slide4-2 12s ease-in-out infinite;
-}
-
-@keyframes slide4-2 {
-	100% {
-		transform: translateY(0);
-	}
-
-	50%,
-    95.4545454545% {
-		transform: translateY(-40px);
-	}
-
-	0%,
-    45.4545454545% {
-		transform: translateY(0);
-	}
-}
-
-.topup {
-	width: 32%;
-	height: auto;
-	float: right;
-	padding: 10px;
-	margin-top: 10px;
-	text-align: center;
-	border: 0px solid #fff;
-	margin-left: 0px;
-}
-
-.imgs7 {
-	padding: 0px;
-	margin-bottom: -3.5px;
-	border-radius: 10px;
-	padding: 5px;
-	border: 2px solid #fff;
-	width: 120%;
-	height: auto;
 }
 
 .Onsyi-Row {
