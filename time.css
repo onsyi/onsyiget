@@ -106,68 +106,81 @@
 }
 
 .ribbon3 {
-	position: relative;
-	display: inline-block;
-	bottom: -11px;
-	left: -3px;
-	width: 38px;
-	padding: 0px 0px;
-	background: #F5654F;
-	border-radius: 20px 20px 20px 0;
-	box-shadow: -1px 2px 3px rgba(0,0,0,.3);
-}
+      position: relative;
+      display: inline-block;
+      top: -5px;
+      bottom: -11px;
+      left: -3px;
+      width: 38px;
+      padding: 0px 0px;
+      background: #F5654F;
+      border-radius: 20px 20px 20px 0;
+      box-shadow: -1px 2px 3px rgba(0,0,0,.3);
+    }
 
-.ribbon3:before, .ribbon3:after {
-	content: "";
-	position: absolute;
-	z-index: -9;
-}
+    .ribbon3:before, .ribbon3:after {
+      content: "";
+      position: absolute;
+      z-index: -9;
+    }
 
-.ribbon3:before {
-	width: 7px;
-	height: 100%;
-	top: 40%;
-	left: 0px;
-	padding: 0 0 7px;
-	background: #F5654F;
-	border-radius: 100px 0 0 100px;
-}
+    .ribbon3:before {
+      width: 7px;
+      height: 100%;
+      top: 40%;
+      left: 0px;
+      padding: 0 0 7px;
+      background: #F5654F;
+      border-radius: 100px 0 0 100px;
+    }
 
-.ribbon3:after {
-	width: 4px;
-	height: 6px;
-	bottom: -6px;
-	left: 3px;
-	background: #000;
-	border-radius: 5px 0 0 5px;
-}
+    .ribbon3:after {
+      width: 5px;
+      height: 9px;
+      bottom: -5px;
+      left: 2px;
+      background: #333;
+      border-radius: 5px 0 0 5px;
+    }
 
-.menu-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	width: 100%;
-	margin: 0 auto;
-}
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      width: 100%;
+      margin: 0 auto 0;
+    }
 
-.menu-item1 {
-	text-align: center;
-	padding: 10px;
-}
+    .menu-item1 {
+      text-align: center;
+      padding: 10px;
+    }
 
-.igm1 {
-	width: 50px;
-	height: 50px;
-	margin-bottom: 5px;
-	border-radius: 15px;
-}
+    .igm {
+      width: 55px;
+      height: 55px;     
+      margin: -17px 0px 5px;
+      border-radius: 100px;
+      
+    }
+    .igm1 {
+      width: 55px;
+      height: 55px;     
+      margin: 0px 0px 5px;
+      border-radius: 100px;
+      
+    }
+    .menu-item1 span {
+      font-size: 14px;
+      color: #000;
+      display: block;
+      text-decoration: none;
+    }
 
-.menu-item1 span {
-	font-size: 14px;
-	color: #000;
-	display: block;
-	text-decoration: none;
-}
+    a {
+      text-decoration: none;
+      -webkit-tap-highlight-color: transparent;
+    }
 
 .mySlides {
 	display: none;
