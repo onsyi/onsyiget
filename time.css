@@ -3,7 +3,7 @@
   @import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
 
   body {
-	background: #0DC2CA;
+	background: #63A7E6;
 	text-decoration: none !important;
 	font-family: "Poppins", sans-serif !important;
 	-webkit-tap-highlight-color: transparent;
@@ -72,7 +72,7 @@
 	margin-bottom: 3%;
 	text-decoration: none;
 	display: inline-block;
-	color: #0DC2CA;
+	color: #63A7E6;
 	background-color: #eee;
 	z-index: 0;
 	width: 23%;
@@ -87,7 +87,7 @@
 	text-decoration: none;
 	display: inline-block;
 	color: #fff;
-	background-color: #0DC2CA;
+	background-color: #63A7E6;
 	transition-duration: 0.2s;
 	-webkit-tap-highlight-color: transparent;
 	transition: background-color 0.1s ease-in-out;
@@ -182,7 +182,7 @@
 	border-radius: 15px;
 	margin: 23% auto 0;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background: linear-gradient(to top, #0FAFB6 20%, #0DC2CA 80%);
+	background: linear-gradient(to top, #106EC6 20%, #63A7E6 80%);
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -323,7 +323,7 @@
     .item-nearby-distance {
         margin-left: 5%;
         margin-top: 2px;
-        color: #4AAF4F;
+        color: #63A7E6;
         display: block;
         text-align: left;
         font-weight: bold;
@@ -363,7 +363,7 @@
         opacity: 85%;
         width: 50%;
         height: 20px;
-        background: #ED2739;
+        background: #63A7E6;
         color: white;
         font-size: 12px;
         display: none !important;
@@ -556,7 +556,7 @@ a {
 	font-weight: 400;
 	font-size: 50%;
 	z-index: 9;
-	color: #E01861;
+	color: #63A7E6;
 }
 
 .ribbon5 {
@@ -750,7 +750,7 @@ a {
 	float: right;
 	color: #fff;
 	font-size: 17px;
-	background: #0984e3;
+	background: #63A7E6;
 	border-radius: 100px;
 	padding: 5px;
 }
@@ -928,7 +928,7 @@ a {
 	float: right;
 	color: #FFF;
 	font-size: 17px;
-	background: #00AA12;
+	background: #63A7E6;
 	border-radius: 7px;
 	padding: 5px;
 }
@@ -989,7 +989,7 @@ a {
 }
 
 .bg {
-	background-color: #0DC2CA;
+	background-color: #63A7E6;
 	width: 100%;
 	margin: 0 auto;
 	height: auto;
