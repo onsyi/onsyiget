@@ -18,7 +18,7 @@
 	overflow: hidden;
 	margin: 10% auto 0;
 	position: sticky;
-	border-radius: 40px;
+	border-radius: 40px 40px 0 0;
 	border: none;
 	z-index: 9;
 }
@@ -30,7 +30,7 @@
 	overflow: hidden;
 	margin: 10% auto 0;
 	position: relative;
-	border-radius: 40px;
+	border-radius: 40px 40px 0 0;
 	border: none;
 	z-index: 9;
 }
@@ -87,7 +87,7 @@
 	text-decoration: none;
 	display: inline-block;
 	color: #fff;
-	background-color: #63A7E6;
+	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(6,64,119,1) 100%);
 	transition-duration: 0.2s;
 	-webkit-tap-highlight-color: transparent;
 	transition: background-color 0.1s ease-in-out;
