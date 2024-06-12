@@ -416,6 +416,7 @@ a {
 	height: auto;
 	position: relative;
 	border-radius: 15px;
+	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(6,64,119,1) 100%);
 }
 
 @keyframes slide-animation {
