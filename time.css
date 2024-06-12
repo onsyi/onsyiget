@@ -195,7 +195,7 @@
 	border-radius: 15px;
 	margin: 23% auto 0;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background: linear-gradient(to top, #106EC6 20%, #63A7E6 80%);
+	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(6,64,119,1) 100%);
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
@@ -447,7 +447,7 @@ a {
 	width: 85%;
 	height: auto;
 	border-radius: 15px;
-	background: #63A7E6;
+	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(6,64,119,1) 100%);
 }
 
 #galeri ul {
