@@ -206,7 +206,7 @@
 	border-radius: 15px;
 	margin: 23% auto 0;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background: linear-gradient(62deg, #0081A0, #fff, #0081A0, #2AAECE); animation: gradient 15s ease infinite; background-size: 300% 300%;
+	background: linear-gradient(62deg, #63A7E6, #fff, #63A7E6, #1364AF); animation: gradient 15s ease infinite; background-size: 300% 300%;
 	background-position: center;
 	background-size: cover;
 	background-repeat: no-repeat;
