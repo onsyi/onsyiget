@@ -3,7 +3,7 @@
   @import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
 
   body {
-	background: #63A7E6;
+	background: #064077;
 	text-decoration: none !important;
 	font-family: "Poppins", sans-serif !important;
 	-webkit-tap-highlight-color: transparent;
@@ -1013,7 +1013,7 @@ a {
 }
 
 .bg {
-	background-color: #63A7E6;
+	background-color: #064077;
 	width: 100%;
 	margin: 0 auto;
 	height: auto;
