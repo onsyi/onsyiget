@@ -3,7 +3,7 @@
   @import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
 
   body {
-	background: #064077;
+	background: #63A7E6;
 	text-decoration: none !important;
 	font-family: "Poppins", sans-serif !important;
 	-webkit-tap-highlight-color: transparent;
@@ -98,7 +98,7 @@
 	text-decoration: none;
 	display: inline-block;
 	color: #fff;
-	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(6,64,119,1) 100%);
+	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(17,95,170,1) 100%);
 	transition-duration: 0.2s;
 	-webkit-tap-highlight-color: transparent;
 	transition: background-color 0.1s ease-in-out;
@@ -206,7 +206,7 @@
 	border-radius: 15px;
 	margin: 23% auto 0;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background: linear-gradient(62deg, #064077, #fff, #064077, #63a7e6); animation: gradient 15s ease infinite; background-size: 300% 300%;
+	background: linear-gradient(62deg, #63a7e6, #fff, #064077, #63a7e6); animation: gradient 15s ease infinite; background-size: 300% 300%;
 	
 }
 
@@ -425,7 +425,7 @@ a {
 	height: auto;
 	position: relative;
 	border-radius: 15px;
-	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(6,64,119,1) 100%);
+	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(17,95,170,1) 100%);
 }
 
 @keyframes slide-animation {
@@ -457,7 +457,7 @@ a {
 	width: 85%;
 	height: auto;
 	border-radius: 15px;
-	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(6,64,119,1) 100%);
+	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(17,95,170,1) 100%);
 }
 
 #galeri ul {
@@ -491,7 +491,7 @@ a {
 	width: 80%;
 	font-size: 70%;
 	padding: 2px 7px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 10px 0 20px 0;
 	box-shadow: -1px 2px 3px rgba(0,0,0,.3);
 }
@@ -507,7 +507,7 @@ a {
 	top: 40%;
 	left: 0px;
 	padding: 0 0 7px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 0px 0 0 100px;
 }
 
@@ -592,7 +592,7 @@ a {
 	font-size: 15px;
 	font-weight: 600;
 	padding: 5px 10px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 15px 15px 15px 0;
 	box-shadow: -1px 2px 3px rgba(0,0,0,.3);
 	text-decoration: none !important;
@@ -609,7 +609,7 @@ a {
 	top: 35%;
 	left: 0px;
 	padding: 0 0 7px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 100px 0 0
 
  100px;
@@ -774,7 +774,7 @@ a {
 	float: right;
 	color: #fff;
 	font-size: 17px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 100px;
 	padding: 5px;
 }
@@ -788,7 +788,7 @@ a {
 	font-size: 15px;
 	font-weight: 600;
 	padding: 5px 10px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 15px 15px 15px 0;
 	box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
 }
@@ -805,7 +805,7 @@ a {
 	top: 35%;
 	left: 0px;
 	padding: 0 0 7px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 100px 0 0 100px;
 }
 
@@ -952,7 +952,7 @@ a {
 	float: right;
 	color: #FFF;
 	font-size: 17px;
-	background: #064077;
+	background: #63A7E6;
 	border-radius: 7px;
 	padding: 5px;
 }
