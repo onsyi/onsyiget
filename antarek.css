@@ -475,7 +475,7 @@ a {
 .item-nearby-distance {
   margin-left: 5%;
   margin-top: 2px;
-  color: #4aaf4f;
+  color: #960001;
   display: block;
   text-align: left;
   font-weight: bold;
@@ -567,7 +567,7 @@ a {
   padding-left: 4px;
   padding-right: 4px;
   margin-top: 5px;
-  background: #00aa12;
+  background: #960001;
   color: #fff;
   font-size: 13px !important;
   text-align: center;
@@ -631,7 +631,7 @@ a {
   bottom: 85px;
   width: 40px;
   height: 40px;
-  background-color: #960001;
+  background-color: #333333;
   text-indent: -9999px;
   display: none;
   -webkit-border-radius: 60px;
