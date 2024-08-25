@@ -712,6 +712,7 @@ a {
   border-radius: 0;
   filter: drop-shadow(2px 5px 5px rgba(0, 0, 0, 0.15));
   border: 0 solid white;
+  opacity: 90%;
 }
 
 .bx-flashing {
