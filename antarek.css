@@ -661,11 +661,6 @@ a {
 
 /* ...(BOTTOM NAVBAR)... */
 
-* {
-  box-sizing: border-box;
-}
-
-/* Style tab links */
 .tablink {
   border: none;
   color: #000;
@@ -689,6 +684,7 @@ a {
   filter: invert(0%);
   opacity: 45%;
 }
+
 .bottom-navbar {
   position: fixed;
   width: 100%;
