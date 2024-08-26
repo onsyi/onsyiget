@@ -1140,12 +1140,11 @@ a {
 
 .navigation ul li {
   position: relative;
-  justify-content: center;
-  
+  justify-content: center; 
   width: 100%;
   height: 70px;
   z-index: 100;
-  left: -18px;
+  
 }
 
 .navigation ul li a {
