@@ -170,18 +170,6 @@ body {
 
  /* ...(SALDO CARD)... */
 
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 .parent {
     display: grid;
     grid-template-columns: 2.5fr repeat(3, 1fr);
@@ -447,11 +435,11 @@ a {
 
 .slide {
   flex: 0 0 100%;
-  margin-right: 10px; /* Adjust spacing between images */
+  margin-right: 0px; /* Adjust spacing between images */
 }
 
 .img1 {
-  width: 90%;
+  width: 100%;
   height: auto;
   background: #960001;
   border-radius: 15px;
