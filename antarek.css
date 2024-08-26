@@ -374,51 +374,50 @@ a {
   text-decoration: none !important;
 }
 
-/* CSS Slider */
-.slider-container {
-  width: 100%;
-  overflow: hidden;
-}
+      /* CSS Slider */
+      .slider-container {
+        width: 100%;
+        overflow: hidden;
+      }
 
-.slider {
-  display: flex;
-  animation: slide-animation 9s infinite;
-}
+      .slider {
+        display: flex;
+        animation: slide-animation 9s infinite;
+      }
 
-.slide {
-  margin-top: 0%;
-  min-width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      .slide {
+        margin-top: 20%;
+        min-width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-.igm {
-  width: 90%;
-  background: #960001;
-  height: auto;
-  position: relative;
-  border-radius: 15px;
-}
+      .igm {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        position: relative;
+        border-radius: 15px;
+      }
 
-@keyframes slide-animation {
-  0%,
-  33.33% {
-    transform: translateX(0%);
-  }
+      @keyframes slide-animation {
+        0%,
+        33.33% {
+          transform: translateX(0%);
+        }
+        33.33%,
+        66.66% {
+          transform: translateX(-100%);
+        }
+        66.66%,
+        100% {
+          transform: translateX(-200%);
+        }
+      }
 
-  33.33%,
-  66.66% {
-    transform: translateX(-100%);
-  }
-
-  66.66%,
-  100% {
-    transform: translateX(-200%);
-  }
-}
 .box1 {
   overflow: hidden;
   position: relative;
@@ -1105,7 +1104,7 @@ a {
   height: 65px;
   position: fixed;
   margin: 0 auto 20px;
-  background: #0e0706;
+  background: #960001;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
