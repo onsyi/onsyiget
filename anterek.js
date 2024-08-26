@@ -2,7 +2,9 @@
   // Handle search button click
   document.getElementById("ybcari").addEventListener("click", function () {
     var searchValue = document.querySelector("input[name='ycari']").value;
+    console.log("Search value:", searchValue); // Debugging log
     var lokasi = "https://jgjk.mobi/act/search/" + encodeURIComponent(searchValue);
+    console.log("Redirecting to:", lokasi); // Debugging log
     window.location.replace(lokasi);
   });
 
@@ -15,6 +17,7 @@
       method: "POST",
       dataType: "JSON",
       success: function (data) {
+        console.log("Data received for halaman1:", data); // Debugging log
         try {
           var xhtml = "";
           data.forEach(function (element) {
@@ -39,10 +42,12 @@
           });
           document.getElementById("satu").innerHTML += xhtml;
         } catch (err) {
+          console.error("Error processing data for halaman1:", err); // Debugging log
           alert("Terjadi Kesalahan. 01\n\n" + err.message);
         }
       },
       error: function (err) {
+        console.error("AJAX error for halaman1:", err); // Debugging log
         alert("Terjadi Kesalahan. 02\n\n" + err.message);
       },
     });
@@ -59,6 +64,7 @@
       method: "POST",
       dataType: "JSON",
       success: function (data) {
+        console.log("Data received for halaman2:", data); // Debugging log
         try {
           var xhtml = "";
           data.forEach(function (element) {
@@ -80,10 +86,12 @@
           });
           document.getElementById("dua").innerHTML += xhtml;
         } catch (err) {
+          console.error("Error processing data for halaman2:", err); // Debugging log
           alert("Terjadi Kesalahan. 01\n\n" + err.message);
         }
       },
       error: function (err) {
+        console.error("AJAX error for halaman2:", err); // Debugging log
         alert("Terjadi Kesalahan. 02\n\n" + err.message);
       },
     });
