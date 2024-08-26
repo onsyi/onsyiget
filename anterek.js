@@ -1,4 +1,4 @@
-
+<script>
   // Handle search button click
   document.getElementById("ybcari").addEventListener("click", function () {
     var searchValue = document.querySelector("input[name='ycari']").value;
@@ -124,5 +124,5 @@
   // Get the element with id="defaultOpen" and click on it
   document.getElementById("defaultOpen").click();
 
-
+</script>
 
