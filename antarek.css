@@ -115,6 +115,13 @@
 	border: 2px solid #eaecf0;
 	background-color: #eaecf0;
 }
+.logo {
+	height: 30px;
+	object-fit: fit;
+	width: auto;
+	position: fixed;
+	margin: -8% 5% 0%;
+}
 
 .ribbon3 {
       position: relative;
