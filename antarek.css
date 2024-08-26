@@ -396,8 +396,7 @@ a {
 }
 
 .igm {
-  max-width: 100%;
-  max-height: 100%;
+  width: 90%;
   background: #960001;
   height: auto;
   position: relative;
