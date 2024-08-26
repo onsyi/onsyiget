@@ -1,4 +1,4 @@
-
+<script>
   // Handle search button click
   document.getElementById("ybcari").addEventListener("click", function () {
     var searchValue = document.querySelector("input[name='ycari']").value;
@@ -123,7 +123,6 @@
   }
   // Get the element with id="defaultOpen" and click on it
   document.getElementById("defaultOpen").click();
+</script>
 
 
-<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
