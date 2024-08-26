@@ -1,14 +1,13 @@
 
-    <script>
       // Handle search button click
       document.getElementById("ybcari").addEventListener("click", function () {
         var searchValue = document.querySelector("input[name='ycari']").value;
         var lokasi = "https://jgjk.mobi/act/search/" + encodeURIComponent(searchValue);
         window.location.replace(lokasi);
       });
-    </script>
+  
     
-    <script type="text/javascript">
+
       var halaman1 = 1;
     
       function get_data1() {
@@ -53,9 +52,9 @@
       }
     
       get_data1();
-    </script>
     
-    <script type="text/javascript">
+    
+   
       var halaman2 = 1;
     
       function get_data2() {
@@ -97,9 +96,9 @@
       }
     
       get_data2();
-    </script>
+   
     
-    <script>
+    
       // Activate selected tab
       const list = document.querySelectorAll(".list");
     
@@ -109,12 +108,13 @@
       }
     
       list.forEach((item) => item.addEventListener("click", activelink));
-    </script>
+    
     
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     
-    <script>
+    
       function openPage(pageName, elmnt, color) {
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
@@ -131,4 +131,4 @@
     
       // Get the element with id="defaultOpen" and click on it
       document.getElementById("defaultOpen").click();
-    </script>
+   
