@@ -176,7 +176,7 @@ body {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    background: linear-gradient(62deg, #960001, #fff, #960001, #ff0000); animation: gradient 15s ease infinite; background-size: 300% 300%;
+    background: #960001;
     padding: 10px;
     margin: 25% auto 5%;
     border-radius: 19px;
@@ -399,6 +399,7 @@ a {
         max-width: 100%;
         max-height: 100%;
         height: auto;
+        background: #960001;
         position: relative;
         border-radius: 15px;
       }
