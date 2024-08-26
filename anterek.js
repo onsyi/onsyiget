@@ -1,4 +1,4 @@
-<script>
+
   // Handle search button click
   document.getElementById("ybcari").addEventListener("click", function () {
     var searchValue = document.querySelector("input[name='ycari']").value;
@@ -99,30 +99,4 @@
   }
   get_data2();
 
-  // Activate selected tab
-  const list = document.querySelectorAll(".list");
-  function activelink() {
-    list.forEach((item) => item.classList.remove("active"));
-    this.classList.add("active");
-  }
-  list.forEach((item) => item.addEventListener("click", activelink));
-
-  // Open page in tab navigation
-  function openPage(pageName, elmnt, color) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablink");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].style.backgroundColor = "";
-    }
-    document.getElementById(pageName).style.display = "block";
-    elmnt.style.backgroundColor = color;
-  }
-  // Get the element with id="defaultOpen" and click on it
-  document.getElementById("defaultOpen").click();
-
-</script>
 
