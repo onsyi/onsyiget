@@ -98,7 +98,7 @@
 	text-decoration: none;
 	display: inline-block;
 	color: #fff;
-	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(17,95,170,1) 100%);
+	background: #960001;
 	transition-duration: 0.2s;
 	-webkit-tap-highlight-color: transparent;
 	transition: background-color 0.1s ease-in-out;
@@ -124,7 +124,7 @@
       left: -3px;
       width: 38px;
       padding: 0px 0px;
-      background: #F5654F;
+      background: #960001;
       border-radius: 20px 20px 20px 0;
       box-shadow: -1px 2px 3px rgba(0,0,0,.3);
     }
@@ -141,7 +141,7 @@
       top: 40%;
       left: 0px;
       padding: 0 0 7px;
-      background: #F5654F;
+      background: #960001;
       border-radius: 100px 0 0 100px;
     }
 
@@ -172,6 +172,7 @@
       height: 50px;     
       margin: -17px 0px 5px;
       border-radius: 15px;
+      background: #960001;
       
     }
     .igm1 {
@@ -179,11 +180,12 @@
       height: 50px;     
       margin: 0px 0px 5px;
       border-radius: 15px;
+      background: #960001;
       
     }
     .menu-item1 span {
       font-size: 14px;
-      color: #000;
+      color: #333;
       display: block;
       text-decoration: none;
     }
@@ -206,7 +208,7 @@
 	border-radius: 15px;
 	margin: 23% auto 0;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	background: linear-gradient(62deg, #63a7e6, #fff, #63a7e6, #064077); animation: gradient 15s ease infinite; background-size: 300% 300%;
+	background: #960001;
 	
 }
 
@@ -385,7 +387,7 @@
         opacity: 85%;
         width: 50%;
         height: 20px;
-        background: #63A7E6;
+        background: #960001;
         color: white;
         font-size: 12px;
         display: none !important;
@@ -425,7 +427,7 @@ a {
 	height: auto;
 	position: relative;
 	border-radius: 15px;
-	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(17,95,170,1) 100%);
+	background: #960001;
 }
 
 @keyframes slide-animation {
@@ -457,7 +459,7 @@ a {
 	width: 85%;
 	height: auto;
 	border-radius: 15px;
-	background: linear-gradient(310deg, rgba(2,0,36,1) 0%, rgba(99,167,230,1) 16%, rgba(17,95,170,1) 100%);
+	background: #960001;
 }
 
 #galeri ul {
@@ -491,7 +493,7 @@ a {
 	width: 80%;
 	font-size: 70%;
 	padding: 2px 7px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 10px 0 20px 0;
 	box-shadow: -1px 2px 3px rgba(0,0,0,.3);
 }
@@ -507,7 +509,7 @@ a {
 	top: 40%;
 	left: 0px;
 	padding: 0 0 7px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 0px 0 0 100px;
 }
 
@@ -568,7 +570,7 @@ a {
 	font-weight: 500;
 	font-size: 80%;
 	z-index: 9;
-	color: #000;
+	color: #333;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -580,7 +582,7 @@ a {
 	font-weight: 400;
 	font-size: 50%;
 	z-index: 9;
-	color: #63A7E6;
+	color: #960001;
 }
 
 .ribbon5 {
@@ -592,7 +594,7 @@ a {
 	font-size: 15px;
 	font-weight: 600;
 	padding: 5px 10px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 15px 15px 15px 0;
 	box-shadow: -1px 2px 3px rgba(0,0,0,.3);
 	text-decoration: none !important;
@@ -609,7 +611,7 @@ a {
 	top: 35%;
 	left: 0px;
 	padding: 0 0 7px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 100px 0 0
 
  100px;
@@ -690,7 +692,7 @@ a {
 .OnsyiText-Judul1 {
 	text-align: left;
 	width: 45%;
-	color: #000;
+	color: #333;
 	font-size: 90%;
 	font-weight: 600;
 	margin-left: 52%;
@@ -704,7 +706,7 @@ a {
 
 .thin1 {
 	text-align: left;
-	color: #000;
+	color: #333;
 	opacity: 50%;
 	font-size: 80%;
 	font-weight: 400;
@@ -716,7 +718,7 @@ a {
 
 .thin2 {
 	text-align: left;
-	color: #000;
+	color: #333;
 	opacity: 50%;
 	font-size: 80%;
 	font-weight: 400;
@@ -762,7 +764,8 @@ a {
 	margin-right: 3%;
 	padding: 2px 5px;
 	border-radius: ; width: auto;
-	background: ; color: #000;
+	
+	color: #000;
 	font-size: 12px;
 	display: inline-block;
 	text-align: center;
@@ -774,7 +777,7 @@ a {
 	float: right;
 	color: #fff;
 	font-size: 17px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 100px;
 	padding: 5px;
 }
@@ -788,7 +791,7 @@ a {
 	font-size: 15px;
 	font-weight: 600;
 	padding: 5px 10px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 15px 15px 15px 0;
 	box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
 }
@@ -805,7 +808,7 @@ a {
 	top: 35%;
 	left: 0px;
 	padding: 0 0 7px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 100px 0 0 100px;
 }
 
@@ -878,7 +881,7 @@ a {
 .OnsyiText-Judul2 {
 	text-align: left;
 	width: 92%;
-	color: #000;
+	color: #333;
 	font-size: 90%;
 	font-weight: 600;
 	margin-left: 5%;
@@ -893,7 +896,7 @@ a {
 .thin3,
 .thin4 {
 	text-align: left;
-	color: #000;
+	color: #333;
 	opacity: 50%;
 	font-size: 80%;
 	font-weight: 400;
@@ -925,7 +928,7 @@ a {
 	opacity: 0.95;
 	width: 35%;
 	padding: 0px 3px;
-	background: #FF0000;
+	background: #960001;
 	color: #FFF;
 	font-size: 70%;
 	display: inline-block;
@@ -952,7 +955,7 @@ a {
 	float: right;
 	color: #FFF;
 	font-size: 17px;
-	background: #63A7E6;
+	background: #960001;
 	border-radius: 7px;
 	padding: 5px;
 }
@@ -985,7 +988,7 @@ a {
 }
 
 .titlee {
-	background: #3F3D56;
+	background: #960001;
 	display: inline-block;
 	padding: 0 15px 0;
 	text-align: center;
@@ -1013,7 +1016,7 @@ a {
 }
 
 .bg {
-	background-color: #63A7E6;
+	background-color: #960001;
 	width: 100%;
 	margin: 0 auto;
 	height: auto;
@@ -1107,7 +1110,7 @@ a {
 
 .pro {
 	margin: 0 5% 0;
-	color: #000;
+	color: #333;
 	font-size: 5vw;
 	font-weight: 500;
 }
