@@ -111,9 +111,10 @@ object-fit: fit;
 width: 45px;
 border-radius: 100px;
 position: absolute;
-margin: 5% 75% 0%;
+margin: 5% 15% 0%;
 border: 2px solid #eaecf0;
 background-color: #eaecf0;
+
 }
 .logo {
 height: 35px;
