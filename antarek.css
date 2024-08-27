@@ -167,12 +167,14 @@
       justify-content: space-evenly;
       width: 100%;
       margin: 0 auto 0;
+      background: #ff512f;
     }
 
     .menu-item1 {
       text-align: center;
       padding: 10px;
       width: auto;
+      background: #aa0012;
     }
 
     .igm {
