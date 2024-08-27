@@ -172,6 +172,7 @@
     .menu-item1 {
       text-align: center;
       padding: 10px;
+      width: auto;
     }
 
     .igm {
