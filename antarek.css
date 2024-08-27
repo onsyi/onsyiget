@@ -111,7 +111,7 @@ object-fit: fit;
 width: 45px;
 border-radius: 100px;
 position: absolute;
-margin: 5% 15% 0%;
+margin: 5% 25% 0%;
 border: 2px solid #eaecf0;
 background-color: #eaecf0;
 z-index: 99:
@@ -126,7 +126,7 @@ margin: -12% 5% 0%;
 .ribbon3 {
   position: absolute; /* Change from relative to absolute for better alignment */
   top: -5px; /* Adjust the top value to align the ribbon consistently */
-  left: 2px; /* Adjust left value to align properly */
+  left: 3px; /* Adjust left value to align properly */
   width: 38px;
   padding: 2px 5px; /* Add padding for better appearance */
   background: #333;
