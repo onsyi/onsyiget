@@ -465,6 +465,7 @@ background: #960001;
   display: inline-block; /* Ensure images stay in line */
   margin: 0; /* Reduced margin between images */
   width: 90%;
+  margin-right: -5%;
   height: auto;
   border-radius: 15px;
   background: #960001;
