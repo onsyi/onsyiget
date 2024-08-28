@@ -125,13 +125,13 @@ margin: -12% 5% 0%;
 }
 .ribbon3 {
   position: absolute; /* Change from relative to absolute for better alignment */
-  top: -5px; /* Adjust the top value to align the ribbon consistently */
-  left: 3px; /* Adjust left value to align properly */
-  width: 38px;
+  top: -2px; /* Adjust the top value to align the ribbon consistently */
+  left: 19px; /* Adjust left value to align properly */
+  width: 40% !important;
   padding: 2px 5px; /* Add padding for better appearance */
   background: #333;
   border-radius: 20px 20px 20px 0;
-  box-shadow: -1px 2px 3px rgba(0, 0, 0, .3);
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
   color: #fff;
   font-size: 11px; /* Ensure font size is consistent */
   text-align: center;
@@ -146,8 +146,8 @@ margin: -12% 5% 0%;
 
 .ribbon3:before {
   width: 7px;
-  height: 100%;
-  top: 50%; /* Adjust to center the before element */
+  height: 17px;
+  top: 35% !important; /* Adjust to center the before element */
   left: 0px;
   background: #333;
   border-radius: 100px 0 0 100px;
@@ -169,20 +169,19 @@ margin: -12% 5% 0%;
   width: 100%;
   margin: 0 auto;
 }
-
 .menu-item1 {
-  position: relative; /* Make this relative to allow absolute positioning of ribbon */
+  position: relative;
   text-align: center;
   padding: 10px;
   width: auto;
-  margin-bottom: 10px; /* Ensure spacing between rows is consistent */
+  margin-bottom: 10px;
 }
 
 .igm,
 .igm1 {
   width: 50px;
   height: 50px;
-  margin: 0 auto 5px; /* Center the icon and ensure consistent margin */
+  margin: 0 auto 5px;
   border-radius: 15px;
   background: #aa0012;
 }
@@ -192,7 +191,9 @@ margin: -12% 5% 0%;
   color: #333;
   display: block;
   text-decoration: none;
-  margin-top: 5px; /* Add space between the icon and text */
+  margin-top: 5px;
+  width: 80px; /* Set a fixed width to ensure the icon doesn't shift */
+  text-align: center;
 }
 
 a {
@@ -201,7 +202,6 @@ a {
   display: block;
   text-align: center;
 }
-
 
 .mySlides {
 display: none;
