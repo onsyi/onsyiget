@@ -452,14 +452,14 @@ a {
 
 /* Css Slide */
 .box1 {
-  width: 100%; /* Ensure the container takes full width */
-  overflow-x: scroll; /* Enable horizontal scrolling */
-  white-space: nowrap; /* Prevent images from wrapping */
+  width: 100%; 
+  overflow-x: scroll; 
+  white-space: nowrap; 
 }
 
 .img2 {
-  display: inline-block; /* Ensure images stay in line */
-  margin: 0; /* Reduced margin between images */
+  display: inline-block; 
+  margin: 0; 
   width: 90%;
   margin-right: -5%;
   height: auto;
@@ -700,15 +700,16 @@ a {
     font-weight: bold;
   }
   
-  .OnsyiText-Judul1 {
+   .OnsyiText-Judul1 {
     width: 45%;
     color: #333;
     font-size: 90%;
+    text-align: left;
     font-weight: 600;
     margin-left: 52%;
     margin-top: -32%;
     text-decoration: none;
-    float: left;
+    display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
