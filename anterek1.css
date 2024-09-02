@@ -5,6 +5,7 @@ body {
     font-family: 'poppins', sans-serif !important;
     -webkit-tap-highlight-color: transparent;
     font-weight: 500;
+    margin:0;
 }
 
 .efek {
