@@ -1,0 +1,1068 @@
+@import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
+
+:root {
+  --OnsyiBg: #f5f9ff;
+  --OnsyiB1: #2095f2;
+  --OnsyiB2: #960001;
+  --OnsyiB3: #43a6f7;
+  --gradient3: linear-gradient(310deg, rgba(2, 0, 36, 1) 0%, rgba(113, 69, 209, 1) 16%, rgba(65, 10, 186, 1) 100%);
+  --gradient: repeating-linear-gradient(-45deg, #ff00e0 0%, #ff9800 7.14%, #ff9800 14.28%, #094d9e 21.4%, #5993cd 28.56%, #ff9800 35.7%, #ff9800 42.84%, #ff9800 50%);
+  --gradient2: repeating-linear-gradient(-45deg, #63a7e6 0%, #094d9e 7.14%, #5993cd 14.28%, #63a7e6 21.4%, #5993cd 28.56%, #5993cd 35.7%, #094d9e 42.84%, #63a7e6 50%);
+}
+
+body {
+  background: var(--OnsyiB2) !important;
+  font-family: "Poppins", sans-serif !important;
+  font-weight: 500;
+  margin: 0;
+  height: 100%;
+  text-transform: capitalize !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.lop {
+  width: 100%;
+  height: auto;
+  background-color: #fff;
+  overflow: hidden;
+  margin: 12% auto 0;
+  position: sticky;
+  border-radius: 40px 40px 0 0;
+  border: none;
+  z-index: 9;
+}
+
+.loop {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  margin: 12% auto 0;
+  position: relative;
+  border-radius: 40px 40px 0 0;
+  border: none;
+  z-index: 9;
+}
+
+.f {
+  color: #333;
+  width: 70%;
+  font-weight: 600;
+  font-size: 95%;
+  text-align: left;
+  margin: 5% 5% 0%;
+}
+
+.fe {
+  color: #fff;
+  width: 90%;
+  font-weight: 600;
+  font-size: 19px;
+  text-align: left;
+  position: fixed;
+  margin: -10% 5% 0%;
+}
+
+.ff {
+  font-weight: 400;
+  color: #555;
+  font-size: 80%;
+  width: 90%;
+  text-align: left;
+  margin: 0 5%;
+  display: inline-block;
+}
+
+.lainnya {
+  font-size: 80%;
+  margin-top: -8%;
+  margin-right: 5%;
+  margin-bottom: 3%;
+  display: block;
+  color: #960001;
+  background-color: #eee;
+  z-index: 0;
+  float: right;
+  text-align: center;
+  border-radius: 20px;
+  padding: 4px 20px;
+  font-weight: 500;
+}
+
+.lainnya:hover {
+  color: #fff;
+  background: #960001;
+  transition-duration: 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.foto {
+  height: 45px;
+  object-fit: fit;
+  width: 45px;
+  border-radius: 100px;
+  position: absolute;
+  margin: 5% 28% 0%;
+  border: 2px solid #eaecf0;
+  background-color: #eaecf0;
+  z-index: 99;
+}
+
+.logo {
+  height: 35px;
+  object-fit: fit;
+  width: auto;
+  position: fixed;
+  margin: -12% 2% 0;
+}
+
+a {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  display: block;
+  text-align: center;
+}
+
+/* Css Card Saldo */
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: 2.5fr repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  background: linear-gradient(62deg, #f02d2d, #863f3f, #8d0808, #f02d2d);
+  animation: gradient 15s ease infinite;
+  background-size: 300% 300%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  margin: 25% auto 0;
+  border-radius: 19px;
+  position: relative;
+  width: 90%;
+  height: auto;
+  z-index: 1;
+}
+
+.slider4 {
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  text-align: left;
+}
+
+.slider4 {
+  height: 40px;
+  line-height: 0px;
+  overflow: hidden;
+}
+
+.slide4 {
+  height: 40px;
+  line-height: 0px;
+  overflow: hidden;
+}
+
+.slider4-2 .slide4 {
+  animation: slide4-2 12s ease-in-out infinite;
+}
+
+@keyframes slide4-2 {
+  100% {
+    transform: translateY(0);
+  }
+
+  50%,
+  95.4545454545% {
+    transform: translateY(-40px);
+  }
+
+  0%,
+  45.4545454545% {
+    transform: translateY(0);
+  }
+}
+
+.nama-penggun {
+  width: auto;
+  height: auto;
+  font-weight: 600;
+  font-size: 14px;
+  color: black;
+  margin: 4% 5% 0;
+}
+
+.ico {
+  padding: 0px;
+  margin-top: 15px;
+  width: 20px;
+  filter: invert(100%);
+}
+
+.t {
+  color: #fff;
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 450;
+}
+
+/* Css Ribbon Menu Utama */
+.ribbon3 {
+  position: absolute;
+  /* Change from relative to absolute for better alignment */
+  top: -2px;
+  /* Adjust the top value to align the ribbon consistently */
+  left: 10px;
+  /* Adjust left value to align properly */
+  width: 40% !important;
+  padding: 2px 5px;
+  /* Add padding for better appearance */
+  background: #333;
+  border-radius: 20px 20px 20px 0;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 11px;
+  /* Ensure font size is consistent */
+  text-align: center;
+}
+
+.ribbon3:before,
+.ribbon3:after {
+  content: "";
+  position: absolute;
+  z-index: -9;
+}
+
+.ribbon3:before {
+  width: 7px;
+  height: 17px;
+  top: 35% !important;
+  /* Adjust to center the before element */
+  left: 0px;
+  background: #333;
+  border-radius: 100px 0 0 100px;
+}
+
+.ribbon3:after {
+  width: 5px;
+  height: 9px;
+  bottom: -5px;
+  left: 2px;
+  background: #333;
+  border-radius: 5px 0 0 5px;
+}
+
+/* Css Menu Utama */
+.menu-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  width: 95%;
+  margin: 0% auto;
+}
+
+.menu-item1 {
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  width: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.igm,
+.igm1 {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 5px;
+  border-radius: 15px;
+  background: #aa0012;
+  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2);
+}
+
+.menu-item1 span {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  text-decoration: none;
+  margin-top: 0px;
+  width: 60px;
+  /* Set a fixed width to ensure the icon doesn't shift */
+  text-align: center;
+}
+
+/* Css Slide */
+.slider1-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 10px;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+}
+
+.boxi {
+  display: inline-flex;
+}
+
+.boxi a {
+  display: inline-block;
+  width: calc(90vw - 5px);
+  margin-right: 10px;
+  scroll-snap-align: start;
+}
+
+.img2 {
+  width: 100%;
+  height: auto;
+  background-color: brown;
+  border-radius: 15px;
+  margin-left: 5%;
+  object-fit: cover;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+/* Menyembunyikan scrollbar */
+.slider1-container::-webkit-scrollbar {
+  display: none;
+}
+
+.slider1-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Css Toko Terdekat */
+.Onsyi-Row {
+  display: flex;
+  overflow-x: auto;
+  width: 100%;
+  padding-right: 0px;
+  margin-bottom: 0px;
+  white-space: nowrap;
+}
+
+.item-nearby-row {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  background: #fff;
+  width: 120px;
+  height: auto;
+  margin-left: 15px !important;
+  margin-right: 0px !important;
+  margin-top: 1% !important;
+  margin-bottom: 20px !important;
+  min-width: 100px;
+  max-width: 120px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  flex: 0 0 auto;
+  vertical-align: top;
+}
+
+.item-nearby-link {
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  text-decoration-line: none !important;
+}
+
+.item-nearby-image {
+  border-radius: 10px !important;
+  width: 92% !important;
+  margin-top: 5% !important;
+  margin-bottom: 3% !important;
+  margin-right: 4% !important;
+  margin-left: 4% !important;
+}
+
+.item-nearby-title {
+  margin-top: 3px;
+  color: #333;
+  display: block;
+  font-size: 15px !important;
+  font-weight: 500;
+  width: 92% !important;
+  text-align: left;
+  margin-left: 5%;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+
+.item-nearby-distance {
+  margin-left: 5%;
+  margin-top: 2px;
+  color: #960001;
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  font-size: 12px !important;
+  text-decoration: none !important;
+}
+
+.item-nearby-status {
+  margin-bottom: 5px;
+  margin-left: 5px;
+  color: none;
+  font-weight: bold;
+  font-size: 11px !important;
+}
+
+.item-nearby-status-note {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+  margin-left: 5%;
+  width: 80% !important;
+  text-align: center;
+  margin-top: -90%;
+  border-radius: 25px;
+  opacity: 65%;
+  height: auto;
+  background: linear-gradient(to top, #ff512f 20%, #ff0000 80%);
+  color: white;
+  font-size: 60%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.item-nearby-status-open {
+  margin-top: -137%;
+  float: left;
+  margin-left: -3%;
+  border-radius: 15px 0px 15px 0px;
+  opacity: 85%;
+  width: 50%;
+  height: 20px;
+  background: #960001;
+  color: white;
+  font-size: 12px;
+  display: none !important;
+  overflow: hidden;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* CSS Slider */
+.slider-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.slider {
+  display: flex;
+  animation: slide-animation 9s infinite;
+}
+
+.slide {
+  margin-top: 0%;
+  min-width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.igmm {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  position: relative;
+  border-radius: 15px;
+  background: #960001;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slide-animation {
+  0%,
+  33.33% {
+    transform: translateX(0%);
+  }
+
+  33.33%,
+  66.66% {
+    transform: translateX(-100%);
+  }
+
+  66.66%,
+  100% {
+    transform: translateX(-200%);
+  }
+}
+
+/* Css Ribbon Tab Promo Card Saldo,Poin,Voucher */
+.conti {
+  width: 100%;
+  padding: 5px;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.ribbon {
+  width: 37%; /* Atur ukuran yang lebih proporsional */
+  position: relative;
+  margin-top: 10px;
+  background: #fcfcfc;
+  border-radius: 10px;
+  color: white;
+  padding: 20px 15px;
+  text-align: left;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+.ribbon4 {
+  position: absolute;
+  top: 10px;
+  left: -7px;
+  font-family: "dynapuff", cursive;
+  font-size: 0.9rem;
+  padding: 5px 15px;
+  background: #960001;
+  border-radius: 10px 0 20px 0;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.ribbon4:before {
+  content: "";
+  position: absolute;
+  width: 7px;
+  height: 100%;
+  top: 40%;
+  left: -0px;
+  background: #960001;
+  border-radius: 0 0 0 100px;
+}
+
+.ribbon4:after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 10px;
+  bottom: -10px;
+  left: 2px;
+  background: black;
+  border-radius: 5px 0 0 5px;
+}
+
+.tx {
+  margin: 20px 0 0 0;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ttx {
+  margin-top: 10px;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: #960001;
+}
+
+.hr {
+  position: relative;
+  margin: 5% auto 0;
+  border: 3px solid #9e9e9e;
+  width: 100%;
+  border-radius: 50px;
+}
+
+/* Css Produk Terbaru Tab Promo 1 */
+.ribbon5 {
+  position: relative;
+  color: white;
+  margin-top: 2%;
+  display: inline-block;
+  margin-left: -55%;
+  width: auto;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 5px 10px;
+  background: #960001;
+  border-radius: 15px 15px 15px 0;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+  text-decoration: none !important;
+}
+
+.ribbon5:before,
+.ribbon5:after {
+  content: "";
+  position: absolute;
+}
+
+.ribbon5:before {
+  width: 7px;
+  height: 100%;
+  top: 35%;
+  left: 0px;
+  padding: 0 0 7px;
+  background: #960001;
+  border-radius: 100px 0 0 100px;
+}
+
+.ribbon5:after {
+  width: 5px;
+  height: 10px;
+  bottom: -10px;
+  left: 3px;
+  background: black;
+  border-radius: 5px 0 0 5px;
+}
+
+.Onsyi-Row1 {
+  display: flex;
+  overflow-x: auto;
+  padding-right: 0px;
+  scroll-behavior: smooth; /* Smooth scrolling */
+  gap: 0px; /* Add consistent space between cards */
+}
+
+.col-s5 {
+  margin: 0 0 0 5%;
+}
+
+.OnsyiCard1 {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  background: #fdfdfd;
+  border-radius: 15px;
+  width: 300px;
+  height: auto; /* Set a fixed height to ensure consistency */
+  margin: 2% 0%;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out; /* Reduced transition time */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.OnsyiCard1:hover {
+  transform: scale(1.02); /* Slight hover effect */
+}
+
+.OnsyiImage1 {
+  width: 45%;
+  border-radius: 15px;
+  margin: 2%;
+  overflow: hidden;
+  float: left;
+}
+
+.OnsyiText-Judul1 {
+  width: 45%;
+  color: #333;
+  font-size: 90%;
+  text-align: left;
+  font-weight: 600;
+  margin-top: 2%;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.thin1,
+.thin2 {
+  display: flex;
+  color: #333;
+  background: #ff512f;
+  opacity: 50%;
+  font-size: 80%;
+  margin: 0 52% 0;
+  width: auto;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.OnsyiText-Harga1 {
+  text-align: center;
+  width: auto;
+  color: #444;
+  font-size: 85%;
+  border-radius: 5px;
+  font-weight: 600;
+  text-decoration: none;
+  margin-top: 0;
+  margin-left: -6%;
+  display: inline-block;
+}
+
+.OnsyiNew1 {
+  margin-top: 5%;
+  margin-left: 33%;
+  border-radius: 7px;
+  opacity: 65%;
+  width: auto;
+  display: inline-block;
+  padding: 2px 5px;
+  background: #777;
+  color: #fff;
+  font-size: 70%;
+  text-align: center;
+  font-weight: bold;
+}
+
+.star1 {
+  margin-top: 5%;
+  float: right;
+  margin-right: 3%;
+  padding: 2px 5px;
+  width: auto;
+  color: #000;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.cart1 {
+  margin: 1% 3%;
+  float: right;
+  background: #960001;
+  color: #fff;
+  padding: 3px;
+  border-radius: 50px;
+}
+
+/* Css Produk Terbaru Tab Promo 2 */
+.ribbon6 {
+  position: relative;
+  color: white;
+  margin-top: 2%;
+  display: block;
+  margin-left: -5%;
+  width: 50%;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 5px 10px;
+  background: #960001;
+  border-radius: 15px 15px 15px 0;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+  text-decoration: none !important;
+}
+
+.ribbon6::before,
+.ribbon6::after {
+  content: "";
+  position: absolute;
+}
+
+.ribbon6::before {
+  width: 7px;
+  height: 100%;
+  top: 35%;
+  left: 0px;
+  padding: 0 0 7px;
+  background: #960001;
+  border-radius: 100px 0 0 100px;
+}
+
+.ribbon6::after {
+  width: 5px;
+  height: 10px;
+  bottom: -10px;
+  left: 3px;
+  background: black;
+  border-radius: 5px 0 0 5px;
+}
+.col-s6 {
+  margin: 0 0 0 5%;
+}
+.Onsyi-Row2 {
+  display: flex;
+  overflow-x: scroll;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.OnsyiCard2 {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  background: #fdfdfd;
+  border-radius: 15px;
+  width: 170px;
+  height: 270px;
+  height: auto; /* Set a fixed height to ensure consistency */
+  margin: 2% 3%;
+  display: inline-block;
+  text-decoration: none;
+  transition: transform 0.3s ease-in-out; /* Reduced transition time */
+  -webkit-tap-highlight-color: transparent;
+}
+
+.OnsyiCard2:hover {
+  transform: scale(1.02); /* Slight hover effect */
+}
+
+.OnsyiImage2 {
+  width: 100%;
+  border-radius: 15px;
+  margin: -22% auto;
+}
+
+.OnsyiText-Judul2 {
+  text-align: left;
+  width: 92%;
+  color: #333;
+  font-size: 90%;
+  font-weight: 600;
+  margin-left: 5%;
+  margin-top: 25%;
+  text-decoration: none;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.thin3,
+.thin4 {
+  text-align: left;
+  color: #333;
+  opacity: 50%;
+  font-size: 80%;
+  font-weight: 400;
+  margin-left: 5%;
+  margin-top: 3%;
+  text-decoration: none;
+  display: flex;
+}
+
+.OnsyiText-Harga2 {
+  text-align: left;
+  width: 100%;
+  color: #444;
+  font-size: 85%;
+  font-weight: 600;
+  display: none !important;
+  margin-top: 0;
+  transform: translateY(0px);
+  margin-left: 5%;
+}
+
+.star2 {
+  margin-top: 0%;
+  margin-bottom: 2%;
+  margin-left: 3%;
+  padding: 2px;
+  background: none;
+  color: #444;
+  font-size: 12px;
+  display: flex;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Css Tab Pesanan */
+.cardio {
+  background: #fbfbfb;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  float: left;
+  border-radius: 15px;
+  width: 90%;
+  height: 150px;
+  margin-left: 4%;
+  margin-right: 0px;
+  padding-right: 10px;
+  margin-top: 10%;
+  min-width: 300px;
+  max-width: 500px;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.image1 {
+  height: 70%;
+  float: left;
+  width: auto;
+  margin-top: 5%;
+  margin-left: 5%;
+}
+
+.titlee {
+  background: #333;
+  display: inline-block;
+  padding: 0 15px 0;
+  text-align: center;
+  width: auto;
+  border-radius: 10px;
+  font-family: "Poppins";
+  font-weight: 500;
+  margin-top: 11%;
+  margin-left: 7%;
+  color: #fff;
+  font-size: 90%;
+  text-decoration: none;
+}
+
+.pprice {
+  margin-top: -15%;
+  font-family: "Poppins";
+  font-weight: 400;
+  margin-left: 45%;
+  color: #777;
+  text-align: left;
+  overflow: hidden;
+  display: inline-block;
+  font-size: 80% !important;
+}
+
+/* Css Tab Akun */
+.bg {
+  background-color: #960001;
+  width: 100%;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 0 0 70px 70px;
+}
+
+.imgic,
+.imgi {
+  width: 15%;
+  float: left;
+  margin: 0;
+  border-radius: 0px;
+  padding: 10px;
+  filter: invert(30%);
+}
+
+.cardos {
+  height: auto;
+  text-align: left;
+  border-radius: 5px;
+  margin-top: 0;
+  user-select: none;
+  width: 90%;
+  margin-left: 5%;
+  background-color: #fff;
+  border-bottom: 1px solid #777;
+  padding: 10px;
+}
+
+.txt {
+  margin: 5% 10% 0%;
+  color: #333;
+  font-size: 70%;
+  font-weight: 600;
+}
+
+.fotoo {
+  height: 45px;
+  width: 45px;
+  object-fit: fit;
+  border-radius: 100px;
+  margin: 5% 5% 0;
+  border: 3px solid #f1f1f1;
+  background-color: #eaecf0;
+}
+
+.edit {
+  width: 10%;
+  filter: invert(100%);
+  float: right;
+  padding: 5px;
+  margin: 5% 8% 0;
+  border-radius: 0px;
+}
+
+.name {
+  margin: -12% 25% 0;
+  font-weight: bold;
+  display: inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 19px;
+  width: 55%;
+}
+
+.hp {
+  margin: -5% 25% 0;
+  color: #fff;
+  font-size: 4.5vw;
+  font-weight: 400;
+}
+
+.email {
+  margin: 0% 25% 0;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userr {
+  width: 80px;
+  height: auto;
+  margin: 2% 25% 10%;
+  border-radius: 15px;
+}
+
+.pro {
+  margin: 0 5% 0;
+  color: #333;
+  font-size: 5vw;
+  font-weight: 500;
+}
+
+.row4 {
+  float: left;
+  display: block;
+  text-decoration: none;
+  cursor: none;
+  margin-top: 0%;
+  padding: 0px;
+  width: 100%;
+  overflow: hidden;
+}
