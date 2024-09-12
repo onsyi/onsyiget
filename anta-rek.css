@@ -495,7 +495,7 @@ a {
 
 .slider {
   display: flex;
-  animation: slide-animation 9s infinite;
+  animation: slide-animation 30s infinite;
 }
 
 .slide {
