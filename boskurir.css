@@ -388,12 +388,12 @@ body {
     width: 0px;
     height: 0px;
     background: transparent;
-    opacity: 0.6;
+    
 }
 
 .flickity-prev-next-button:hover {
     background: transparent;
-    opacity: 100;
+    
 }
 
 .flickity-prev-next-button .arrow {
