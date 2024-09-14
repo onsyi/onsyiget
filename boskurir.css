@@ -1,0 +1,128 @@
+.bg-akun { background-image: url('https://res.cloudinary.com/dyqa4pm1z/image/upload/v1716231679/Untitled-1_c0x1tz.png');
+    background-position: fit;
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%; box-shadow: 0 0px 5px 0 rgba(0,0,0,0.2); width: 100%; left: 0%; top: 0%; height: 180px; border-radius: 0px 0px 0px 0px; z-index: 99;
+}
+.imgic {
+ width:15%;
+ float:left;
+ margin-left: 0%;
+ margin-top: -5%;
+ border-radius: 0px; 
+ border:5px solid none;
+ padding: 10px;
+ filter: invert(20%) ;
+}
+.cardos {
+  height: auto;
+  text-align: left;
+  border-radius: 5px;
+  margin-top: 2%;  
+  user-select: none;
+  width: 90%;
+  margin-left: 4%;  
+  background-color: # ;  
+  border-bottom: 1px solid #777;
+}
+.txt {
+  margin: 0% 10% 0%;
+  color:#555;
+  font-size: 70%;
+}
+.headers {
+  width: 12%;
+  text-align: left;
+  border-radius: 100px;
+  margin: -40% 5% 0;  
+}
+.edit {
+  width: 10%;
+  filter: invert(100%) ;
+  float: right;
+  padding: 5px;
+  margin: -10% 5% 0;
+  border-radius: 0px;
+}
+.name {
+  margin: -12% 20% 0;
+  font-weight: bold;
+  color: #ff0000;
+  font-size: 19px;
+}
+.hp {
+  margin: 0% 20% 0;  
+  color: #333;
+  font-size: 4.5vw;
+  font-weight: 400;
+}
+.email {
+  margin: 0% 20% 0;  
+  color: #333;
+  font-size: 13px;
+  font-weight: 400;
+  text-overflow: ellipsis; 
+  white-space: nowrap;  
+}
+.userr {
+  width: 80px;
+  height: auto;  
+  margin: 2% 20% 0;
+  border-radius: 15px;
+  background: #ff0000;
+}
+.pro {
+  margin: 0 5% 0;  
+  color: #000;
+  font-size: 5vw;
+  font-weight: 500;
+}
+.row4 a {
+  float: left;
+  display: block;
+  text-decoration: none;
+  cursor: none;
+}
+.tex {
+  margin: 10% 5% 0;  
+  color: #000;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+  /* ...(BOTTOM NAVBAR)... */
+
+* {
+    box-sizing: border-box
+}
+/* Style tab links */
+.tablink {
+    border: none;
+    color: #333;
+    float: left;
+    outline: none;
+    padding: 2px;
+    font-size: 3.5vw;
+    width: 20%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    transition: 0.4s;
+    border-radius: 0px;
+    text-align: center;
+}
+.bottom-navbar {
+
+position:fixed;width:100%;z-index:7;bottom:0; background-image: url('https://kioos.files.wordpress.com/2021/08/wp-1628869022070.png'); background-repeat: no-repeat;background-size: 100% 100%; left:0%; padding-top:2%;
+
+}
+
+.imgs30 {
+    padding: 0px;
+    margin-bottom: 5%;
+    width: 20px !important;
+    filter: invert(60%);
+}
+.cart-img {
+ width: 30px !important;
+ margin-bottom: 5% !important;
+ }
