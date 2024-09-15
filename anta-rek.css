@@ -335,6 +335,75 @@ a {
   text-align: center;
 }
 
+/* Css Running Text */
+.carde {
+  background: linear-gradient(62deg, #f02d2d, #863f3f, #8d0808, #f02d2d);
+  color: white;
+  width: 90%;
+  height: 40px;
+  margin: 5% auto;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.carde1 {
+  background: transparent;
+  color: white;
+  width: 80%;
+  height: 40px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee {
+  white-space: nowrap;
+  margin: 3%;
+  animation: marquee 15s linear infinite;  
+  font-size: 15px;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.icon-kiri, .icon-kanan {
+  position: absolute;
+  top: 10%;
+  z-index: 1;
+  
+}
+
+.icon-kiri {
+  left: 5px;
+  width: 30px;
+  border-radius: 50px;
+}
+
+.icon-kanan {
+  right: 5px;
+  width: 30px;
+  border-radius: 50px;
+}
+.icon-kanan {
+  animation: mymove 2s infinite;
+}
+@keyframes mymove {
+  50% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(-5px);
+  }
+}
+
+
 /* Css Slide */
 .slider1-container {
   width: 100%;
