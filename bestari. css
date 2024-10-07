@@ -1,0 +1,650 @@
+@import url('https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap');
+
+body {  
+background: #eaecf0 !important;
+font-family: 'poppins', sans-serif !important;
+margin: 0;
+text-decoration: none;
+-webkit-tap-highlight-color: transparent;
+font-weight: 500 ;
+}
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;   
+}
+.f { background: # ; color: #333; font-weight: bold; font-size: 17px; width: 90%; text-align: left; margin: 8% 5% 0%;
+}
+.ff { font-weight: 500; color: #555; font-size: 16px; text-align: left; margin: 0% 5% 5%; width: 90%;
+}
+.efek {      
+        animation-duration: .5s;
+        animation-iteration-count: infinite;        
+    }
+    .bounce-1 {
+        animation-name: bounce-1;
+        animation-timing-function: linear;
+    }
+@keyframes bounce-1 {
+        0%   { transform: translateY(0); }
+        50%  { transform: translateY(-5px); }
+        100% { transform: translateY(0); }
+    }
+
+
+  /* ...(WAVE)... */
+
+/*Downloaded from https://www.codeseek.co/danmindru/white-waves-svg-animation-pwBGbp */
+.wavies > use {
+    -webkit-animation: waveAround 12s linear infinite;
+    animation: waveAround 12s linear infinite;
+}
+
+.wavies > use:nth-child(1) {
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+}
+
+.wavies > use:nth-child(2) {
+    -webkit-animation-delay: -2s;
+    animation-delay: -2s;
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+}
+
+.wavies > use:nth-child(3) {
+    -webkit-animation-delay: -4s;
+    animation-delay: -4s;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+}
+
+@-webkit-keyframes waveAround {
+    0% {
+        -webkit-transform: translate(-90px, 0%);
+        transform: translate(-90px, 0%);
+    }
+
+    100% {
+        -webkit-transform: translate(85px, 0%);
+        transform: translate(85px, 0%);
+    }
+}
+
+@keyframes waveAround {
+    0% {
+        -webkit-transform: translate(-90px, 0%);
+        transform: translate(-90px, 0%);
+    }
+
+    100% {
+        -webkit-transform: translate(85px, 0%);
+        transform: translate(85px, 0%);
+    }
+}
+
+  /* ...(PROFIL DLL)... */
+
+.top-bar {
+    width: 100%; height: 30px; position: fixed; top: 0; left: 0; background: #40c057; z-index: 99;
+}
+
+.foto {
+    margin: -35% 0 0 8%;
+    height: 45px;
+    object-fit: cover;
+    width: 45px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    z-index: 1;
+    position: relative;
+}
+
+.nama {
+    font-weight: bold;
+    color: #333;
+    position: relative;
+    margin: -33% 0 0 23%;
+    font-size: 80%;
+    z-index: 1;
+}
+
+.sald {
+    position: absolute;
+    margin: 6% 0 0 8%;
+    font-weight: bold;
+    color: #333;
+    font-size: 80%;
+    z-index: 1;
+}
+
+.saldoku {
+    position: absolute;
+    margin: 11% 0 0 8%;
+    font-weight: bold;
+    color: #333;
+    font-size: 70%;
+    z-index: 1;
+}
+
+.poin {
+    position: absolute;
+    margin: 9% 0 0 70%;
+    font-weight: bold;
+    color: #333;
+    font-size: 80%;
+    z-index: 1;
+}
+
+.ig {
+    width: 9%;
+    border-radius: 10px;
+    padding: 3px;
+    border: 2px solid #fff;
+    position: relative;
+    margin: -5% 0 0 85%;
+    z-index: 1;
+}
+
+.ii {
+    width: 9%;
+    border-radius: 10px;
+    padding: 3px;
+    border: 2px solid #fff;
+    position: relative;
+    margin: -9% 0 0 72%;
+    z-index: 1;
+}
+
+  /* ...(SALDO CARD)... */
+
+      .topup-container  {
+       margin: 18% auto 7%; 
+       background: #fbfbfb; 
+       box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+       overflow: auto; 
+       width: 85%; 
+       border-radius: 15px;
+      }
+
+       .nav1 {
+        width: 100%;
+        height: 60px;
+        background-color: #fff;
+        display: flex;
+        overflow-x: auto;
+        border-radius: 0;
+      }
+
+      .nav1_link1 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        min-width: 50px;
+        overflow: hidden;
+        white-space: nowrap;
+        font-size: 80%;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: background-color 0.1s ease-in-out;
+        
+      }
+
+      .nav1_link1:hover {
+        text-decoration: none;
+        background: #fd641d;
+        color: #fff;
+      }
+
+      .nav1icon1 {
+        width: auto;
+      }
+
+      .nav1text1 {
+        font-size: 80%;
+        margin-top: 5px;
+      }
+
+/* ...(MENU UTAMA)... */
+
+.cont  {
+    width: 90%;
+    background: #fff;
+    overflow: hidden;
+    height: auto;
+    margin: 0 auto 0;
+    border-radius: 15px;
+    padding: 0;
+}
+
+.menu-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto 0;
+}
+
+.menu-item1 {
+    width: 25%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 0;
+}
+
+.igm {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 0;
+    border-radius: 15px;
+}
+
+.menu-item1:hover {
+    transition: 0.1s ease-out;
+    background-color: #fd641d;
+    color: #fff;
+    
+}
+
+.menu-item1 span {
+    font-size: 14px;
+    display: block;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+  /* ...(CARD KATEGORI TERDEKAT)... */
+
+.container {
+    width: 100%;
+    margin: 5% auto 0;
+    text-align: center;
+    justify-content: center;
+    display: flex;   
+}
+
+.card {
+    background: #fff;    
+    margin: 0px;
+    width: 80px;
+    height: 90px;
+}
+
+.card:hover {
+    transition: 0.1s ease-out;
+    background-color: #fd641d;
+    color: #fff;
+    
+}
+
+  /* ...(TABS)... */
+
+.tabs {
+  display: flex;
+  overflow: scroll;
+  
+}
+.tabs button {
+  width: auto;
+  padding: 5px 20px;
+  border-radius: 20px;
+  margin-top: 7%;
+  margin-bottom: 5%;
+  margin-left: 5%;
+  margin-right: -2%;
+  border: none;  
+  font-size: 14px;
+  font-weight: 500;
+  background-color: #fd641d ;
+  box-shadow: 3px 3px 3px rgba(90, 90, 90, 0.8) inset, -3px -3px 3px #fd641d inset;
+  color: #fff; 
+}
+
+.tabs .non-active {
+  opacity: 0.6;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  color: #333;
+}
+.tab-content {
+  padding: 0px 0px;  
+}
+.hidden {
+  display: none;
+}
+
+  /* ...(PRODUK TERDEKAT JJ)... */
+
+.Onsyi-Row {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    padding-right: 0px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+ /* Prevent wrapping to the next line */
+}
+
+.item-nearby-row {
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    background: #fff;
+    width: 150px;
+    height: auto;
+    margin-left: 15px !important;
+    margin-right: 0px !important;
+    margin-top: 8px !important;
+    margin-bottom: 20px !important;
+    min-width: 100px;
+    max-width: 150px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    flex: 0 0 auto;
+ /* Fix flex-shrink issue */
+    vertical-align: top;
+ /* Align cards at the top */
+}
+
+.item-nearby-link {
+    width: 100%;
+    text-decoration: none;
+    color: black;
+    text-decoration-line: none !important;
+}
+
+.item-nearby-image {
+    border-radius: 15px 15px 0 0;
+    width: 100% !important;
+   margin: 0 auto 0 !important;
+}
+
+.item-nearby-title {
+    margin-top: 5%;
+    color: #333;
+    display: block;
+    font-size: 15px !important;
+    font-weight: 500;
+    width: 92% !important;
+    text-align: left;
+    margin-left: 5%;
+    background: #;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none !important;
+}
+
+.item-nearby-distance {
+    margin-left: 5%;
+    margin-top: 2px;
+    margin-bottom: 8%;
+    color: #fd641d;
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    font-size: 12px !important;
+    text-decoration: none !important;
+}
+
+.item-nearby-status {
+    margin-bottom: 5px;
+    margin-left: 5px;
+    color: none;
+    font-weight: bold;
+    font-size: 11px !important;
+}
+
+.item-nearby-status-note {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+    margin-left: 5%;
+    width: 80% !important;
+    text-align: center;
+    margin-top: -90%;
+    border-radius: 25px;
+    opacity: 65%;
+    height: auto;
+    background: linear-gradient(to top, #ff512f 20%, #ff0000 80%);
+    color: white;
+    font-size: 60%;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.item-nearby-status-open {
+    margin-top: -137%;
+    float: left;
+    margin-left: -3%;
+    border-radius: 15px 0px 15px 0px;
+    opacity: 85%;
+    width: 50%;
+    height: 20px;
+    background: #ED2739;
+    color: white;
+    font-size: 12px;
+    display: none !important;
+    overflow: hidden;
+    font-weight: bold;
+    text-align: center;
+}
+
+  /* ...(PRODUK TERBARU JJ)... */
+
+.item-row {
+    background: #fff;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+    float: left;
+    border-radius: 15px;
+    width: 150px;
+    height: auto;
+    margin-left: 15px !important;
+    margin-right: 0px !important;
+    margin-top: 8px !important;
+    margin-bottom: 15px !important;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 100px;
+    max-width: 150px;
+    overflow: hidden;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: }
+
+.item-link { width: 100%;
+    text-decoration: none!important;
+    color: black;
+}
+
+.item-image {
+    width: 100% !important;
+    border-radius: 15px 15px 0px 30px !important;
+    margin: 0 auto 0 !important;
+}
+
+.item-title {
+    text-align: left;
+    width: 92%!important;
+    color: #333;
+    font-size: 15px!important;
+    font-weight: 500;
+    margin-left: 5%;
+    margin-top: 5%;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.item-price {
+    display: none!important;
+}
+
+.item-price-format {
+    text-align: left;
+    width: 100%;
+    color: #333;
+    font-size: 15px!important;
+    font-weight: 500!important;
+    text-decoration: none;
+    display: inline-block !important;
+    margin-bottom: 8%;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+  /* ...(BANNER DRIVER MITRA)... */
+
+.box1 {
+    width: auto;
+    overflow: auto;
+    white-space: nowrap;
+    margin-left: -10%;
+}
+
+.img1 {
+    margin-left: 5%;
+    margin-bottom: 2%;
+    width: 85%;
+    height: auto;
+    border-radius: 15px;
+}
+
+#galeri ul {
+    list-style: none;
+}
+
+#galeri li {
+    display: inline;
+    margin: 0px;
+}
+
+ .bg-akun { background-image: url('https://res.cloudinary.com/dyqa4pm1z/image/upload/v1716231679/Untitled-1_c0x1tz.png');
+    background-position: fit;
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-width: 100%; box-shadow: 0 0px 5px 0 rgba(0,0,0,0.2); width: 100%; left: 0%; top: 0%; height: 180px; border-radius: 0px 0px 0px 0px; z-index: 99;
+}
+.imgic {
+ width:15%;
+ float:left;
+ margin-left: 0%;
+ margin-top: -5%;
+ border-radius: 0px; 
+ border:5px solid none;
+ padding: 10px;
+ filter: invert(20%) ;
+}
+.cardos {
+  height: auto;
+  text-align: left;
+  border-radius: 5px;
+  margin-top: 2%;  
+  user-select: none;
+  width: 90%;
+  margin-left: 4%;  
+  background-color: # ;  
+  border-bottom: 1px solid #777;
+}
+.txt {
+  margin: 0% 10% 0%;
+  color:#555;
+  font-size: 70%;
+}
+.headers {
+  width: 12%;
+  text-align: left;
+  border-radius: 100px;
+  margin: -40% 5% 0;  
+}
+.edit {
+  width: 10%;
+  filter: invert(100%) ;
+  float: right;
+  padding: 5px;
+  margin: -10% 5% 0;
+  border-radius: 0px;
+}
+.name {
+  margin: -12% 20% 0;
+  font-weight: bold;
+  color: #fd641d;
+  font-size: 19px;
+}
+.hp {
+  margin: 0% 20% 0;  
+  color: #333;
+  font-size: 4.5vw;
+  font-weight: 400;
+}
+.email {
+  margin: 0% 20% 0;  
+  color: #333;
+  font-size: 13px;
+  font-weight: 400;
+  text-overflow: ellipsis; 
+  white-space: nowrap;  
+}
+.userr {
+  width: 80px;
+  height: auto;  
+  margin: 2% 20% 0;
+  border-radius: 15px;
+  background: #fd641d;
+}
+.pro {
+  margin: 0 5% 0;  
+  color: #000;
+  font-size: 5vw;
+  font-weight: 500;
+}
+.row4 a {
+  float: left;
+  display: block;
+  text-decoration: none;
+  cursor: none;
+}
+.tex {
+  margin: 10% 5% 0;  
+  color: #000;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+  /* ...(BOTTOM NAVBAR)... */
+
+* {
+    box-sizing: border-box
+}
+
+/* Style tab links */
+.tablink {
+    border: none;
+    color: #000;
+    float: left;
+    outline: none;
+    cursor: none;
+    padding: 2px;
+    font-size: 3.5vw;
+    width: 20%;
+    margin-top: 2%;
+    margin-bottom: 1%;
+    transition: 0.4s;
+    border-radius: 0px;
+    text-align: center;
+}
+
+.imgs30 {
+    padding: 0px;
+    margin-bottom: 5%;
+    width: 30%;
+    filter: invert(0%);
+}
+
