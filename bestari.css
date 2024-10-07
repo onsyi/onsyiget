@@ -243,7 +243,7 @@ font-weight: 500 ;
 
 .menu-item1:hover {
     transition: 0.1s ease-out;
-    background-color: linear-gradient(156deg, rgba(253,100,29,1) 32%, rgba(136,216,199,1) 99%);
+    background-color: #fd641d;
     color: #fff;
     
 }
