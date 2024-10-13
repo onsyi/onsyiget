@@ -1,4 +1,29 @@
- /* ...(Produk terbaru 1)... */
+  :root {
+    --OnsyiB: #2a3039;
+    --OnsyiBg: #f5f9ff;
+    --OnsyiB1: #343EE0;
+    --OnsyiB2: #ed2736;
+    --OnsyiB3: linear-gradient(115deg, rgba(52, 62, 224, 1) 0%, rgba(56, 69, 233, 1) 11%, rgba(101, 117, 255, 1) 85%, rgba(123, 100, 241, 1) 100%);
+    --gradient: var(--OnsyiB3);
+}
+
+body {
+    background: var(--OnsyiB);
+    font-family: "Poppins", sans-serif;
+    color: #333;
+    font-weight: 500;
+    margin: 0;
+    text-decoration: none;
+    height: 100%;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ...(Produk terbaru 1)... */
 
 .Onsyi-Row {
     display: flex;
