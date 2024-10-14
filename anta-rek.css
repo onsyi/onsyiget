@@ -132,7 +132,7 @@ a {
   width: 45px;
   border-radius: 100px;
   position: absolute;
-  margin: 15% 28% 0%;
+  margin: 5% 28% 0%;
   border: 2px solid #eaecf0;
   background-color: #eaecf0;
   z-index: 99;
@@ -153,102 +153,6 @@ a {
   text-align: center;
 }
 
-/* Css Card Saldo */
-
-@keyframes gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.parent {
-  display: grid;
-  grid-template-columns: 2.5fr repeat(3, 1fr);
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
-  background: linear-gradient(62deg, #f02d2d, #863f3f, #8d0808, #f02d2d);
-  animation: gradient 15s ease infinite;
-  background-size: 300% 300%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  margin: 18% auto 0;
-  border-radius: 19px;
-  position: relative;
-  width: 90%;
-  height: auto;
-  z-index: 1;
-}
-
-.slider4 {
-  width: 100%;
-  height: 20px;
-  overflow: hidden;
-  text-align: left;
-}
-
-.slider4 {
-  height: 40px;
-  line-height: 0px;
-  overflow: hidden;
-}
-
-.slide4 {
-  height: 40px;
-  line-height: 0px;
-  overflow: hidden;
-}
-
-.slider4-2 .slide4 {
-  animation: slide4-2 12s ease-in-out infinite;
-}
-
-@keyframes slide4-2 {
-  100% {
-    transform: translateY(0);
-  }
-
-  50%,
-  95.4545454545% {
-    transform: translateY(-40px);
-  }
-
-  0%,
-  45.4545454545% {
-    transform: translateY(0);
-  }
-}
-
-.nama-penggun {
-  width: auto;
-  height: auto;
-  font-weight: 600;
-  font-size: 14px;
-  color: black;
-  margin: 4% 5% 0;
-}
-
-.ico {
-  padding: 0px;
-  margin-top: 15px;
-  width: 20px;
-  filter: invert(100%);
-}
-
-.t {
-  color: #fff;
-  font-size: 12px;
-  margin-top: 6px;
-  font-weight: 450;
-}
 
 /* Css Ribbon Menu Utama */
 .ribbon3 {
