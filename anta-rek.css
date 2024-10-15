@@ -526,11 +526,12 @@ a {
 
 .OnsyiText-Judu {
     text-align: left;
-    width: 185px;
+    width: 190px;
     color: #333;
+    text-transform: capitalize !important;
     font-size: 80%;
     font-weight: 600;
-    margin: 2% 2% 0;
+    margin: 2% 7% 0 !important;
     text-decoration: none;
     display: inline-block;
     overflow: hidden;
@@ -600,7 +601,7 @@ a {
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
-    margin-left: -5%;
+    margin-left: 5% !important;
     margin-top: 2%;
  /* Sesuaikan dengan kebutuhan */
 }
