@@ -458,6 +458,194 @@ a {
 }
 
 
+      /* ...(Produk terbaru 1)... */
+
+.Onsyi-Row1 {
+    display: flex;
+    overflow-x: auto;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.OnsyiCardo {
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+    background: var(--OnsyiB2);
+    border-radius: 15px;
+    width: 120px;
+    height: auto;
+    margin-left: 20%;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 3%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    max-width: 120px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.5s;
+    will-change: transform;
+ /* Optimize for smoother animation */
+}
+
+.OnsyiCardo:hover {
+    transform: scale(1.02);
+}
+
+.OnsyiCardo::after {
+    content: "";
+    position: absolute;
+    background: radial-gradient(circle, transparent 30%, rgba(0, 0, 0, 0.2) 70%);
+    transform: scale(0);
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s;
+    pointer-events: none;
+}
+
+.OnsyiCardo:hover::after {
+    transform: scale(3);
+}
+
+.OnsyiImag3 {
+    width: 100%;
+    border-radius: 15px 15px 20px 20px;
+    margin: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+.product-details {
+    text-align: left;
+    width: 190px;
+    margin-left: 7%;
+    margin-right: -5%;
+}
+
+.OnsyiText-Judu {
+    text-align: left;
+    width: 190px;
+    color: #333;
+    font-size: 90%;
+    font-weight: 600;
+    margin: 2% 2% 0;
+    text-decoration: none;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: relative;
+}
+
+.thinn {
+    text-align: left;
+    color: #333;
+    padding: 0px 0px 2px;
+    font-size: 80%;
+    font-weight: 500;
+    margin-left: -5%;
+    margin-top: 5%;
+    border-bottom: 1px dotted #777;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.thinn1 {
+    text-align: center;
+    color: #fff;
+    padding: 0px 0px 2px;
+    font-size: 70%;
+    font-weight: 400;
+    margin: 5% auto 0;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.thinn2 {
+    text-align: left;
+    color: #333;
+    padding: 0px 0px 2px;
+    font-size: 80%;
+    font-weight: 600;
+    margin-left: -15%;
+    position: relative;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.OnsyiText-Harg {
+    text-align: center;
+    width: 50%;
+    color: #fff;
+    font-size: 80%;
+    /* background: linear-gradient(270deg, rgba(2,0,36,1) 0%, rgba(170,0,18,1) 35%, rgba(255,0,82,1) 100%); */
+    background: var(--OnsyiB2);
+    padding: 4px 10px 4px;
+    border-radius: 100px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-left: 3%;
+    margin-top: 5%;
+    display: block;
+    position: relative;
+}
+
+.OnsyiText-Diskon {
+    text-align: left;
+    width: 90%;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    margin-left: -5%;
+    margin-top: 2%;
+ /* Sesuaikan dengan kebutuhan */
+}
+
+.OnsyiPromo1 {
+    border-radius: 10px;
+    opacity: 95%;
+    width: auto;
+    padding: 2px 7px;
+    background: #fff;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+    color: #333;
+    font-size: 70%;
+    text-align: center;
+    font-weight: 500;
+    display: inline-block;
+    z-index: 1;
+    margin: 90% auto 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.rating-number {
+    text-decoration: none;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+.cartu {
+    margin: 7% 3% 0%;
+    float: right;
+    color: #00aa12;
+    border-radius: 100px;
+    padding: 5px;
+    display: none;
+}
+
+del {
+    font-size: 80%;
+    color: #777;
+    text-decoration: line-through;
+}
+ 
+
+
 /* Css Slide */
 .slider1-container {
   width: 100%;
