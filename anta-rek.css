@@ -532,7 +532,7 @@ a {
     font-size: 80%;
     font-weight: 600;
     margin: 2% 7% 0 !important;
-    text-decoration: none;
+    
     display: inline-block;
     overflow: hidden;
     text-overflow: ellipsis;
