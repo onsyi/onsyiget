@@ -1298,7 +1298,7 @@ del {
       top: 20px;
       left: 20px;
       border: none;
-      background: var(--OnsyiBg);
+      background: var(--OnsyiB2);
       box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
       width: 30px;
       height: 30px;
@@ -1317,7 +1317,7 @@ del {
       display: flex;
       flex-direction: column;
       align-items: center;
-      background: var(--OnsyiBg);
+      background: var(--OnsyiB2);
       box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
       padding: 20px;
       width: 120px;
@@ -1365,7 +1365,7 @@ span {
       box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
       width: 100%;
       border-radius: 15px;
-      background: var(--OnsyiBg);
+      background: var(--OnsyiB2);
       padding: 20px;
   }
   
