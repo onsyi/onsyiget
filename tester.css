@@ -1307,6 +1307,7 @@ del {
       align-items: center;
       justify-content: center;
       cursor: pointer;
+      filter: invert(100%);
       background-image: url("https://res.cloudinary.com/dyqa4pm1z/image/upload/v1730778382/back-arrow_ve5xm1.png");
       background-size: 24px 24px;
       background-repeat: no-repeat;
@@ -1375,7 +1376,7 @@ span {
       font-size: 1rem;
       font-weight: 500;
       text-decoration: none;
-      color: #333;     
+      color: #fff;     
       margin-bottom: 8px;
       margin-top: 5px;
       transition: background-color 0.3s;
@@ -1406,13 +1407,13 @@ span {
   
   .app-version {
       margin-top: 20px;
-      color: #333;
+      color: #fff;
       font-size: 0.8rem;
       text-align: center;
   }
     .powered {
       margin-top: -5px;
-      color: #333;
+      color: #fff;
       font-size: 0.9rem;
       text-align: center;
   }
