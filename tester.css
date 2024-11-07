@@ -1271,3 +1271,261 @@ del {
   font-size: 80% !important;
 }
 
+/* Css Tab Akun */
+  .sidebar {
+      width: auto;
+      background: #fff;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+  }
+  
+        /* Profile Header */
+  .profile-header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+  }
+  
+        /* Back Button */
+  .back-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      border: none;
+      background: #fff;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      filter: invert(0);
+      background-image: url("https://res.cloudinary.com/dyqa4pm1z/image/upload/v1730778382/back-arrow_ve5xm1.png");
+      background-size: 24px 24px;
+      background-repeat: no-repeat;
+      background-position: center;
+  }
+  
+  .profile-title-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--OnsyiB2);
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      width: 120px;
+      height: 150px;
+      margin-top: -20px;
+      border-radius: 0 0 60px 60px;
+      margin-bottom: 40px;
+      position: relative;
+  }
+  
+  .profile-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #fff;
+      margin-top: -15px;
+  }
+  
+  .profile-picture {
+      width: 80px;
+      height: 80px;     
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid #fff;
+      margin-top: 12px;
+  }
+  
+  .profile-picture img {
+      width: 100%;
+      height: 100%;      
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+        /* Menu Items */
+span {
+     font-size: 1rem;
+     font-weight: 500;
+}
+  .menu-items {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      border-radius: 15px;
+      background: var(--OnsyiB2);
+      padding: 20px;
+  }
+  
+  .menu-item {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      color: #fff;     
+      margin-bottom: 8px;
+      margin-top: 5px;
+      transition: background-color 0.3s;
+  }
+
+  .menu-item:hover {
+      color: #d4a500;
+  }
+  
+  .icon-circle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;    
+      background: #fff;
+      border-radius: 50%;
+      margin-right: 15px;
+      font-size: 1.2rem;
+      color: #ffcc00;
+  }
+  
+  .icon-circle img {
+      width: 24px;
+      height: 24px;
+      padding: 2px;
+  }
+  
+  .app-version {
+      margin-top: 20px;
+      color: #fff;
+      font-size: 0.8rem;
+      text-align: center;
+  }
+    .powered {
+      margin-top: -5px;
+      color: #fff;
+      font-size: 0.9rem;
+      text-align: center;
+  }
+
+
+/* Bottom NavBar */
+
+   @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+    * {
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .navigation {
+      width: 90%;
+      height: 65px;
+      position: fixed;
+      bottom: 20px;
+      left: 5%;
+      background: #333;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      display: flex;
+      justify-content: center;
+      z-index: 99;
+      border-radius: 100px;
+    }
+    .navigation ul {
+      position: relative;
+      display: flex;
+      width: 100%;
+      z-index: 1000;
+      z-index: 1000;
+    }
+    .navigation ul li {
+      position: relative;
+      list-style: none;
+      width: 100px;
+      height: 70px;
+      z-index: 1;
+    }
+    .navigation ul li a {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+    }
+    .navigation ul li a .icon {
+      position: relative;
+      display: block;
+      line-height: 85px;
+      font-size: 1.5em;
+      text-align: center;
+      transition: 0.5s;
+      transform: translateY(15px);
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .navigation ul li a:hover .icon {
+      color: rgba(255, 255, 255, 1);
+    }
+    .navigation ul li.active a .icon {
+      transform: translateY(-10px);
+      color: #fff;
+    }
+    .navigation ul li a .text {
+      position: absolute;
+      opacity: 0;
+      font-weight: 500;
+      font-size: 0.7em;
+      letter-spacing: 0.05em;
+      transition: 0.5s;
+      color: #fff;
+      text-transform: normal;
+      transform: translateY(10px);
+    }
+    .navigation ul li.active a .text {
+      transform: translateY(25px);
+      opacity: 1;
+    }
+    .indicator {
+      position: absolute;
+      width: 55px;
+      height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.5s;
+      z-index: -1;
+    }
+    .indicator::before {
+      content: "";
+      position: absolute;
+      bottom: 25px;
+      width: 80%;
+      height: 7px;
+      left: 18;
+
+      border-radius: 10px;
+    }
+    .navigation ul li:nth-child(2).active ~ .indicator {
+      transform: translateX(calc(80px * 1));
+    }
+    .navigation ul li:nth-child(3).active ~ .indicator {
+      transform: translateX(calc(81px * 2));
+    }
+    .navigation ul li:nth-child(4).active ~ .indicator {
+      transform: translateX(calc(81px * 3));
+    }
