@@ -1274,7 +1274,7 @@ del {
 /* Css Tab Akun */
   .sidebar {
       width: auto;
-      background: #ed1f1f;
+      background: #333;
       color: #333;
       display: flex;
       flex-direction: column;
@@ -1406,14 +1406,14 @@ span {
   
   .app-version {
       margin-top: 20px;
-      color: #333;
+      color: #fff;
       font-weight: 400;
       font-size: 0.8rem;
       text-align: center;
   }
     .powered {
       margin-top: -5px;
-      color: #333;
+      color: #fff;
       font-weight: 400;
       font-size: 0.9rem;
       text-align: center;
