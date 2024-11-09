@@ -1275,7 +1275,7 @@ del {
 /* Css Tab Akun */
   .sidebar {
       width: auto;
-      background: #000;
+      background: #fff;
       color: #333;
       display: flex;
       flex-direction: column;
