@@ -1407,14 +1407,14 @@ span {
   
   .app-version {
       margin-top: 20px;
-      color: #fff;
+      color: #333;
       font-weight: 400;
       font-size: 0.8rem;
       text-align: center;
   }
     .powered {
       margin-top: -5px;
-      color: #fff;
+      color: #333;
       font-weight: 400;
       font-size: 0.9rem;
       text-align: center;
