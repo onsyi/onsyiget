@@ -20,7 +20,7 @@
             xhtml += '<a href="https://jgjk.mobi/p/' + element.Gambar.substr(-17, 13) + '">';
             xhtml += '<div class="OnsyiCard1">';
             xhtml += '<span class="ribbon5">Promo</span>';
-            xhtml += '<span class="OnsyiNew1">Okee Nihh</span>';
+            xhtml += '<span class="OnsyiNew1">Bestseller</span>';
             xhtml += '<img class="OnsyiImage1" src="' + element.Gambar + '">';
             xhtml += '<span class="star1"><i class="fa-solid fa-star bx-flashing" style="color: orange; font-size: 13px;"></i> 4.6</span>';
             xhtml += '<h6 class="OnsyiText-Judul1">' + element.Nama + "</h6>";
