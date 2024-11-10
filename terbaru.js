@@ -1,4 +1,4 @@
-      <script>
+
           function getData(halaman, targetDiv) {
   console.log("Mengambil data untuk halaman:", halaman, "Target div:", targetDiv); // Debugging
 
@@ -61,4 +61,4 @@ getData(halamanKedua, "dua");
 let halamanKetiga = 3;
 getData(halamanKetiga, "tiga");
 
-        </script>
+
