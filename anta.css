@@ -1611,7 +1611,7 @@
       text-align: center;
       transition: 0.5s;
       transform: translateY(15px);
-      color: rgba(255, 255, 255, 0.5);
+      color: #333;
     }
     .navigation ul li a:hover .icon {
       color: rgba(255, 255, 255, 1);
