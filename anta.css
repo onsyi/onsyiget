@@ -351,7 +351,7 @@
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 100%;
-  margin-top: 0;
+  margin-top: 5%;
   gap: 10px; /* Optional spacing between items */
   padding: 10px 0; /* Optional padding for container */
 }
