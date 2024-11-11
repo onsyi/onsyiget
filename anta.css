@@ -129,7 +129,7 @@
       width: 45px;
       border-radius: 100px;
       position: absolute;
-      margin: 0% 28% 0%;
+      margin: 5% 28% 0%;
       border: 2px solid #eaecf0;
       background-color: #eaecf0;
       z-index: 99;
@@ -351,7 +351,7 @@
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 100%;
-  margin-top: 5%;
+  margin-top: 7%;
   gap: 10px; /* Optional spacing between items */
   padding: 10px 0; /* Optional padding for container */
 }
