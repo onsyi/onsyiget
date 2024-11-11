@@ -1557,6 +1557,13 @@
 
     /* Bottom NavBar */
 
+    * {
+      text-decoration: none;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     .navigation {
       width: 90%;
       height: 65px;
