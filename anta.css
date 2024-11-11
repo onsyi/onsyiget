@@ -1618,7 +1618,7 @@
     }
     .navigation ul li.active a .icon {
       transform: translateY(-10px);
-      color: #fff;
+      color: #960001;
     }
     .navigation ul li a .text {
       position: absolute;
@@ -1627,7 +1627,7 @@
       font-size: 0.7em;
       letter-spacing: 0.05em;
       transition: 0.5s;
-      color: #fff;
+      color: #960001;
       text-transform: normal;
       transform: translateY(10px);
     }
