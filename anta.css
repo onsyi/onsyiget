@@ -300,6 +300,52 @@
       color: #960001;
     }
 
+  /* Css Ribbon Menu Utama */
+.ribbon3 {
+  position: absolute;
+  /* Change from relative to absolute for better alignment */
+  top: -2px;
+  /* Adjust the top value to align the ribbon consistently */
+  left: 10px;
+  /* Adjust left value to align properly */
+  width: 40% !important;
+  padding: 2px 5px;
+  /* Add padding for better appearance */
+  background: #960001;
+  border-radius: 20px 20px 20px 0;
+  box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 11px;
+  /* Ensure font size is consistent */
+  text-align: center;
+}
+
+.ribbon3:before,
+.ribbon3:after {
+  content: "";
+  position: absolute;
+  z-index: -9;
+}
+
+.ribbon3:before {
+  width: 7px;
+  height: 17px;
+  top: 35% !important;
+  /* Adjust to center the before element */
+  left: 0px;
+  background: #333;
+  border-radius: 100px 0 0 100px;
+}
+
+.ribbon3:after {
+  width: 5px;
+  height: 9px;
+  bottom: -5px;
+  left: 2px;
+  background: #333;
+  border-radius: 5px 0 0 5px;
+}
+
   /* CSS Menu Utama */
 .Onsyi-Row1 {
   display: flex;
