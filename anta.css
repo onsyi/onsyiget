@@ -667,7 +667,7 @@
       overflow: hidden;
       background: var(--OnsyiBg);
       margin: 5% 0.5% 5%;
-      box-shadow: 2px 2px 5px #d0d2d6, -2px -2px 5px #ffffff;
+      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
       transition: transform 0.2s ease-in-out;
     }
 
