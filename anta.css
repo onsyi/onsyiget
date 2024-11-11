@@ -301,7 +301,7 @@
     }
 
   /* CSS Menu Utama */
-.Onsyi-Row11 {
+.Onsyi-Row1 {
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling */
   width: 100%;
@@ -310,11 +310,11 @@
   padding: 10px 0; /* Optional padding for container */
 }
 
-.Onsyi-Row11::-webkit-scrollbar {
+.Onsyi-Row1::-webkit-scrollbar {
   display: none; /* Hide scrollbar in Chrome/Safari */
 }
 
-.Onsyi-Row11 {
+.Onsyi-Row1 {
   scrollbar-width: none; /* Hide scrollbar in Firefox */
 }
 
