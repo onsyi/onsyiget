@@ -1,4 +1,28 @@
 
+          document.getElementById("ybcari").addEventListener("click", function () {
+            var lokasi = "https://jgjk.mobi/act/search/" + $("input[name='ycari']").val();
+            window.location.replace(lokasi);
+          });
+
+
+
+    // Fungsi untuk menampilkan popup tertentu
+    function showPopup(popupId) {
+        document.getElementById(popupId).style.display = "flex";
+    }
+
+    // Fungsi untuk menyembunyikan popup tertentu
+    function hidePopup(popupId) {
+        document.getElementById(popupId).style.display = "none";
+    }
+
+    // Fungsi aksi ketika klik "Lanjut"
+    function continueAction(url) {
+        window.location.href = url; // Ganti dengan URL tujuan
+    }
+
+
+
           function getData(halaman, targetDiv) {
   console.log("Mengambil data untuk halaman:", halaman, "Target div:", targetDiv); // Debugging
 
