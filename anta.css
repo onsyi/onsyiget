@@ -696,28 +696,23 @@
 
 /* ...(Produk terbaru All)... */
 .container3 {
-      margin: 0 auto;
+      
       background: none !important;
-      width: 90%;
-    }
-
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      width: 100%;
     }
 
     .OnsyiCard3 {
       height: auto;
-      width: 160px;
-      min-width: 160px;
-      border-radius: 15px;
-      padding-bottom: 5px;
-      overflow: hidden;
-      background: var(--OnsyiBg);
-      margin: 5% 0.5% 5%;
-      box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s ease-in-out;
+  width: 160px;
+  float: left;
+  min-width: 160px;
+  border-radius: 15px;
+  padding-bottom: 5px;
+  overflow: hidden;
+  background: var(--OnsyiBg);
+  margin: 10px 5%; /* Margin diubah untuk layar lebih kecil */
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
     }
 
     .OnsyiCard3:hover {
