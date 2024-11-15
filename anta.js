@@ -129,29 +129,35 @@ document.addEventListener("DOMContentLoaded", function () {
   updateVerification("verifikasiHP", "Phone Terverifikasi", "Verifikasi Phone Segera!");
 });
 
-function openPage(pageName, elmnt, color) {
+
+// Fungsi untuk membuka halaman tab
+function openPage(pageName) {
   const tabcontent = document.getElementsByClassName("tabcontent");
   for (let content of tabcontent) {
-    content.style.display = "none"; // Sembunyikan semua tab
+    content.style.display = "none"; // Sembunyikan semua konten tab
   }
 
-  const tablinks = document.getElementsByClassName("tablink");
+  const tablinks = document.getElementsByClassName("list");
   for (let link of tablinks) {
-    link.style.backgroundColor = ""; // Reset warna tab
+    link.classList.remove("active"); // Hapus kelas active dari semua tab
   }
 
-  // Tampilkan tab yang dipilih dan ubah warna tab
+  // Tampilkan tab yang dipilih
   const activeTab = document.getElementById(pageName);
   if (activeTab) activeTab.style.display = "block";
-  if (elmnt) elmnt.style.backgroundColor = color;
+
+  // Tambahkan kelas active ke tab yang diklik
+  const activeLink = Array.from(tablinks).find((link) =>
+    link.querySelector(`[onclick="openPage('${pageName}')"]`)
+  );
+  if (activeLink) activeLink.classList.add("active");
 }
 
-// Set tab default yang aktif
+// Set tab default yang aktif saat halaman dimuat
 document.addEventListener("DOMContentLoaded", function () {
   const defaultTab = document.getElementById("defaultOpen");
   if (defaultTab) defaultTab.click();
 });
-
 
 
 // Fungsi untuk mendapatkan data tambahan
