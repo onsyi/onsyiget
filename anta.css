@@ -437,7 +437,7 @@ a {
 
 /* Konten popup */
 .popup-content {
-  background-color: white;
+  background: var(--OnsyiBg);
   padding: 20px;
   border-radius: 15px;
   width: 90%;
@@ -574,10 +574,10 @@ a {
   margin-right: 10px;
 }
 .card {
-  background: var(--OnsyiBg);
+  background: var(--OnsyiBg) !important;
   border-radius: 15px !important;
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-  border: none;
+  border: none !important;
   text-align: left;
   overflow: hidden;
   width: 150px;
@@ -645,7 +645,7 @@ a {
 
 p {
   font-size: 13px;
-  margin: 5px auto 5px;
+  margin: 5px auto 2px;
   text-decoration: none !important;
 }
 
