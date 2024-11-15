@@ -140,6 +140,7 @@ function openPage(pageName, elmnt, color) {
 }
 document.getElementById("defaultOpen").click();
 
+
 // Fungsi untuk mendapatkan data tambahan
 function get_data() {
   $.ajax({
