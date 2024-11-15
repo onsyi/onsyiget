@@ -129,20 +129,28 @@ document.addEventListener("DOMContentLoaded", function () {
   updateVerification("verifikasiHP", "Phone Terverifikasi", "Verifikasi Phone Segera!");
 });
 
-// Fungsi untuk membuka halaman tab
 function openPage(pageName, elmnt, color) {
-  var tabcontent = document.getElementsByClassName("tabcontent");
+  const tabcontent = document.getElementsByClassName("tabcontent");
   for (let content of tabcontent) {
-    content.style.display = "none";
+    content.style.display = "none"; // Sembunyikan semua tab
   }
-  var tablinks = document.getElementsByClassName("tablink");
+
+  const tablinks = document.getElementsByClassName("tablink");
   for (let link of tablinks) {
-    link.style.backgroundColor = "";
+    link.style.backgroundColor = ""; // Reset warna tab
   }
-  document.getElementById(pageName).style.display = "block";
-  elmnt.style.backgroundColor = color;
+
+  // Tampilkan tab yang dipilih dan ubah warna tab
+  const activeTab = document.getElementById(pageName);
+  if (activeTab) activeTab.style.display = "block";
+  if (elmnt) elmnt.style.backgroundColor = color;
 }
-document.getElementById("defaultOpen").click();
+
+// Set tab default yang aktif
+document.addEventListener("DOMContentLoaded", function () {
+  const defaultTab = document.getElementById("defaultOpen");
+  if (defaultTab) defaultTab.click();
+});
 
 
 
