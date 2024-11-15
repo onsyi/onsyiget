@@ -1,4 +1,35 @@
-// Produk Terlaris
+    // Fungsi Popup
+      function showPopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+          popup.style.display = "flex"; // Atau gunakan style yang sesuai
+        } else {
+          console.error(`Popup dengan ID ${popupId} tidak ditemukan.`);
+        }
+      }
+      
+      function hidePopup(popupId) {
+        const popup = document.getElementById(popupId);
+        if (popup) {
+          popup.style.display = "none";
+        } else {
+          console.error(`Popup dengan ID ${popupId} tidak ditemukan.`);
+        }
+      }
+      
+      // Contoh penggunaan popup
+      document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("showPopupButton").addEventListener("click", function () {
+          showPopup("examplePopup");
+        });
+      
+        document.getElementById("hidePopupButton").addEventListener("click", function () {
+          hidePopup("examplePopup");
+        });
+      });
+      
+     
+      // Produk Terlaris
 var PersenKu = 1100;
 var url_produk = "";
 var halaman = 1;
