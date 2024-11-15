@@ -547,7 +547,7 @@ a {
 .Onsyi-Rowe {
   display: flex;
   overflow-x: auto; /* Enable horizontal scrolling */
-  width: 90%;
+  width: 100%;
   margin-top: 0;
   gap: 10px; /* Optional spacing between items */
   padding: 10px 0; /* Optional padding for container */
@@ -843,7 +843,7 @@ del {
 /* Produk Terbaru All */
 .container3 {
   background: none;
-  width: 100%;
+  width: 90%;
 }
 
 .OnsyiCard3 {
