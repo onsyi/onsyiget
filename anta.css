@@ -620,7 +620,7 @@ a {
 .card-rating {
   font-size: 70%;
   color: #555;
-  margin-bottom: 5px;
+  margin-bottom: 3px;
   display: flex;
   align-items: center;
 }
@@ -645,7 +645,7 @@ a {
 
 p {
   font-size: 13px;
-  margin: 5px auto 2px;
+  margin: 5px auto 0;
   text-decoration: none !important;
 }
 
