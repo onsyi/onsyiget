@@ -129,16 +129,21 @@ document.addEventListener("DOMContentLoaded", function () {
   updateVerification("verifikasiHP", "Phone Terverifikasi", "Verifikasi Phone Segera!");
 });
 
-// Fungsi untuk tab navigasi
+// Fungsi untuk membuka halaman tab
 function openPage(pageName, elmnt, color) {
-  const tabcontent = document.getElementsByClassName("tabcontent");
-  Array.from(tabcontent).forEach((content) => (content.style.display = "none"));
-  const tablinks = document.getElementsByClassName("tablink");
-  Array.from(tablinks).forEach((link) => (link.style.backgroundColor = ""));
+  var tabcontent = document.getElementsByClassName("tabcontent");
+  for (let content of tabcontent) {
+    content.style.display = "none";
+  }
+  var tablinks = document.getElementsByClassName("tablink");
+  for (let link of tablinks) {
+    link.style.backgroundColor = "";
+  }
   document.getElementById(pageName).style.display = "block";
   elmnt.style.backgroundColor = color;
 }
 document.getElementById("defaultOpen").click();
+
 
 
 // Fungsi untuk mendapatkan data tambahan
