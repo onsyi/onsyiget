@@ -1,9 +1,10 @@
+// Fungsi untuk searching
 document.getElementById("ybcari").addEventListener("click", function() {
 	var lokasi = "https://jgjk.mobi/act/search/" + $("input[name='ycari']").val();
 	window.location.replace(lokasi);
 });
 
-// Fungsi Popup
+// Fungsi untuk menampilkan popup
 function showPopup(popupId) {
 	const popup = document.getElementById(popupId);
 	if (popup) {
@@ -11,6 +12,7 @@ function showPopup(popupId) {
 	}
 }
 
+// Fungsi untuk menyembunyikan popup
 function hidePopup(popupId) {
 	const popup = document.getElementById(popupId);
 	if (popup) {
@@ -18,16 +20,29 @@ function hidePopup(popupId) {
 	}
 }
 
-// Contoh penggunaan popup
-document.addEventListener("DOMContentLoaded", function() {
-	document.getElementById("showPopupButton")?.addEventListener("click", function() {
+// Menambahkan event listener saat DOM siap
+document.addEventListener("DOMContentLoaded", function () {
+	// Tombol untuk membuka popup
+	document.getElementById("showPopupButton")?.addEventListener("click", function () {
 		showPopup("examplePopup");
 	});
 
-	document.getElementById("hidePopupButton")?.addEventListener("click", function() {
+	// Tombol untuk menutup popup
+	document.getElementById("hidePopupButton")?.addEventListener("click", function () {
 		hidePopup("examplePopup");
 	});
+
+	// Tombol "Lanjut" untuk membuka tautan
+	document.getElementById("continueButton")?.addEventListener("click", function () {
+		const link = this.getAttribute("data-link"); // Ambil tautan dari atribut data
+		if (link) {
+			window.location.href = link; // Arahkan ke tautan
+		} else {
+			console.error("Link tidak ditemukan pada tombol 'Lanjut'");
+		}
+	});
 });
+
 
 // Produk Terlaris
 var PersenKu = 1100;
