@@ -6,42 +6,32 @@ document.getElementById("ybcari").addEventListener("click", function() {
 
 // Fungsi untuk menampilkan popup
 function showPopup(popupId) {
-	const popup = document.getElementById(popupId);
-	if (popup) {
-		popup.style.display = "flex"; // Atau gunakan style yang sesuai
-	}
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = "flex"; // Menampilkan popup
+    } else {
+        console.error("Popup dengan ID " + popupId + " tidak ditemukan");
+    }
 }
 
 // Fungsi untuk menyembunyikan popup
 function hidePopup(popupId) {
-	const popup = document.getElementById(popupId);
-	if (popup) {
-		popup.style.display = "none";
-	}
+    const popup = document.getElementById(popupId);
+    if (popup) {
+        popup.style.display = "none"; // Menyembunyikan popup
+    } else {
+        console.error("Popup dengan ID " + popupId + " tidak ditemukan");
+    }
 }
 
-// Menambahkan event listener saat DOM siap
-document.addEventListener("DOMContentLoaded", function () {
-	// Tombol untuk membuka popup
-	document.getElementById("showPopupButton")?.addEventListener("click", function () {
-		showPopup("examplePopup");
-	});
-
-	// Tombol untuk menutup popup
-	document.getElementById("hidePopupButton")?.addEventListener("click", function () {
-		hidePopup("examplePopup");
-	});
-
-	// Tombol "Lanjut" untuk membuka tautan
-	document.getElementById("continueButton")?.addEventListener("click", function () {
-		const link = this.getAttribute("data-link"); // Ambil tautan dari atribut data
-		if (link) {
-			window.location.href = link; // Arahkan ke tautan
-		} else {
-			console.error("Link tidak ditemukan pada tombol 'Lanjut'");
-		}
-	});
-});
+// Fungsi untuk melanjutkan ke URL yang diberikan
+function continueAction(url) {
+    if (url) {
+        window.location.href = url; // Arahkan ke tautan
+    } else {
+        console.error("URL tidak valid atau tidak disediakan");
+    }
+}
 
 
 // Produk Terlaris
