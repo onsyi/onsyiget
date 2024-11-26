@@ -1796,84 +1796,86 @@ span {
 }
 
 .navigation {
-  width: 90%;
-  height: 65px;
-  position: fixed;
-  bottom: 20px;
-  left: 5%;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  display: flex;
-  justify-content: center;
-  z-index: 99;
-  border-radius: 100px;
-}
+        width: 90%;
+        height: 65px;
+        position: fixed;
+        margin: 0 auto;
+        bottom: 20px;
+        left: 0;
+        right: 0;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        background: rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        display: flex;
+        justify-content: center;
+        z-index: 99;
+        border-radius: 100px;
+      }
 
-.navigation ul {
-  position: relative;
-  display: flex;
-  width: 100%;
-  z-index: 1000;
-  z-index: 1000;
-}
+      .navigation ul {
+        position: relative;
+        display: flex;
+        width: 100%;
+        z-index: 1000;
+        z-index: 1000;
+      }
 
-.navigation ul li {
-  position: relative;
-  list-style: none;
-  width: 100px;
-  height: 70px;
-  z-index: 1;
-}
+      .navigation ul li {
+        position: relative;
+        list-style: none;
+        width: 100px;
+        height: 70px;
+        z-index: 1;
+      }
 
-.navigation ul li a {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  text-align: center;
-  font-weight: 500;
-}
+      .navigation ul li a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        font-weight: 500;
+      }
 
-.navigation ul li a .icon {
-  position: relative;
-  display: block;
-  line-height: 85px;
-  font-size: 1.5em;
-  text-align: center;
-  transition: 0.5s;
-  transform: translateY(15px);
-  color: #333;
-}
+      .navigation ul li a .icon {
+        position: relative;
+        display: block;
+        line-height: 85px;
+        font-size: 1.5em;
+        text-align: center;
+        transition: 0.5s;
+        transform: translateY(0px);
+        color: #333;
+      }
 
-.navigation ul li a:hover .icon {
-  color: rgba(255, 255, 255, 1);
-}
+      .navigation ul li a:hover .icon {
+        color: rgba(255, 255, 255, 1);
+      }
 
-.navigation ul li.active a .icon {
-  transform: translateY(-10px);
-  color: #960001;
-}
+      .navigation ul li.active a .icon {
+        transform: translateY(-20px);
+        color: #960001;
+      }
 
-.navigation ul li a .text {
-  position: absolute;
-  opacity: 0;
-  font-weight: 500;
-  font-size: 0.7em;
-  letter-spacing: 0.05em;
-  transition: 0.5s;
-  color: #960001;
-  text-transform: normal;
-  transform: translateY(10px);
-}
+      .navigation ul li a .text {
+        position: absolute;
+        opacity: 0;
+        font-weight: 500;
+        font-size: 0.7em;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+        color: #960001;
+        text-transform: normal;
+        transform: translateY(10px);
+      }
 
-.navigation ul li.active a .text {
-  transform: translateY(25px);
-  opacity: 1;
-}
+      .navigation ul li.active a .text {
+        transform: translateY(5px);
+        opacity: 1;
+      }
 
 .indicator {
   position: absolute;
