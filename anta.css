@@ -437,7 +437,7 @@ a {
 
 /* Konten popup */
 .popup-content {
-    background: var(--OnsyiBg);
+    background-color: white;
     padding: 20px;
     border-radius: 15px;
     width: 90%;
@@ -585,10 +585,10 @@ a {
 }
 
 .card {
-    background: var(--OnsyiBg) !important;
+    background: var(--OnsyiBg);
     border-radius: 15px !important;
     box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-    border: none !important;
+    border: none;
     text-align: left;
     overflow: hidden;
     width: 150px;
@@ -634,7 +634,7 @@ a {
 .card-rating {
     font-size: 70%;
     color: #555;
-    margin-bottom: 0;
+    margin-bottom: 5px;
     display: flex;
     align-items: center;
 }
@@ -659,7 +659,7 @@ a {
 
 p {
     font-size: 13px;
-    margin: 0 auto 1%;
+    margin: 5px auto 5px;
     text-decoration: none !important;
 }
 
@@ -1811,7 +1811,6 @@ span {
 }
 
 .navigation {
-    width: 90%;
     height: 65px;
     position: fixed;
     margin: 0 auto;
@@ -1833,13 +1832,14 @@ span {
     display: flex;
     width: 100%;
     z-index: 1000;
-    z-index: 1000;
 }
 
 .navigation ul li {
     position: relative;
     list-style: none;
-    width: 100px;
+    flex: 1;
+ /* Menjadikan lebar tiap item fleksibel */
+    text-align: center;
     height: 70px;
     z-index: 1;
 }
@@ -1862,7 +1862,7 @@ span {
     font-size: 1.5em;
     text-align: center;
     transition: 0.5s;
-    transform: translateY(0px);
+    transform: translateY(10px);
     color: #333;
 }
 
@@ -1871,7 +1871,7 @@ span {
 }
 
 .navigation ul li.active a .icon {
-    transform: translateY(-20px);
+    transform: translateY(-10px);
     color: #960001;
 }
 
@@ -1888,7 +1888,7 @@ span {
 }
 
 .navigation ul li.active a .text {
-    transform: translateY(5px);
+    transform: translateY(10px);
     opacity: 1;
 }
 
@@ -1915,14 +1915,88 @@ span {
     border-radius: 10px;
 }
 
-.navigation ul li:nth-child(2).active ~ .indicator {
-    transform: translateX(calc(80px * 1));
+/* Media Queries untuk Responsivitas */
+
+/* Untuk layar kecil (max-width: 320px) */
+@media (max-width: 320px) {
+    .navigation {
+        width: 95%;
+    }
+
+    .navigation ul li a .icon {
+        font-size: 1.2em;
+    }
+
+    .indicator {
+        width: 45px;
+        height: 65px;
+    }
+
+    .indicator::before {
+        bottom: 20px;
+        height: 5px;
+    }
 }
 
-.navigation ul li:nth-child(3).active ~ .indicator {
-    transform: translateX(calc(81px * 2));
+/* Untuk layar sedang (321px - 768px) */
+@media (min-width: 321px) and (max-width: 768px) {
+    .navigation {
+        width: 90%;
+    }
+
+    .navigation ul li a .icon {
+        font-size: 1.3em;
+    }
+
+    .indicator {
+        width: 50px;
+        height: 70px;
+    }
+
+    .indicator::before {
+        bottom: 22px;
+        height: 6px;
+    }
 }
 
-.navigation ul li:nth-child(4).active ~ .indicator {
-    transform: translateX(calc(81px * 3));
+/* Untuk layar besar (769px - 1280px) */
+@media (min-width: 769px) and (max-width: 1280px) {
+    .navigation {
+        width: 80%;
+    }
+
+    .navigation ul li a .icon {
+        font-size: 1.5em;
+    }
+
+    .indicator {
+        width: 55px;
+        height: 75px;
+    }
+
+    .indicator::before {
+        bottom: 25px;
+        height: 7px;
+    }
+}
+
+/* Untuk layar sangat besar (1281px ke atas) */
+@media (min-width: 1281px) {
+    .navigation {
+        width: 70%;
+    }
+
+    .navigation ul li a .icon {
+        font-size: 1.8em;
+    }
+
+    .indicator {
+        width: 60px;
+        height: 80px;
+    }
+
+    .indicator::before {
+        bottom: 28px;
+        height: 8px;
+    }
 }
