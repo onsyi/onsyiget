@@ -145,6 +145,8 @@ html {
 a {
     text-decoration: none !important;
     color: none;
+    -webkit-tap-highlight-color: transparent;
+    display: inline-block;
 }
 
 .foto {
@@ -165,13 +167,6 @@ a {
     width: auto;
     position: fixed;
     margin: -12% 2% 0;
-}
-
-a {
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    display: block;
-    text-align: center;
 }
 
 /* ...(Slide Image)... */
