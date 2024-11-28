@@ -147,6 +147,7 @@ a {
     color: none;
     -webkit-tap-highlight-color: transparent;
     display: block;
+    text-align: center;
 }
 
 .foto {
