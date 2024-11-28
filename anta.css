@@ -146,7 +146,7 @@ a {
     text-decoration: none !important;
     color: none;
     -webkit-tap-highlight-color: transparent;
-    display: inline-block;
+    display: block;
 }
 
 .foto {
