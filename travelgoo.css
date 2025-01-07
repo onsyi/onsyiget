@@ -243,7 +243,8 @@ font-weight: 500 ;
 
 .menu-item1:hover {
     transition: 0.1s ease-out;
-    background-color: #0b6623;
+    background: rgb(11,102,35);
+background: linear-gradient(90deg, rgba(11,102,35,1) 0%, rgba(59,177,67,1) 35%, rgba(199,234,70,1) 100%);
     color: #fff;
     
 }
@@ -278,7 +279,8 @@ a {
 
 .card:hover {
     transition: 0.1s ease-out;
-    background-color: #0b6623;
+    background: rgb(11,102,35);
+background: linear-gradient(90deg, rgba(11,102,35,1) 0%, rgba(59,177,67,1) 35%, rgba(199,234,70,1) 100%);
     color: #fff;
     
 }
@@ -302,7 +304,7 @@ a {
   font-size: 14px;
   font-weight: 500;
   background-color: #0b6623 ;
-  box-shadow: 3px 3px 3px rgba(90, 90, 90, 0.8) inset, -3px -3px 3px #fd641d inset;
+  box-shadow: 3px 3px 3px rgba(90, 90, 90, 0.8) inset, -3px -3px 3px #c7ea46 inset;
   color: #fff; 
 }
 
