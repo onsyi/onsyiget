@@ -238,7 +238,8 @@ font-weight: 500 ;
     width: 65px;
     height: 65px;
     margin: 0 auto 0;
-    border-radius: 15px;
+    padding: 5px;
+    border-radius: 0px;
 }
 
 .menu-item1:hover {
