@@ -1,0 +1,1683 @@
+ @import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
+
+      :root {
+        --OnsyiBg: #f5f9ff;
+        --OnsyiB1: #2095f2;
+        --OnsyiB2: #ff512f;
+        --OnsyiB3: #43a6f7;
+        --gradient3: linear-gradient(310deg, rgba(2, 0, 36, 1) 0%, rgba(113, 69, 209, 1) 16%, rgba(65, 10, 186, 1) 100%);
+        --gradient: repeating-linear-gradient(-45deg, #ff00e0 0%, #ff9800 7.14%, #ff9800 14.28%, #094d9e 21.4%, #5993cd 28.56%, #ff9800 35.7%, #ff9800 42.84%, #ff9800 50%);
+        --gradient2: repeating-linear-gradient(-45deg, #63a7e6 0%, #094d9e 7.14%, #5993cd 14.28%, #63a7e6 21.4%, #5993cd 28.56%, #5993cd 35.7%, #094d9e 42.84%, #63a7e6 50%);
+      }
+
+      body {
+        background: var(--OnsyiB2) !important;
+        font-family: "Poppins", sans-serif !important;
+        font-weight: 500;
+        margin: 0;
+        height: 100%;
+        text-transform: capitalize !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .lop {
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+        overflow: hidden;
+        margin: 12% auto 0;
+        position: sticky;
+        border-radius: 40px 40px 0 0;
+        border: none;
+        z-index: 9;
+      }
+
+      .loop {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        overflow: hidden;
+        margin: 12% auto 0;
+        position: relative;
+        border-radius: 40px 40px 0 0;
+        border: none;
+        z-index: 9;
+      }
+
+      .f {
+        color: #333;
+        width: 70%;
+        font-weight: 600;
+        font-size: 95%;
+        text-align: left;
+        margin: 5% 5% 0%;
+      }
+
+      .fe {
+        color: #fff;
+        width: 90%;
+        font-weight: 600;
+        font-size: 19px;
+        text-align: left;
+        position: fixed;
+        margin: -10% 5% 0%;
+      }
+
+      .ff {
+        font-weight: 400;
+        color: #555;
+        font-size: 80%;
+        width: 90%;
+        text-align: left;
+        margin: 0 5%;
+        display: inline-block;
+      }
+
+      .lainnya {
+        font-size: 80%;
+        margin-top: -8%;
+        margin-right: 5%;
+        margin-bottom: 3%;
+        display: block;
+        color: #ff512f;
+        background-color: #eee;
+        z-index: 0;
+        float: right;
+        text-align: center;
+        border-radius: 20px;
+        padding: 4px 20px;
+        font-weight: 500;
+      }
+
+      .lainnya:hover {
+        color: #fff;
+        background: #ff512f;
+        transition-duration: 0.2s;
+        -webkit-tap-highlight-color: transparent;
+        transition: background-color 0.1s ease-in-out;
+      }
+
+      a {
+        text-decoration: none !important;
+        color: none;
+      }
+
+      .foto {
+        height: 45px;
+        object-fit: fit;
+        width: 45px;
+        border-radius: 100px;
+        position: absolute;
+        margin: 5% 28% 0%;
+        border: 2px solid #eaecf0;
+        background-color: #eaecf0;
+        z-index: 99;
+      }
+
+      .logo {
+        height: 35px;
+        object-fit: fit;
+        width: auto;
+        position: fixed;
+        margin: -12% 2% 0;
+      }
+
+      a {
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        display: block;
+        text-align: center;
+      }
+
+      /* ...(Slide Image)... */
+      .slideshow-container {
+        max-width: 100%;
+        z-index: -1;
+        position: relative;
+        transform: translateY(50px);
+      }
+
+      .fade-img {
+        border-radius: 0;
+        width: 100%;
+        background-color: var(--OnsyiB2);
+        z-index: -9;
+      }
+
+      .dot {
+        height: 10px;
+        width: 10px;
+        background-color: #fff;
+        border-radius: 100px;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+        z-index: -9;
+      }
+
+      .dt {
+        text-align: center;
+        position: relative;
+        margin-top: -2%;
+        z-index: -9;
+      }
+
+      .activ {
+        background-color: white;
+        width: 30px;
+        z-index: -9;
+        border-radius: 10px;
+      }
+
+      .fade1 {
+        -webkit-animation-name: fade;
+        -webkit-animation-duration: 1.5s;
+        animation-name: fade;
+        animation-duration: 1.5s;
+        z-index: -9;
+      }
+
+      @-webkit-keyframes fade1 {
+        from {
+          opacity: 0.4;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fade1 {
+        from {
+          opacity: 0.4;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* On smaller screens, decrease text size */
+      @media only screen and (max-width: 300px) {
+        .text {
+          font-size: 11px;
+        }
+      }
+
+      /* ...(Saldo Card)... */
+      .carid {
+        background: var(--OnsyiBg);
+        width: 90%;
+        height: auto;
+        padding: 5px;
+        border-radius: 15px;
+        margin: 5% auto 0;
+        position: relative;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        text-align: left;
+        overflow: hidden;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+      }
+
+      .icoo {
+        width: 33px;
+        height: auto;
+        padding: 3px;
+        margin-right: 10px;
+      }
+
+      .text-container {
+        display: flex;
+        flex-direction: column;
+        width: 55%;
+      }
+
+      .saldi {
+        font-weight: 600;
+        font-size: 80%;
+        color: var(--OnsyiB2);
+        z-index: 9;
+        margin-bottom: 2px;
+      }
+
+      .poin {
+        font-weight: 400;
+        color: #777;
+        font-size: 70%;
+        z-index: 9;
+      }
+
+      /* ...(Kolom topup)... */
+      .container {
+        background: var(--OnsyiBg);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .column {
+        text-align: center;
+      }
+
+      .column a {
+        text-decoration: none !important;
+        color: inherit;
+      }
+
+      .column1 {
+        margin: 5% 0 0;
+        font-weight: 400;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      .ico {
+        color: var(--OnsyiB2);
+      }
+
+      /* Css Ribbon Menu Utama */
+      .ribbon3 {
+        position: absolute;
+        /* Change from relative to absolute for better alignment */
+        top: -2px;
+        /* Adjust the top value to align the ribbon consistently */
+        left: 10px;
+        /* Adjust left value to align properly */
+        width: 40% !important;
+        padding: 2px 5px;
+        /* Add padding for better appearance */
+        background: #ff512f;
+        border-radius: 20px 20px 20px 0;
+        box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+        color: #fff;
+        font-size: 11px;
+        /* Ensure font size is consistent */
+        text-align: center;
+      }
+
+      .ribbon3:before,
+      .ribbon3:after {
+        content: "";
+        position: absolute;
+        z-index: -9;
+      }
+
+      .ribbon3:before {
+        width: 7px;
+        height: 17px;
+        top: 35% !important;
+        /* Adjust to center the before element */
+        left: 0px;
+        background: #333;
+        border-radius: 100px 0 0 100px;
+      }
+
+      .ribbon3:after {
+        width: 5px;
+        height: 9px;
+        bottom: -5px;
+        left: 2px;
+        background: #333;
+        border-radius: 5px 0 0 5px;
+      }
+
+      /* Css Menu Utama */
+      .menu-container {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-evenly;
+        width: 95%;
+        margin: 0% auto;
+      }
+
+      .menu-item1 {
+        position: relative;
+        text-align: center;
+        padding: 10px;
+        width: auto;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+
+      .igm,
+      .igm1 {
+        width: 50px;
+        height: 50px;
+        margin: 0 auto 5px;
+        border-radius: 15px;
+        background: #fff;
+      }
+
+      .menu-item1 span {
+        font-size: 14px;
+        color: #333;
+        display: block;
+        text-decoration: none;
+        margin-top: 0px;
+        width: 60px;
+        /* Set a fixed width to ensure the icon doesn't shift */
+        text-align: center;
+      }
+
+      /* Css Running Text */
+      .carde {
+        background: linear-gradient(62deg, #dfee06, #ff512f, #ff512f, #f02d2d);
+        color: white;
+        width: 90%;
+        height: 40px;
+        margin: 7% auto;
+        border-radius: 10px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .carde1 {
+        background: transparent;
+        color: white;
+        width: 80%;
+        height: 40px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .marquee {
+        white-space: nowrap;
+        margin: 3%;
+        animation: marquee 15s linear infinite;
+        font-size: 15px;
+      }
+
+      @keyframes marquee {
+        0% {
+          transform: translateX(100%);
+        }
+
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+
+      .icon-kiri,
+      .icon-kanan {
+        position: absolute;
+        top: 10%;
+        z-index: 1;
+      }
+
+      .icon-kiri {
+        left: 5px;
+        width: 30px;
+        border-radius: 50px;
+      }
+
+      .icon-kanan {
+        right: 5px;
+        width: 30px;
+        border-radius: 50px;
+      }
+
+      .icon-kanan {
+        animation: mymove 2s infinite;
+      }
+
+      @keyframes mymove {
+        50% {
+          transform: translateX(5px);
+        }
+
+        100% {
+          transform: translateX(-5px);
+        }
+      }
+
+      /* ...(Produk terbaru 1)... */
+      .Onsyi-Row1 {
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
+        margin-top: 0;
+      }
+
+      .OnsyiCardo {
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        background: var(--OnsyiB2);
+        border-radius: 15px;
+        width: 120px;
+        height: auto;
+        margin-left: 20%;
+        overflow: hidden;
+        margin-top: 0;
+        margin-bottom: 3%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 120px;
+        max-width: 120px;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.5s;
+        will-change: transform;
+        /* Optimize for smoother animation */
+      }
+
+      .OnsyiCardo:hover {
+        transform: scale(1.02);
+      }
+
+      .OnsyiCardo::after {
+        content: "";
+        position: absolute;
+        background: radial-gradient(circle, transparent 30%, rgba(0, 0, 0, 0.2) 70%);
+        transform: scale(0);
+        width: 100%;
+        height: 100%;
+        transition: transform 0.5s;
+        pointer-events: none;
+      }
+
+      .OnsyiCardo:hover::after {
+        transform: scale(3);
+      }
+
+      .OnsyiImag3 {
+        width: 100%;
+        border-radius: 15px 15px 20px 20px;
+        margin: 0;
+        position: absolute;
+        overflow: hidden;
+      }
+
+      .product-details {
+        padding: 8px;
+        width: 100%;
+        margin-left: 6%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .OnsyiText-Judu {
+        color: #333;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 0;
+        margin: 0 0 4px 0;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-wrap: nowrap;
+        text-align: left;
+      }
+
+      .thinn {
+        color: #666;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 0;
+        margin: 2px 0;
+        width: 100%;
+        text-wrap: nowrap;
+        display: block;
+        text-decoration: none;
+        text-align: left;
+      }
+
+      .thinn1 {
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 0;
+        margin: 2px 0;
+        width: 100%;
+        text-align: center;
+        display: block;
+      }
+
+      .thinn2 {
+        color: #333;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 0;
+        margin: 2px 0;
+        width: 100%;
+        display: block;
+        text-align: left;
+      }
+
+      .OnsyiText-Harg {
+        color: #fff;
+        font-size: 14px;
+        background: var(--OnsyiB2);
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-weight: 600;
+        margin-top: 5px;
+        margin-left: -10px !important;
+        display: inline-block;
+        text-align: center;
+      }
+
+      .OnsyiText-Diskon {
+        color: #333;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 0;
+        margin: 2px 0;
+        width: 100%;
+        display: block;
+        text-align: left;
+      }
+
+      .OnsyiPromo1 {
+        border-radius: 10px;
+        opacity: 95%;
+        width: auto;
+        padding: 2px 7px;
+        background: #fff;
+        box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+        color: #333;
+        font-size: 70%;
+        text-align: center;
+        font-weight: 500;
+        display: inline-block;
+        z-index: 1;
+        margin: 90% auto 0;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .rating-number {
+        text-decoration: none;
+        font-size: 90%;
+        font-weight: bold;
+      }
+
+      .cartu {
+        margin: 7% 3% 0%;
+        float: right;
+        color: #00aa12;
+        border-radius: 100px;
+        padding: 5px;
+        display: none;
+      }
+
+      del {
+        font-size: 80%;
+        color: #777;
+        text-decoration: line-through;
+      }
+
+      /* Css Slide */
+      .slider1-container {
+        width: 100%;
+        overflow-x: auto;
+        margin-top: 10px;
+        white-space: nowrap;
+        scroll-snap-type: x mandatory;
+      }
+
+      .boxi {
+        display: inline-flex;
+      }
+
+      .boxi a {
+        display: inline-block;
+        width: calc(90vw - 5px);
+        margin-right: 10px;
+        scroll-snap-align: start;
+      }
+
+      .img2 {
+        width: 100%;
+        height: auto;
+        background-color: #ff512f;
+        border-radius: 15px;
+        margin-left: 5%;
+        object-fit: cover;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Menyembunyikan scrollbar */
+      .slider1-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      .slider1-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      /* Css Toko Terdekat */
+      .Onsyi-Row {
+        display: flex;
+        overflow-x: auto;
+        width: 100%;
+        padding-right: 0px;
+        margin-bottom: 0px;
+        white-space: nowrap;
+      }
+
+      .item-nearby-row {
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        border-radius: 15px;
+        background: #fff;
+        width: 120px;
+        height: auto;
+        margin-left: 15px !important;
+        margin-right: 0px !important;
+        margin-top: 1% !important;
+        margin-bottom: 20px !important;
+        min-width: 100px;
+        max-width: 120px;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        flex: 0 0 auto;
+        vertical-align: top;
+      }
+
+      .item-nearby-link {
+        width: 100%;
+        text-decoration: none;
+        color: black;
+        text-decoration-line: none !important;
+      }
+
+      .item-nearby-image {
+        border-radius: 10px !important;
+        width: 92% !important;
+        margin-top: 5% !important;
+        margin-bottom: 3% !important;
+        margin-right: 4% !important;
+        margin-left: 4% !important;
+      }
+
+      .item-nearby-title {
+        margin-top: 3px;
+        color: #333;
+        display: block;
+        font-size: 15px !important;
+        font-weight: 500;
+        width: 92% !important;
+        text-align: left;
+        margin-left: 5%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        text-decoration: none !important;
+      }
+
+      .item-nearby-distance {
+        margin-left: 5%;
+        margin-top: 2px;
+        color: #ff512f;
+        display: block;
+        text-align: left;
+        font-weight: bold;
+        font-size: 12px !important;
+        text-decoration: none !important;
+      }
+
+      .item-nearby-status {
+        margin-bottom: 5px;
+        margin-left: 5px;
+        color: none;
+        font-weight: bold;
+        font-size: 11px !important;
+      }
+
+      .item-nearby-status-note {
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+        margin-left: 5%;
+        width: 80% !important;
+        text-align: center;
+        margin-top: -90%;
+        border-radius: 25px;
+        opacity: 65%;
+        height: auto;
+        background: linear-gradient(to top, #dfee06 20%, #ff512f 80%);
+        color: white;
+        font-size: 60%;
+        display: inline-block;
+        overflow: hidden;
+      }
+
+      .item-nearby-status-open {
+        margin-top: -137%;
+        float: left;
+        margin-left: -3%;
+        border-radius: 15px 0px 15px 0px;
+        opacity: 85%;
+        width: 50%;
+        height: 20px;
+        background: #ff512f;
+        color: white;
+        font-size: 12px;
+        display: none !important;
+        overflow: hidden;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      /* CSS Slider */
+      .slider-container {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .slider {
+        display: flex;
+        animation: slide-animation 30s infinite;
+      }
+
+      .slide {
+        margin-top: 0%;
+        min-width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .igmm {
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        position: relative;
+        border-radius: 15px;
+        background: #ff512f;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      @keyframes slide-animation {
+        0%,
+        33.33% {
+          transform: translateX(0%);
+        }
+
+        33.33%,
+        66.66% {
+          transform: translateX(-100%);
+        }
+
+        66.66%,
+        100% {
+          transform: translateX(-200%);
+        }
+      }
+
+      /* Css Ribbon Tab Promo Card Saldo,Poin,Voucher */
+      .conti {
+        width: 100%;
+        padding: 5px;
+        margin: auto;
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+
+      .ribbon {
+        width: 37%;
+        /* Atur ukuran yang lebih proporsional */
+        position: relative;
+        margin-top: 10px;
+        background: #fcfcfc;
+        border-radius: 10px;
+        color: white;
+        padding: 20px 15px;
+        text-align: left;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+      }
+
+      .ribbon4 {
+        position: absolute;
+        top: 10px;
+        left: -7px;
+        font-family: "dynapuff", cursive;
+        font-size: 0.9rem;
+        padding: 5px 15px;
+        background: #ff512f;
+        border-radius: 10px 0 20px 0;
+        box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+      }
+
+      .ribbon4:before {
+        content: "";
+        position: absolute;
+        width: 7px;
+        height: 100%;
+        top: 40%;
+        left: -0px;
+        background: #ff512f;
+        border-radius: 0 0 0 100px;
+      }
+
+      .ribbon4:after {
+        content: "";
+        position: absolute;
+        width: 5px;
+        height: 10px;
+        bottom: -10px;
+        left: 2px;
+        background: black;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .tx {
+        margin: 20px 0 0 0;
+        font-weight: 500;
+        font-size: 1rem;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .ttx {
+        margin-top: 10px;
+        font-weight: 400;
+        font-size: 0.8rem;
+        color: #ff512f;
+      }
+
+      .hr {
+        position: relative;
+        margin: 5% auto 0;
+        border: 3px solid #9e9e9e;
+        width: 100%;
+        border-radius: 50px;
+      }
+
+      /* Css Produk Terbaru Tab Promo 1 */
+      .ribbon5 {
+        position: relative;
+        color: white;
+        margin-top: 2%;
+        display: inline-block;
+        margin-left: -55%;
+        width: auto;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 5px 10px;
+        background: #ff512f;
+        border-radius: 15px 15px 15px 0;
+        box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+        text-decoration: none !important;
+      }
+
+      .ribbon5:before,
+      .ribbon5:after {
+        content: "";
+        position: absolute;
+      }
+
+      .ribbon5:before {
+        width: 7px;
+        height: 100%;
+        top: 35%;
+        left: 0px;
+        padding: 0 0 7px;
+        background: #ff512f;
+        border-radius: 100px 0 0 100px;
+      }
+
+      .ribbon5:after {
+        width: 5px;
+        height: 10px;
+        bottom: -10px;
+        left: 3px;
+        background: black;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .Onsyi-Row1 {
+        display: flex;
+        overflow-x: auto;
+        padding-right: 0px;
+        scroll-behavior: smooth;
+        /* Smooth scrolling */
+        gap: 0px;
+        /* Add consistent space between cards */
+      }
+
+      .col-s5 {
+        margin: 0 0 0 5%;
+      }
+
+      .OnsyiCard1 {
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        background: #fdfdfd;
+        border-radius: 15px;
+        width: 300px;
+        height: auto;
+        /* Set a fixed height to ensure consistency */
+        margin: 2% 0%;
+        display: inline-block;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+        /* Reduced transition time */
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .OnsyiCard1:hover {
+        transform: scale(1.02);
+        /* Slight hover effect */
+      }
+
+      .OnsyiImage1 {
+        width: 45%;
+        border-radius: 15px;
+        margin: 2%;
+        overflow: hidden;
+        float: left;
+      }
+
+      .OnsyiText-Judul1 {
+        width: 45%;
+        color: #333;
+        font-size: 90%;
+        text-align: left;
+        font-weight: 600;
+        margin-top: 2%;
+        text-decoration: none;
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .thin1,
+      .thin2 {
+        display: flex;
+        color: #333;
+        background: #ff512f;
+        opacity: 50%;
+        font-size: 80%;
+        margin: 0 52% 0;
+        width: auto;
+        font-weight: 400;
+        text-decoration: none;
+      }
+
+      .thin2 {
+        display: none !important;
+      }
+
+      .OnsyiText-Harga1 {
+        text-align: center;
+        width: auto;
+        color: #444;
+        font-size: 85%;
+        border-radius: 5px;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 3%;
+        margin-left: -6%;
+        display: inline-block;
+      }
+
+      .OnsyiNew1 {
+        margin-top: 5%;
+        margin-left: 33%;
+        border-radius: 7px;
+        opacity: 65%;
+        width: auto;
+        display: inline-block;
+        padding: 2px 5px;
+        background: #777;
+        color: #fff;
+        font-size: 70%;
+        text-align: center;
+        font-weight: bold;
+      }
+
+      .star1 {
+        margin-top: 5%;
+        float: right;
+        margin-right: 3%;
+        padding: 2px 5px;
+        width: auto;
+        color: #000;
+        font-size: 12px;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      .cart1 {
+        margin: 3% 3%;
+        float: right;
+        background: #ff512f;
+        color: #fff;
+        padding: 3px;
+        border-radius: 50px;
+      }
+
+      /* Css Produk Terbaru Tab Promo 2 */
+      .ribbon6 {
+        position: relative;
+        color: white;
+        margin-top: 2%;
+        display: block;
+        margin-left: -5%;
+        width: 50%;
+        font-size: 15px;
+        font-weight: 600;
+        padding: 5px 10px;
+        background: #ff512f;
+        border-radius: 15px 15px 15px 0;
+        box-shadow: -1px 2px 3px rgba(0, 0, 0, 0.3);
+        text-decoration: none !important;
+      }
+
+      .ribbon6::before,
+      .ribbon6::after {
+        content: "";
+        position: absolute;
+      }
+
+      .ribbon6::before {
+        width: 7px;
+        height: 100%;
+        top: 35%;
+        left: 0px;
+        padding: 0 0 7px;
+        background: #ff512f;
+        border-radius: 100px 0 0 100px;
+      }
+
+      .ribbon6::after {
+        width: 5px;
+        height: 10px;
+        bottom: -10px;
+        left: 3px;
+        background: black;
+        border-radius: 5px 0 0 5px;
+      }
+
+      .col-s6 {
+        margin: 0 0 0 5%;
+      }
+
+      .Onsyi-Row2 {
+        display: flex;
+        overflow-x: scroll;
+        width: 100%;
+        padding-right: 20px;
+      }
+
+      .OnsyiCard2 {
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        background: #fdfdfd;
+        border-radius: 15px;
+        width: 170px;
+        height: 270px;
+        height: auto;
+        /* Set a fixed height to ensure consistency */
+        margin: 2% 3%;
+        display: inline-block;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+        /* Reduced transition time */
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .OnsyiCard2:hover {
+        transform: scale(1.02);
+        /* Slight hover effect */
+      }
+
+      .OnsyiImage2 {
+        width: 100%;
+        border-radius: 15px;
+        margin: -22% auto;
+      }
+
+      .OnsyiText-Judul2 {
+        text-align: left;
+        width: 92%;
+        color: #333;
+        font-size: 90%;
+        font-weight: 600;
+        margin-left: 5%;
+        margin-top: 25%;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .thin3,
+      .thin4 {
+        text-align: left;
+        color: #333;
+        opacity: 50%;
+        font-size: 80%;
+        font-weight: 400;
+        margin-left: 5%;
+        margin-top: 3%;
+        text-decoration: none;
+        display: flex;
+      }
+
+      .OnsyiText-Harga2 {
+        text-align: left;
+        width: 100%;
+        color: #444;
+        font-size: 85%;
+        font-weight: 600;
+        display: none !important;
+        margin-top: 0;
+        transform: translateY(0px);
+        margin-left: 5%;
+      }
+
+      .star2 {
+        margin-top: 0%;
+        margin-bottom: 2%;
+        margin-left: 3%;
+        padding: 2px;
+        background: none;
+        color: #444;
+        font-size: 12px;
+        display: flex;
+        text-align: center;
+        font-weight: 500;
+      }
+
+      /* Css Tab Pesanan */
+      .cardio {
+        background: #fbfbfb;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        float: left;
+        border-radius: 15px;
+        width: 90%;
+        height: 150px;
+        margin-left: 4%;
+        margin-right: 0px;
+        padding-right: 10px;
+        margin-top: 10%;
+        min-width: 300px;
+        max-width: 500px;
+        overflow: hidden;
+        display: inline-block;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .image1 {
+        height: 70%;
+        float: left;
+        width: auto;
+        margin-top: 5%;
+        margin-left: 5%;
+      }
+
+      .titlee {
+        background: #333;
+        display: inline-block;
+        padding: 0 15px 0;
+        text-align: center;
+        width: auto;
+        border-radius: 10px;
+        font-family: "Poppins";
+        font-weight: 500;
+        margin-top: 11%;
+        margin-left: 7%;
+        color: #fff;
+        font-size: 90%;
+        text-decoration: none;
+      }
+
+      .pprice {
+        margin-top: -15%;
+        font-family: "Poppins";
+        font-weight: 400;
+        margin-left: 45%;
+        color: #777;
+        text-align: left;
+        overflow: hidden;
+        display: inline-block;
+        font-size: 80% !important;
+      }
+
+      /* Css Tab Akun */
+      .sidebar {
+        width: auto;
+        background: #fff;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 20px;
+        position: relative;
+      }
+
+      /* Profile Header */
+      .profile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      /* Back Button */
+      .back-btn {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        border: none;
+        background: #fff;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        filter: invert(0);
+        background-image: url("https://res.cloudinary.com/dyqa4pm1z/image/upload/v1730778382/back-arrow_ve5xm1.png");
+        background-size: 24px 24px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .profile-title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: var(--OnsyiB2);
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+        width: 120px;
+        height: 150px;
+        margin-top: -20px;
+        border-radius: 0 0 60px 60px;
+        margin-bottom: 40px;
+        position: relative;
+      }
+
+      .profile-title {
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #fff;
+        margin-top: -15px;
+      }
+
+      .profile-picture {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #fff;
+        margin-top: 12px;
+      }
+
+      .profile-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* Menu Items */
+      span {
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .menu-items {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        border-radius: 15px;
+        background: var(--OnsyiB2);
+        padding: 20px;
+      }
+
+      .menu-item {
+        display: flex;
+        align-items: center;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        color: #fff;
+        margin-bottom: 8px;
+        margin-top: 5px;
+        transition: background-color 0.3s;
+      }
+
+      .menu-item:hover {
+        color: #d4a500;
+      }
+
+      .icon-circle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        background: #fff;
+        border-radius: 50%;
+        margin-right: 15px;
+        font-size: 1.2rem;
+        color: #ffcc00;
+      }
+
+      .icon-circle img {
+        width: 24px;
+        height: 24px;
+        padding: 2px;
+      }
+
+      .app-version {
+        margin-top: 20px;
+        color: #333;
+        font-weight: 400;
+        font-size: 0.8rem;
+        text-align: center;
+      }
+
+      .powered {
+        margin-top: -5px;
+        color: #333;
+        font-weight: 400;
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      /* Bottom NavBar */
+      @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+
+      * {
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .navigation {
+        width: clamp(300px, 90vw, 500px);
+        /* Responsive width that scales with viewport */
+        height: 65px;
+        position: fixed;
+        bottom: max(15px, 2vh);
+        left: 50%;
+        transform: translateX(-50%);
+        background: #333;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        display: flex;
+        justify-content: center;
+        z-index: 99;
+        border-radius: 100px;
+        padding: 0 clamp(12px, 3vw, 20px);
+        /* Responsive padding */
+      }
+
+      .navigation ul {
+        position: relative;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: clamp(8px, 2vw, 15px);
+        /* Responsive gap */
+      }
+
+      .navigation ul li {
+        position: relative;
+        list-style: none;
+        flex: 1;
+        height: 65px;
+        z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: clamp(50px, 15vw, 70px);
+        /* Responsive min-width */
+      }
+
+      .navigation ul li a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        font-weight: 500;
+        padding: 5px 0;
+      }
+
+      .navigation ul li a .icon {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5em;
+        transition: 0.5s;
+        color: rgba(255, 255, 255, 0.5);
+        height: 35px;
+        margin-bottom: 18px;
+      }
+
+      .navigation ul li a:hover .icon {
+        color: rgba(255, 255, 255, 1);
+      }
+
+      .navigation ul li.active a .icon {
+        transform: translateY(-8px);
+        color: #fff;
+      }
+
+      .navigation ul li a .text {
+        position: absolute;
+        opacity: 0;
+        font-weight: 500;
+        font-size: 0.75em;
+        letter-spacing: 0.05em;
+        transition: 0.5s;
+        color: #fff;
+        text-transform: normal;
+        bottom: 8px;
+      }
+
+      .navigation ul li.active a .text {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .indicator {
+        position: absolute;
+        width: calc(100% / 4 - 30px);
+        height: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.5s;
+        z-index: -1;
+      }
+
+      .indicator::before {
+        content: "";
+        position: absolute;
+        bottom: 20px;
+        width: 70%;
+        height: 5px;
+        border-radius: 10px;
+      }
+
+      /* Dynamic indicator positioning with adjusted spacing */
+      .navigation ul li:nth-child(1).active ~ .indicator {
+        transform: translateX(calc(0% + 15px));
+      }
+
+      .navigation ul li:nth-child(2).active ~ .indicator {
+        transform: translateX(calc(100% + 15px));
+      }
+
+      .navigation ul li:nth-child(3).active ~ .indicator {
+        transform: translateX(calc(200% + 15px));
+      }
+
+      .navigation ul li:nth-child(4).active ~ .indicator {
+        transform: translateX(calc(300% + 15px));
+      }
+
+      /* Media Queries for different screen sizes */
+      @media screen and (min-width: 768px) {
+        .navigation {
+          width: clamp(400px, 80vw, 500px);
+          height: 65px;
+          bottom: 20px;
+        }
+
+        .navigation ul li a .icon {
+          font-size: 1.5em;
+          height: 35px;
+          margin-bottom: 18px;
+        }
+
+        .navigation ul li a .text {
+          font-size: 0.75em;
+        }
+      }
+
+      @media screen and (min-width: 481px) and (max-width: 767px) {
+        .navigation {
+          width: clamp(350px, 85vw, 450px);
+          height: 60px;
+          bottom: 15px;
+        }
+
+        .navigation ul li {
+          height: 60px;
+        }
+
+        .navigation ul li a .icon {
+          font-size: 1.4em;
+          height: 30px;
+          margin-bottom: 16px;
+        }
+
+        .navigation ul li a .text {
+          font-size: 0.7em;
+        }
+      }
+
+      @media screen and (min-width: 361px) and (max-width: 480px) {
+        .navigation {
+          width: clamp(300px, 90vw, 400px);
+          height: 60px;
+          bottom: 12px;
+        }
+
+        .navigation ul li {
+          height: 60px;
+        }
+
+        .navigation ul li a .icon {
+          font-size: 1.3em;
+          height: 28px;
+          margin-bottom: 16px;
+        }
+
+        .navigation ul li a .text {
+          font-size: 0.7em;
+        }
+      }
+
+      @media screen and (max-width: 360px) {
+        .navigation {
+          width: 95vw;
+          height: 55px;
+          bottom: 10px;
+          padding: 0 10px;
+        }
+
+        .navigation ul {
+          gap: 6px;
+        }
+
+        .navigation ul li {
+          height: 55px;
+          min-width: 45px;
+        }
+
+        .navigation ul li a .icon {
+          font-size: 1.2em;
+          height: 25px;
+          margin-bottom: 14px;
+        }
+
+        .navigation ul li a .text {
+          font-size: 0.65em;
+          bottom: 5px;
+        }
+      }
+
+      /* For very small screens */
+      @media screen and (max-width: 320px) {
+        .navigation {
+          width: 98vw;
+          padding: 0 8px;
+        }
+
+        .navigation ul {
+          gap: 4px;
+        }
+
+        .navigation ul li {
+          min-width: 40px;
+        }
+
+        .navigation ul li a .icon {
+          font-size: 1.1em;
+          margin-bottom: 12px;
+        }
+
+        .navigation ul li a .text {
+          font-size: 0.6em;
+        }
+      }
