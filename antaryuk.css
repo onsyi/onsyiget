@@ -1493,7 +1493,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.8em;
+        font-size: 2em;
         transition: 0.5s;
         color: rgba(255, 255, 255, 0.5);
         height: 45px;
@@ -1575,7 +1575,7 @@
 
         .navigation ul li a .icon {
           font-size: 1.5em;
-          height: 35px;
+          height: 45px;
           margin-bottom: 18px;
         }
 
@@ -1597,7 +1597,7 @@
 
         .navigation ul li a .icon {
           font-size: 1.4em;
-          height: 30px;
+          height: 45px;
           margin-bottom: 16px;
         }
 
@@ -1619,7 +1619,7 @@
 
         .navigation ul li a .icon {
           font-size: 1.3em;
-          height: 28px;
+          height: 45px;
           margin-bottom: 16px;
         }
 
@@ -1647,7 +1647,7 @@
 
         .navigation ul li a .icon {
           font-size: 1.2em;
-          height: 25px;
+          height: 45px;
           margin-bottom: 14px;
         }
 
@@ -1673,7 +1673,7 @@
         }
 
         .navigation ul li a .icon {
-          font-size: 1.1em;
+          font-size: 2em;
           margin-bottom: 12px;
         }
 
