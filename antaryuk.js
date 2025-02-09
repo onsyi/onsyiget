@@ -99,32 +99,3 @@ document.addEventListener("DOMContentLoaded", function () {
     updateVerification("verifikasiHP", "Phone Terverifikasi", "Verifikasi Phone Segera!");
 });
 
-// Fungsi untuk membuka halaman tab
-function openPage(pageName) {
-    document.querySelectorAll(".tabcontent").forEach((content) => (content.style.display = "none"));
-    document.querySelectorAll(".list").forEach((link) => link.classList.remove("active"));
-
-    const activeTab = document.getElementById(pageName);
-    if (activeTab) activeTab.style.display = "block";
-
-    const activeLink = [...document.querySelectorAll(".list")].find((link) =>
-        link.querySelector(`[onclick="openPage('${pageName}')"]`)
-    );
-    if (activeLink) activeLink.classList.add("active");
-}
-
-// Set tab default yang aktif saat halaman dimuat
-document.addEventListener("DOMContentLoaded", function () {
-    const defaultTab = document.getElementById("defaultOpen");
-    if (defaultTab) defaultTab.click();
-
-    document.querySelectorAll(".navigation ul li").forEach((item) => {
-        item.addEventListener("click", () => {
-            document.querySelectorAll(".navigation ul li").forEach((i) => i.classList.remove("active"));
-            item.classList.add("active");
-        });
-    });
-
-    showSlides();
-    gantiSaldo();
-});
