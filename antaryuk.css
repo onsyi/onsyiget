@@ -360,7 +360,7 @@
       .menu-item1 {
         position: relative;
         text-align: center;
-        padding: 10px;
+        padding: 5px;
         width: auto;
         margin-top: 0px;
         margin-bottom: 0px;
@@ -368,8 +368,8 @@
 
       .igm,
       .igm1 {
-        width: 45px;
-        height: 45px;
+        width: 40px;
+        height: 40px;
         margin: 0 auto 5px;
         border-radius: 15px;
         background: #fff;
