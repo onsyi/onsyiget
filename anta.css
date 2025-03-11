@@ -1855,20 +1855,20 @@ span {
 }
 
 .navigation ul li a .text {
-    position: absolute;
-    opacity: 0;
-    font-weight: 500;
-    font-size: 0.7em;
-    letter-spacing: 0.05em;
-    transition: 0.5s;
-    color: #960001;
-    text-transform: normal;
-    transform: translateY(10px);
+  position: absolute;
+  font-size: 0.75em;
+  color: #333;
+  font-weight: 400;
+  transition: 0.5s;
+  opacity: 1;
+  transform: translateY(35px);
+  text-align: center;
+  width: 100%;
 }
 
 .navigation ul li.active a .text {
-    transform: translateY(10px);
-    opacity: 1;
+  opacity: 1;
+  color: #960001;
 }
 
 .indicator {
