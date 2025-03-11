@@ -1850,7 +1850,7 @@ span {
 }
 
 .navigation ul li.active a .icon {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
     color: #960001;
 }
 
