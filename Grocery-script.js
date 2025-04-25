@@ -96,4 +96,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Panggil fungsi untuk menampilkan produk
   displayProducts();
+
+  // Inisialisasi Bootstrap tabs untuk elemen dengan kelas .nav-tabs .nav-link
+  var navTabsList = [].slice.call(document.querySelectorAll(".nav-tabs .nav-link"));
+  navTabsList.forEach(function (triggerEl) {
+    var tabTrigger = new bootstrap.Tab(triggerEl);
+    triggerEl.addEventListener("click", function (event) {
+      event.preventDefault();
+      tabTrigger.show();
+    });
+  });
 });
