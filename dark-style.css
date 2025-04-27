@@ -1,6 +1,6 @@
-/*----------------------------------------------
+/*==============================================
 * CSS VARIABLES
-*----------------------------------------------*/
+==============================================*/
 :root {
   /* Colors */
   --color-primary: #00b14f;
@@ -55,9 +55,9 @@
   --transition-bezier: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/*----------------------------------------------
+/*==============================================
 * MAIN STYLES
-*----------------------------------------------*/
+==============================================*/
 body {
   font-family: "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: var(--color-bg);
@@ -84,6 +84,9 @@ a {
   color: inherit;
 }
 
+/*==============================================
+* UTILITY CLASSES
+==============================================*/
 /* Common utility classes */
 .rounded-circle {
   border-radius: 50% !important;
@@ -96,9 +99,9 @@ a {
   overflow: hidden;
 }
 
-/*----------------------------------------------
+/*==============================================
 * DARK MODE STYLES
-*----------------------------------------------*/
+==============================================*/
 body.dark-mode,
 .dark-mode .main-container {
   background-color: var(--color-bg-dark);
@@ -133,10 +136,10 @@ body.dark-mode,
   color: var(--color-text-dark);
 }
 
-/*----------------------------------------------
+/*==============================================
 * HEADER & SEARCH SECTION
-*----------------------------------------------*/
-/* Header styles */
+==============================================*/
+/* Header Component */
 .header-section {
   background-color: var(--color-primary);
   padding: 16px;
@@ -172,7 +175,7 @@ body.dark-mode,
   z-index: 10000;
 }
 
-/* Search bar components */
+/* Search Bar Component */
 .search-bar {
   flex: 1;
 }
@@ -209,7 +212,7 @@ body.dark-mode,
   background-color: var(--color-bg);
 }
 
-/* Button styles */
+/* Action Buttons */
 .scan-button button,
 .wishlist-button button {
   width: 48px;
@@ -231,7 +234,7 @@ body.dark-mode,
   border-left: 3px solid #f1f1f1;
 }
 
-/* Dark mode search bar */
+/* Dark Mode Search Bar */
 .dark-mode .search-bar .input-group,
 .dark-mode .search-bar .input-group-text,
 .dark-mode .search-bar .form-control,
@@ -257,9 +260,9 @@ body.dark-mode,
   border-left: 3px solid var(--color-bg-dark);
 }
 
-/*----------------------------------------------
+/*==============================================
 * DARK MODE TOGGLE
-*----------------------------------------------*/
+==============================================*/
 .dark-mode-toggle {
   position: absolute;
   top: 50%;
@@ -301,9 +304,9 @@ body.dark-mode,
   color: var(--color-text-dark);
 }
 
-/*----------------------------------------------
+/*==============================================
 * CATEGORY SECTION
-*----------------------------------------------*/
+==============================================*/
 .category-section {
   padding: 0;
 }
@@ -357,10 +360,6 @@ body.dark-mode,
 .dark-mode .category-item:hover,
 .main-container.dark-mode .category-item:hover {
   background-color: var(--color-bg-container-dark-hover);
-}
-
-.dark-mode .category-item:hover {
-  background-color: var(--color-bg-container-dark);
   border-color: var(--color-border-dark);
 }
 
@@ -374,9 +373,9 @@ body.dark-mode,
   background-color: transparent !important;
 }
 
-/*----------------------------------------------
+/*==============================================
 * LINKS SECTION
-*----------------------------------------------*/
+==============================================*/
 .links-section {
   margin: 10px 0;
   padding-bottom: 15px;
@@ -430,10 +429,10 @@ body.dark-mode,
   display: none; /* Chrome, Safari, Opera */
 }
 
-/*----------------------------------------------
+/*==============================================
 * CARDS & ITEMS
-*----------------------------------------------*/
-/* Common card styles */
+==============================================*/
+/* Card Components - Shared Styles */
 .food-card,
 .order-item,
 .link-card,
@@ -452,7 +451,7 @@ body.dark-mode,
   box-shadow: 0 4px 12px var(--color-shadow-hover);
 }
 
-/* Food Card Styles */
+/* Food Card Component */
 .food-card {
   overflow: hidden;
 }
@@ -476,13 +475,13 @@ body.dark-mode,
   font-size: 10px;
 }
 
-/* Link Card */
+/* Link Card Component */
 .link-card {
   height: 100%;
   margin-bottom: 5px;
 }
 
-/* Dark mode card styles */
+/* Dark Mode Card Styles */
 .dark-mode .food-card,
 .dark-mode .order-item,
 .dark-mode .link-card,
@@ -507,9 +506,10 @@ body.dark-mode,
   box-shadow: 0 4px 12px var(--color-shadow-dark-hover);
 }
 
-/*----------------------------------------------
+/*==============================================
 * PROFILE SECTION
-*----------------------------------------------*/
+==============================================*/
+/* Profile Avatar Component */
 .profile-avatar {
   width: 50px;
   height: 50px;
@@ -533,6 +533,7 @@ body.dark-mode,
   color: white;
 }
 
+/* Profile Menu Item Component */
 .profile-menu-item {
   margin-bottom: 12px;
   padding: 15px;
@@ -569,13 +570,14 @@ body.dark-mode,
   padding: 3px 8px;
 }
 
-/*----------------------------------------------
+/*==============================================
 * PROMO BANNER
-*----------------------------------------------*/
+==============================================*/
 .promo-banner {
   margin: 10px 0;
 }
 
+/* Promo Card Component */
 .promo-card {
   display: flex;
   align-items: center;
@@ -633,14 +635,15 @@ body.dark-mode,
   color: var(--color-text-dark);
 }
 
-/*----------------------------------------------
+/*==============================================
 * SCROLLABLE SECTIONS
-*----------------------------------------------*/
-/* Scrollable Images Section */
+==============================================*/
+/* Scrollable Image Gallery */
 .scrollable-images {
   margin-bottom: 20px;
 }
 
+/* Horizontal Scrolling Container */
 .image-scroll-container {
   display: flex;
   overflow-x: auto;
@@ -655,6 +658,7 @@ body.dark-mode,
   display: none;
 }
 
+/* Individual Scroll Item */
 .scroll-item {
   flex: 0 0 auto;
   width: 280px;
@@ -701,15 +705,16 @@ body.dark-mode,
   box-shadow: 0 4px 12px var(--color-shadow-dark-hover);
 }
 
-/*----------------------------------------------
+/*==============================================
 * GOMART SECTION
-*----------------------------------------------*/
+==============================================*/
 .gomart-section {
   background-color: var(--color-bg-container);
   border-radius: var(--border-radius-lg);
   margin-bottom: 20px;
 }
 
+/* GoMart Header Component */
 .gomart-header {
   position: relative;
   display: flex;
@@ -766,6 +771,7 @@ body.dark-mode,
   display: none;
 }
 
+/* Product Card Component */
 .product-card {
   background: var(--color-bg-container);
   border-radius: 8px;
@@ -803,9 +809,9 @@ body.dark-mode,
   color: var(--color-text-dark);
 }
 
-/*----------------------------------------------
+/*==============================================
 * GOPAY SECTION
-*----------------------------------------------*/
+==============================================*/
 .gopay-section {
   background-color: var(--color-bg-container);
   border-radius: var(--border-radius-lg);
@@ -850,9 +856,9 @@ body.dark-mode,
   box-shadow: 0 2px 4px var(--color-shadow-dark);
 }
 
-/*----------------------------------------------
+/*==============================================
 * BOTTOM NAVIGATION
-*----------------------------------------------*/
+==============================================*/
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -909,14 +915,10 @@ body.dark-mode,
 .nav-item.active i,
 .nav-item.active span {
   transform: translateY(-2px);
-}
-
-.nav-item.active i,
-.nav-item.active span {
   color: var(--indicator-color);
 }
 
-/* Tab colors */
+/* Navigation Tab Colors */
 .nav-item[data-tab="home"] {
   --indicator-color: var(--nav-home-color);
   --spotlight-color: rgba(255, 107, 107, 0.5);
@@ -937,7 +939,7 @@ body.dark-mode,
   --spotlight-color: rgba(149, 225, 211, 0.5);
 }
 
-/* Indicator */
+/* Navigation Indicator Bar */
 .nav-indicator {
   position: absolute;
   width: 50px;
@@ -953,7 +955,7 @@ body.dark-mode,
   pointer-events: none;
 }
 
-/* Spotlight Effect */
+/* Navigation Spotlight Effect */
 .spotlight-effect {
   position: absolute;
   width: 50px;
@@ -971,7 +973,7 @@ body.dark-mode,
   will-change: left, opacity, transform;
 }
 
-/* Dark mode bottom nav */
+/* Dark Mode Navigation */
 .dark-mode .bottom-nav,
 .main-container.dark-mode .bottom-nav {
   background: rgba(33, 33, 33, 0.95);
@@ -995,9 +997,9 @@ body.dark-mode,
   color: var(--indicator-color);
 }
 
-/*----------------------------------------------
+/*==============================================
 * LOGOUT BUTTON
-*----------------------------------------------*/
+==============================================*/
 .logout-section {
   margin-top: 20px;
   padding: 0 15px;
@@ -1016,242 +1018,4 @@ body.dark-mode,
 #logoutBtn:hover {
   background-color: var(--color-danger-hover);
   transform: translateY(-1px);
-}
-
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-/* Rounded Circle - Consolidated styles */
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  width: 2em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-}
-.rounded-circle {
-  border-radius: 50% !important;
-  aspect-ratio: 1 / 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
