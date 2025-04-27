@@ -1,0 +1,575 @@
+/*----------------------------------------------
+* RESPONSIVE STYLES
+*----------------------------------------------*/
+
+/*----------------------------------------------
+* VARIABEL UNTUK DARK MODE
+*----------------------------------------------*/
+:root {
+  --dark-bg-color: rgba(33, 33, 33, 0.95);
+  --dark-blur-effect: blur(10px);
+}
+
+/*----------------------------------------------
+* MEDIA QUERIES UNTUK TABLET DAN DESKTOP
+*----------------------------------------------*/
+
+/* Media query untuk tablet (768px - 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* Container dan layout */
+  .container {
+    max-width: 95%;
+  }
+  
+  /* Header dan search bar */
+  .search-container {
+    padding: 0 15px;
+  }
+  
+  /* Kategori */
+  .categories-section .row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  
+  /* Kartu makanan */
+  .food-card {
+    margin-bottom: 20px;
+  }
+  
+  /* Bottom navbar */
+  .bottom-nav {
+    height: 75px;
+  }
+  
+  .nav-item i {
+    font-size: 22px;
+    margin-bottom: 5px;
+  }
+  
+  .nav-item span {
+    font-size: 14px;
+  }
+  
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 55px;
+    height: 100px;
+    filter: blur(20px);
+    clip-path: polygon(10% 100%, 90% 100%, 100% 30%, 0% 30%);
+  }
+  
+  /* Nav indicator */
+  .nav-indicator {
+    width: 55px;
+    height: 3.5px;
+  }
+}
+
+/* Media query untuk desktop (di atas 1024px) */
+@media screen and (min-width: 1025px) {
+  /* Container dan layout */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* Header dan search bar */
+  .search-container {
+    padding: 0 20px;
+  }
+  
+  /* Kategori */
+  .categories-section .row {
+    justify-content: center;
+  }
+  
+  /* Kartu makanan */
+  .food-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  /* Bottom navbar */
+  .bottom-nav {
+    height: 80px;
+  }
+  
+  .nav-item i {
+    font-size: 24px;
+    margin-bottom: 6px;
+  }
+  
+  .nav-item span {
+    font-size: 14px;
+  }
+  
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 60px;
+    height: 110px;
+    filter: blur(22px);
+    clip-path: polygon(10% 100%, 90% 100%, 100% 28%, 0% 28%);
+  }
+  
+  /* Nav indicator */
+  .nav-indicator {
+    width: 60px;
+    height: 4px;
+  }
+}
+
+/*----------------------------------------------
+* MEDIA QUERIES UNTUK MOBILE DEVICES
+*----------------------------------------------*/
+
+/* Media query untuk perangkat dengan lebar 450px */
+@media screen and (max-width: 450px) {
+  /* Penyesuaian bottom navbar */
+  .bottom-nav {
+    height: 70px;
+  }
+
+  .nav-item i {
+    font-size: 20px;
+    margin-bottom: 4px;
+  }
+
+  .nav-item span {
+    font-size: 12px;
+  }
+
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 48px;
+    height: 95px;
+    filter: blur(18px);
+    clip-path: polygon(10% 100%, 90% 100%, 100% 32%, 0% 32%);
+  }
+
+  /* Nav indicator */
+  .nav-indicator {
+    width: 48px;
+    height: 3px;
+  }
+
+  /* Transisi untuk item aktif */
+  .nav-item.active i,
+  .nav-item.active span {
+    transform: translateY(-2.5px);
+  }
+
+  /* Dark mode */
+  .dark-mode .bottom-nav,
+  .main-container.dark-mode .bottom-nav {
+    background: var(--dark-bg-color);
+    backdrop-filter: var(--dark-blur-effect);
+  }
+
+  .dark-mode .spotlight-effect,
+  .main-container.dark-mode .spotlight-effect {
+    opacity: 1;
+  }
+}
+
+/* Media query untuk perangkat dengan lebar 415px */
+@media screen and (max-width: 415px) {
+  /* Penyesuaian bottom navbar */
+  .bottom-nav {
+    height: 68px;
+  }
+
+  .nav-item i {
+    font-size: 19px;
+    margin-bottom: 4px;
+  }
+
+  .nav-item span {
+    font-size: 11px;
+  }
+
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 46px;
+    height: 90px;
+    filter: blur(17px);
+    clip-path: polygon(10% 100%, 90% 100%, 100% 34%, 0% 34%);
+  }
+
+  /* Nav indicator */
+  .nav-indicator {
+    width: 46px;
+    height: 3px;
+  }
+
+  /* Transisi untuk item aktif */
+  .nav-item.active i,
+  .nav-item.active span {
+    transform: translateY(-2.2px);
+  }
+
+  /* Dark mode - opacity khusus */
+  .dark-mode .spotlight-effect,
+  .main-container.dark-mode .spotlight-effect {
+    opacity: 0.95;
+  }
+}
+
+/* Media query untuk perangkat dengan lebar 390px */
+@media screen and (max-width: 390px) {
+  /* Penyesuaian bottom navbar */
+  .bottom-nav {
+    height: 65px;
+  }
+
+  .nav-item i {
+    font-size: 19px;
+    margin-bottom: 3px;
+  }
+
+  .nav-item span {
+    font-size: 11px;
+  }
+
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 44px;
+    height: 85px;
+    filter: blur(16px);
+    clip-path: polygon(12% 100%, 88% 100%, 100% 36%, 0% 36%);
+  }
+
+  /* Nav indicator */
+  .nav-indicator {
+    width: 44px;
+    height: 3px;
+  }
+
+  /* Transisi untuk item aktif */
+  .nav-item.active i,
+  .nav-item.active span {
+    transform: translateY(-2px);
+  }
+
+  /* Dark mode - opacity khusus */
+  .dark-mode .spotlight-effect,
+  .main-container.dark-mode .spotlight-effect {
+    opacity: 0.92;
+  }
+}
+
+/* Media query untuk perangkat dengan lebar 385px */
+@media screen and (max-width: 385px) {
+  /* Penyesuaian bottom navbar */
+  .bottom-nav {
+    height: 62px;
+  }
+
+  .nav-item i {
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+
+  .nav-item span {
+    font-size: 10px;
+  }
+
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 42px;
+    height: 82px;
+    filter: blur(16px);
+    clip-path: polygon(12% 100%, 88% 100%, 100% 38%, 0% 38%);
+  }
+
+  /* Nav indicator */
+  .nav-indicator {
+    width: 42px;
+    height: 2.8px;
+  }
+
+  /* Transisi untuk item aktif */
+  .nav-item.active i,
+  .nav-item.active span {
+    transform: translateY(-1.8px);
+  }
+
+  /* Dark mode - opacity khusus */
+  .dark-mode .spotlight-effect,
+  .main-container.dark-mode .spotlight-effect {
+    opacity: 0.9;
+  }
+}
+
+/* Media query untuk perangkat dengan lebar di bawah 380px */
+@media screen and (max-width: 380.32px) {
+  /* Penyesuaian ukuran container */
+  :root {
+    --container-max-width: 100%;
+  }
+
+  /*----------------------------------------------
+  * HEADER DAN SEARCH BAR
+  *----------------------------------------------*/
+  .search-container {
+    padding: 0 10px;
+  }
+
+  .scan-button button,
+  .wishlist-button button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-bar .form-control {
+    height: 40px;
+    font-size: 13px;
+  }
+
+  /*----------------------------------------------
+  * KATEGORI
+  *----------------------------------------------*/
+  .category-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .category-name {
+    font-size: 10px;
+  }
+
+  /*----------------------------------------------
+  * KARTU DAN ITEM
+  *----------------------------------------------*/
+  .food-card,
+  .order-item,
+  .link-card,
+  .profile-menu-item {
+    border-radius: 8px;
+  }
+
+  .food-img {
+    height: 100px;
+  }
+
+  /*----------------------------------------------
+  * TAB CONTENT
+  *----------------------------------------------*/
+  .tab-content {
+    padding-bottom: 70px;
+  }
+
+  /*----------------------------------------------
+  * BOTTOM NAVBAR
+  *----------------------------------------------*/
+  .bottom-nav {
+    height: 60px;
+  }
+
+  .nav-item i {
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+
+  .nav-item span {
+    font-size: 10px;
+  }
+
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 41px;
+    height: 95px;
+    filter: blur(15px);
+    clip-path: polygon(14% 100%, 86% 100%, 100% 39%, 0% 39%);
+  }
+
+  /* Nav indicator */
+  .nav-indicator {
+    width: 41px;
+    height: 2.8px;
+  }
+
+  /* Transisi untuk item aktif */
+  .nav-item.active i,
+  .nav-item.active span {
+    transform: translateY(-1.8px);
+  }
+
+  /* Dark mode */
+  .dark-mode .bottom-nav,
+  .main-container.dark-mode .bottom-nav {
+    background: var(--dark-bg-color);
+    backdrop-filter: blur(9px);
+  }
+
+  .dark-mode .spotlight-effect,
+  .main-container.dark-mode .spotlight-effect {
+    opacity: 0.9;
+  }
+
+  /*----------------------------------------------
+  * SECTION LINKS
+  *----------------------------------------------*/
+  .links-section .row {
+    padding-bottom: 10px;
+  }
+
+  /*----------------------------------------------
+  * PADDING DAN MARGIN
+  *----------------------------------------------*/
+  .p-3 {
+    padding: 0.75rem !important;
+  }
+
+  .m-3 {
+    margin: 0.75rem !important;
+  }
+
+  .my-3 {
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  .mx-3 {
+    margin-left: 0.75rem !important;
+    margin-right: 0.75rem !important;
+  }
+}
+
+/* Media query untuk perangkat dengan lebar 360px */
+@media screen and (max-width: 360px) {
+  /* Penyesuaian bottom navbar */
+  .bottom-nav {
+    height: 60px;
+  }
+
+  .nav-item i {
+    font-size: 17px;
+    margin-bottom: 3px;
+  }
+
+  .nav-item span {
+    font-size: 10px;
+  }
+
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 40px;
+    height: 78px;
+    filter: blur(15px);
+    clip-path: polygon(15% 100%, 85% 100%, 100% 40%, 0% 40%);
+  }
+
+  /* Nav indicator */
+  .nav-indicator {
+    width: 40px;
+    height: 2.7px;
+  }
+
+  /* Transisi untuk item aktif */
+  .nav-item.active i,
+  .nav-item.active span {
+    transform: translateY(-1.5px);
+  }
+
+  /* Dark mode - opacity khusus */
+  .dark-mode .spotlight-effect,
+  .main-container.dark-mode .spotlight-effect {
+    opacity: 0.9;
+  }
+}
+
+/* Media query untuk perangkat dengan lebar sangat kecil (di bawah 320px) */
+@media screen and (max-width: 320px) {
+  /*----------------------------------------------
+  * KATEGORI
+  *----------------------------------------------*/
+  .category-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .category-name {
+    font-size: 9px;
+  }
+
+  /*----------------------------------------------
+  * BOTTOM NAVBAR
+  *----------------------------------------------*/
+  .nav-item i {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+
+  .nav-item span {
+    font-size: 9px;
+  }
+
+  /*----------------------------------------------
+  * BUTTONS DAN FORM
+  *----------------------------------------------*/
+  .scan-button button,
+  .wishlist-button button {
+    width: 36px;
+    height: 36px;
+  }
+
+  /*----------------------------------------------
+  * PADDING DAN MARGIN
+  *----------------------------------------------*/
+  .p-3 {
+    padding: 0.5rem !important;
+  }
+
+  .my-2 {
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  /*----------------------------------------------
+  * KARTU DAN ITEM
+  *----------------------------------------------*/
+  .food-img {
+    height: 90px;
+  }
+
+  /*----------------------------------------------
+  * BOTTOM NAVBAR
+  *----------------------------------------------*/
+  .bottom-nav {
+    height: 55px;
+  }
+
+  /* Spotlight effect */
+  .spotlight-effect {
+    width: 35px;
+    height: 68px;
+    filter: blur(12px);
+    clip-path: polygon(20% 100%, 80% 100%, 100% 45%, 0% 45%);
+  }
+
+  /* Nav indicator */
+  .nav-indicator {
+    width: 35px;
+    height: 2.5px;
+  }
+
+  /* Transisi untuk item aktif */
+  .nav-item.active i,
+  .nav-item.active span {
+    transform: translateY(-1px);
+  }
+
+  /* Dark mode */
+  .dark-mode .bottom-nav,
+  .main-container.dark-mode .bottom-nav {
+    background: var(--dark-bg-color);
+    backdrop-filter: blur(8px);
+  }
+
+  .dark-mode .spotlight-effect,
+  .main-container.dark-mode .spotlight-effect {
+    opacity: 0.8;
+  }
+}
