@@ -3,13 +3,62 @@
  * Aplikasi untuk menampilkan jadwal sholat dan fitur e-wallet
  */
 
+// Variabel konfigurasi aplikasi
+const CONFIG = {
+  defaultPage: "home-page",
+  navItems: {
+    home: "nav-home",
+    profile: "nav-profile",
+  },
+};
+
+/**
+ * Fungsi untuk menampilkan halaman yang dipilih
+ * @param {string} pageId - ID halaman yang akan ditampilkan
+ */
+function showPage(pageId) {
+  // Sembunyikan semua halaman
+  document.querySelectorAll(".page-content").forEach((page) => {
+    page.style.display = "none";
+  });
+
+  // Tampilkan halaman yang dipilih
+  const selectedPage = document.getElementById(pageId);
+  if (selectedPage) {
+    selectedPage.style.display = "block";
+  } else {
+    console.warn(`Halaman dengan ID '${pageId}' tidak ditemukan`);
+    return;
+  }
+
+  // Update navigasi aktif
+  updateActiveNavigation(pageId);
+}
+
+/**
+ * Fungsi untuk memperbarui navigasi aktif
+ * @param {string} pageId - ID halaman yang aktif
+ */
+function updateActiveNavigation(pageId) {
+  const navItems = document.querySelectorAll(".nav-item[data-page]");
+  navItems.forEach((item) => {
+    item.classList.remove("active");
+  });
+
+  // Aktifkan navigasi yang sesuai
+  if (pageId === "home-page") {
+    document.getElementById(CONFIG.navItems.home)?.classList.add("active");
+  } else if (pageId === "profile-page") {
+    document.getElementById(CONFIG.navItems.profile)?.classList.add("active");
+  }
+}
+
 // Inisialisasi aplikasi saat DOM telah dimuat
 document.addEventListener("DOMContentLoaded", function () {
   initNavigation();
   createBubbles();
   updateCurrentDate();
   initPrayerTimes();
-  // Minta izin notifikasi saat aplikasi dimuat
   requestNotificationPermission();
 });
 /**
@@ -70,7 +119,20 @@ function requestNotificationPermission() {
 }
 // Variabel global untuk menyimpan waktu sholat dan audio adzan
 let currentPrayerTimes = null;
-let adhanAudio = new Audio("https://raw.githubusercontent.com/islamic-network/cdn/master/islamic/audio/adhan/mishary-rashid-alafasy-128kbps/1.mp3");
+let adhanAudio = null;
+
+// Inisialisasi audio dengan penanganan error
+try {
+  adhanAudio = new Audio("https://raw.githubusercontent.com/islamic-network/cdn/master/islamic/audio/adhan/mishary-rashid-alafasy-128kbps/1.mp3");
+  // Pra-muat audio untuk mengurangi delay saat pemutaran
+  adhanAudio.preload = "auto";
+  // Tangani error loading
+  adhanAudio.onerror = function () {
+    console.error("Error saat memuat file audio adzan");
+  };
+} catch (error) {
+  console.error("Browser tidak mendukung Audio API:", error);
+}
 async function initPrayerTimes() {
   try {
     // Menggunakan koordinat default untuk Indonesia (Jakarta)
@@ -125,8 +187,14 @@ async function initPrayerTimes() {
           console.log("Berhasil mendapatkan waktu sholat dari API Aladhan:", times);
           currentPrayerTimes = times;
           updatePrayerTimesDisplay(currentPrayerTimes);
+
+          // Pastikan interval tidak dibuat duplikat
+          if (window._prayerCheckInterval) {
+            clearInterval(window._prayerCheckInterval);
+          }
+
           // Mulai interval untuk mengecek waktu sholat setiap menit
-          setInterval(checkPrayerTime, 60000);
+          window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
           return; // Keluar dari fungsi jika berhasil
         }
       } else {
@@ -166,8 +234,14 @@ async function initPrayerTimes() {
             console.log("Berhasil mendapatkan waktu sholat dari API MPT:", times);
             currentPrayerTimes = times;
             updatePrayerTimesDisplay(currentPrayerTimes);
+
+            // Pastikan interval tidak dibuat duplikat
+            if (window._prayerCheckInterval) {
+              clearInterval(window._prayerCheckInterval);
+            }
+
             // Mulai interval untuk mengecek waktu sholat setiap menit
-            setInterval(checkPrayerTime, 60000);
+            window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
             return; // Keluar dari fungsi jika berhasil
           }
         } catch (formatError) {
@@ -193,16 +267,36 @@ async function initPrayerTimes() {
 }
 // Fungsi untuk menggunakan waktu sholat default jika API gagal
 function useDefaultPrayerTimes() {
-  currentPrayerTimes = {
-    fajr: "04:30",
-    dhuhr: "12:15",
-    asr: "15:30",
-    maghrib: "18:10",
-    isha: "19:30",
-  };
-  updatePrayerTimesDisplay(currentPrayerTimes);
-  checkPrayerTime();
-  setInterval(checkPrayerTime, 60000);
+  try {
+    // Gunakan waktu default yang lebih sesuai dengan zona waktu pengguna
+    const now = new Date();
+    const isRamadhan = false; // Ini bisa diubah berdasarkan perhitungan kalender Hijriah
+
+    // Waktu default yang disesuaikan dengan zona waktu Indonesia
+    currentPrayerTimes = {
+      fajr: "04:30",
+      dhuhr: "12:15",
+      asr: "15:30",
+      maghrib: "18:10",
+      isha: "19:30",
+    };
+
+    console.log("Menggunakan waktu sholat default");
+    updatePrayerTimesDisplay(currentPrayerTimes);
+
+    // Pastikan interval tidak dibuat duplikat
+    if (window._prayerCheckInterval) {
+      clearInterval(window._prayerCheckInterval);
+    }
+
+    // Periksa waktu sholat saat ini
+    checkPrayerTime();
+
+    // Simpan referensi interval untuk mencegah duplikasi
+    window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
+  } catch (error) {
+    console.error("Error saat menggunakan waktu sholat default:", error);
+  }
 }
 
 /**
@@ -214,11 +308,22 @@ function checkPrayerTime() {
 
   try {
     const now = new Date();
-    const currentTime = now.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
+    let currentTime;
+
+    try {
+      // Coba gunakan toLocaleTimeString dengan opsi
+      currentTime = now.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
+    } catch (formatError) {
+      // Fallback manual jika browser tidak mendukung opsi formatting
+      console.warn("Browser tidak mendukung opsi formatting waktu, menggunakan format manual", formatError);
+      const hours = now.getHours().toString().padStart(2, "0");
+      const minutes = now.getMinutes().toString().padStart(2, "0");
+      currentTime = `${hours}:${minutes}`;
+    }
 
     // Mapping nama waktu sholat dari kode ke nama yang ditampilkan
     const prayerNames = {
@@ -285,12 +390,19 @@ function checkPrayerTime() {
  * @returns {number} - Total menit (jam * 60 + menit)
  */
 function convertTimeToMinutes(timeStr) {
-  if (!timeStr || timeStr === "--:--") return 0;
+  // Validasi input dengan lebih ketat
+  if (!timeStr || typeof timeStr !== "string" || timeStr === "--:--") return 0;
 
   try {
+    // Pastikan format waktu sesuai dengan pola HH:MM
+    if (!/^\d{1,2}:\d{2}$/.test(timeStr)) {
+      console.warn("Format waktu tidak valid (bukan HH:MM):", timeStr);
+      return 0;
+    }
+
     const [hours, minutes] = timeStr.split(":").map(Number);
-    if (isNaN(hours) || isNaN(minutes)) {
-      console.warn("Format waktu tidak valid:", timeStr);
+    if (isNaN(hours) || isNaN(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+      console.warn("Format waktu tidak valid (nilai di luar rentang):", timeStr);
       return 0;
     }
     return hours * 60 + minutes;
@@ -305,25 +417,43 @@ function convertTimeToMinutes(timeStr) {
  * @param {string} prayerName - Nama waktu sholat (Subuh, Dzuhur, dll)
  */
 function playAdhan(prayerName) {
-  // Reset audio ke awal
-  adhanAudio.currentTime = 0;
-
-  // Tampilkan notifikasi jika diizinkan
-  if (Notification.permission === "granted") {
-    try {
-      new Notification("Waktu Sholat", {
-        body: `Sudah memasuki waktu sholat ${prayerName}`,
-        icon: "/icon.png",
-      });
-    } catch (notifError) {
-      console.error("Error menampilkan notifikasi:", notifError);
-    }
+  if (!adhanAudio) {
+    console.warn("Audio adzan tidak tersedia");
+    return;
   }
 
-  // Mainkan adzan
-  adhanAudio.play().catch((error) => {
-    console.error("Error memutar adzan:", error);
-  });
+  try {
+    // Reset audio ke awal
+    adhanAudio.currentTime = 0;
+
+    // Tampilkan notifikasi jika diizinkan
+    if (Notification.permission === "granted") {
+      try {
+        new Notification("Waktu Sholat", {
+          body: `Sudah memasuki waktu sholat ${prayerName}`,
+          icon: "/icon.png",
+        });
+      } catch (notifError) {
+        console.error("Error menampilkan notifikasi:", notifError);
+      }
+    }
+
+    // Mainkan adzan dengan penanganan error yang lebih baik
+    const playPromise = adhanAudio.play();
+
+    // Audio play() mengembalikan Promise di browser modern
+    if (playPromise !== undefined) {
+      playPromise.catch((error) => {
+        console.error("Error memutar adzan:", error);
+        // Coba lagi setelah interaksi pengguna jika error disebabkan oleh kebijakan autoplay
+        if (error.name === "NotAllowedError") {
+          console.warn("Autoplay diblokir oleh browser. Adzan akan diputar setelah interaksi pengguna.");
+        }
+      });
+    }
+  } catch (error) {
+    console.error("Error umum saat memutar adzan:", error);
+  }
 }
 
 /**
@@ -379,14 +509,17 @@ function highlightCurrentPrayer(prayerKey, shouldScroll = false) {
  */
 function formatTime(timestamp) {
   try {
-    // Periksa apakah timestamp valid
-    if (!timestamp || isNaN(Number(timestamp))) {
+    // Periksa apakah timestamp valid dengan pengecekan yang lebih ketat
+    if (timestamp === null || timestamp === undefined || isNaN(Number(timestamp))) {
       console.warn("Timestamp tidak valid:", timestamp);
       return "--:--";
     }
 
+    // Pastikan timestamp adalah angka
+    const timestampNum = Number(timestamp);
+
     // Konversi timestamp ke Date object (timestamp dalam detik, perlu dikali 1000 untuk milidetik)
-    const date = new Date(Number(timestamp) * 1000);
+    const date = new Date(timestampNum * 1000);
 
     // Periksa apakah date valid
     if (isNaN(date.getTime())) {
@@ -394,12 +527,20 @@ function formatTime(timestamp) {
       return "--:--";
     }
 
-    // Format waktu dalam format 24 jam (HH:MM)
-    return date.toLocaleTimeString("en-US", {
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false,
-    });
+    // Format waktu dalam format 24 jam (HH:MM) dengan fallback untuk browser yang tidak mendukung opsi tertentu
+    try {
+      return date.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      });
+    } catch (formatError) {
+      // Fallback manual jika browser tidak mendukung opsi formatting
+      console.warn("Browser tidak mendukung opsi formatting waktu, menggunakan format manual", formatError);
+      const hours = date.getHours().toString().padStart(2, "0");
+      const minutes = date.getMinutes().toString().padStart(2, "0");
+      return `${hours}:${minutes}`;
+    }
   } catch (error) {
     console.error("Error saat memformat waktu:", error);
     return "--:--";
@@ -411,7 +552,7 @@ function formatTime(timestamp) {
  * @param {Object} prayerTimes - Objek berisi waktu sholat dalam format {fajr: "04:30", dhuhr: "12:15", ...}
  */
 function updatePrayerTimesDisplay(prayerTimes) {
-  if (!prayerTimes) {
+  if (!prayerTimes || typeof prayerTimes !== "object") {
     console.warn("Data waktu sholat tidak tersedia atau tidak valid");
     return;
   }
@@ -426,27 +567,60 @@ function updatePrayerTimesDisplay(prayerTimes) {
       Isya: "isha",
     };
 
+    // Periksa apakah DOM tersedia
+    if (!document || !document.querySelectorAll) {
+      console.error("DOM tidak tersedia untuk memperbarui tampilan waktu sholat");
+      return;
+    }
+
     // Menggunakan data-prayer-name attribute yang lebih kompatibel dengan semua browser
-    document.querySelectorAll(".prayer-item").forEach((item) => {
-      const prayerName = item.getAttribute("data-prayer-name");
-      const timeElement = item.querySelector(".prayer-time");
+    const prayerItems = document.querySelectorAll(".prayer-item");
 
-      if (!prayerName || !timeElement) return;
+    if (prayerItems.length === 0) {
+      console.warn("Tidak ada elemen prayer-item yang ditemukan di DOM");
+    }
 
-      const prayerKey = prayerMapping[prayerName];
-      const prayerTime = prayerKey ? prayerTimes[prayerKey] : null;
+    prayerItems.forEach((item) => {
+      try {
+        const prayerName = item.getAttribute("data-prayer-name");
+        const timeElement = item.querySelector(".prayer-time");
 
-      if (prayerKey && prayerTime && prayerTime !== "Invalid Date" && prayerTime !== "--:--") {
-        timeElement.textContent = prayerTime;
-      } else {
-        // Fallback jika data tidak tersedia atau tidak valid
-        timeElement.textContent = "--:--";
-        console.warn(`Data waktu sholat untuk ${prayerName} tidak tersedia atau tidak valid`);
+        if (!prayerName || !timeElement) {
+          console.warn("Elemen waktu sholat tidak lengkap (tidak ada data-prayer-name atau .prayer-time)");
+          return;
+        }
+
+        const prayerKey = prayerMapping[prayerName];
+
+        // Validasi prayerKey
+        if (!prayerKey) {
+          console.warn(`Nama waktu sholat tidak dikenali: ${prayerName}`);
+          timeElement.textContent = "--:--";
+          return;
+        }
+
+        const prayerTime = prayerTimes[prayerKey];
+
+        if (prayerTime && prayerTime !== "Invalid Date" && prayerTime !== "--:--") {
+          timeElement.textContent = prayerTime;
+        } else {
+          // Fallback jika data tidak tersedia atau tidak valid
+          timeElement.textContent = "--:--";
+          console.warn(`Data waktu sholat untuk ${prayerName} tidak tersedia atau tidak valid`);
+        }
+      } catch (itemError) {
+        console.error("Error saat memproses item waktu sholat:", itemError);
       }
     });
 
     // Setelah update, periksa waktu sholat saat ini
-    checkPrayerTime();
+    setTimeout(() => {
+      try {
+        checkPrayerTime();
+      } catch (checkError) {
+        console.error("Error saat memeriksa waktu sholat setelah update:", checkError);
+      }
+    }, 0);
   } catch (error) {
     console.error("Error saat memperbarui tampilan waktu sholat:", error);
   }
@@ -458,6 +632,19 @@ function updatePrayerTimesDisplay(prayerTimes) {
  */
 function createBubbles() {
   try {
+    // Periksa apakah DOM tersedia
+    if (!document || !document.body) {
+      console.warn("DOM tidak tersedia untuk membuat efek gelembung");
+      return;
+    }
+
+    // Periksa apakah container sudah ada untuk mencegah duplikasi
+    const existingContainer = document.querySelector(".bubbles-container");
+    if (existingContainer) {
+      console.log("Container gelembung sudah ada, tidak perlu membuat ulang");
+      return;
+    }
+
     const container = document.createElement("div");
     container.className = "bubbles-container";
     document.body.appendChild(container);
@@ -465,20 +652,25 @@ function createBubbles() {
     // Membuat 10 gelembung dengan ukuran dan posisi acak
     const bubbleCount = 10;
     for (let i = 0; i < bubbleCount; i++) {
-      const bubble = document.createElement("div");
-      bubble.className = "bubble";
+      try {
+        const bubble = document.createElement("div");
+        bubble.className = "bubble";
 
-      // Ukuran antara 20px dan 70px
-      const size = Math.random() * 50 + 20;
-      bubble.style.width = `${size}px`;
-      bubble.style.height = `${size}px`;
+        // Ukuran antara 20px dan 70px
+        const size = Math.random() * 50 + 20;
+        bubble.style.width = `${size}px`;
+        bubble.style.height = `${size}px`;
 
-      // Posisi dan animasi acak
-      bubble.style.left = `${Math.random() * 100}%`;
-      bubble.style.animationDuration = `${Math.random() * 3 + 2}s`;
-      bubble.style.animationDelay = `${Math.random() * 2}s`;
+        // Posisi dan animasi acak
+        bubble.style.left = `${Math.random() * 100}%`;
+        bubble.style.animationDuration = `${Math.random() * 3 + 2}s`;
+        bubble.style.animationDelay = `${Math.random() * 2}s`;
 
-      container.appendChild(bubble);
+        container.appendChild(bubble);
+      } catch (bubbleError) {
+        console.warn("Error saat membuat gelembung individu:", bubbleError);
+        // Lanjutkan ke gelembung berikutnya
+      }
     }
   } catch (error) {
     console.error("Error saat membuat efek gelembung:", error);
@@ -494,12 +686,6 @@ function initNavigation() {
     // Tampilkan halaman home secara default
     navigateToPage("home");
 
-    // Set halaman awal (home) sebagai aktif
-    const homeNavItem = document.querySelector('.nav-item[data-page="home"]');
-    if (homeNavItem) {
-      homeNavItem.classList.add("active");
-    }
-
     // Tambahkan event listener untuk tombol navigasi
     const navItems = document.querySelectorAll(".nav-item[data-page]");
     navItems.forEach((item) => {
@@ -508,10 +694,6 @@ function initNavigation() {
         if (!page) return;
 
         navigateToPage(page);
-
-        // Tandai item navigasi yang aktif
-        navItems.forEach((nav) => nav.classList.remove("active"));
-        this.classList.add("active");
       });
     });
   } catch (error) {
@@ -521,7 +703,7 @@ function initNavigation() {
 
 /**
  * Fungsi untuk menangani navigasi antar halaman
- * @param {string} page - ID halaman yang akan ditampilkan
+ * @param {string} page - ID halaman yang akan ditampilkan (tanpa suffix '-page')
  */
 function navigateToPage(page) {
   if (!page) {
@@ -530,24 +712,50 @@ function navigateToPage(page) {
   }
 
   try {
-    // Sembunyikan semua halaman
-    document.querySelectorAll(".page-content").forEach((p) => (p.style.display = "none"));
+    // Validasi input
+    if (typeof page !== "string") {
+      console.error("Parameter halaman harus berupa string");
+      return;
+    }
 
-    // Tampilkan halaman yang dipilih
-    const selectedPage = document.getElementById(`${page}-page`);
-    if (selectedPage) {
-      selectedPage.style.display = "block";
-      // Scroll ke atas halaman
-      window.scrollTo(0, 0);
-    } else {
-      console.warn(`Halaman dengan ID '${page}-page' tidak ditemukan`);
-      // Fallback ke halaman home jika halaman tidak ditemukan
-      const homePage = document.getElementById("home-page");
-      if (homePage) {
-        homePage.style.display = "block";
+    // Tambahkan suffix '-page' ke ID halaman
+    const pageId = `${page}-page`;
+
+    // Periksa apakah halaman ada sebelum mencoba menampilkannya
+    const pageElement = document.getElementById(pageId);
+    if (!pageElement) {
+      console.warn(`Halaman dengan ID '${pageId}' tidak ditemukan`);
+      // Tampilkan halaman default jika halaman yang diminta tidak ditemukan
+      if (CONFIG && CONFIG.defaultPage) {
+        console.log(`Menampilkan halaman default: ${CONFIG.defaultPage}`);
+        showPage(CONFIG.defaultPage);
       }
+      return;
+    }
+
+    // Gunakan fungsi showPage yang sudah ada untuk menampilkan halaman
+    showPage(pageId);
+
+    // Scroll ke atas halaman dengan penanganan error
+    try {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } catch (scrollError) {
+      // Fallback untuk browser yang tidak mendukung opsi behavior
+      console.warn("Browser tidak mendukung smooth scrolling, menggunakan scrollTo standar", scrollError);
+      window.scrollTo(0, 0);
     }
   } catch (error) {
     console.error("Error saat navigasi halaman:", error);
+    // Tampilkan halaman default jika terjadi error
+    if (CONFIG && CONFIG.defaultPage) {
+      try {
+        showPage(CONFIG.defaultPage);
+      } catch (fallbackError) {
+        console.error("Error saat menampilkan halaman default:", fallbackError);
+      }
+    }
   }
 }
