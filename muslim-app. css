@@ -1,4 +1,4 @@
-   /* ======= VARIABEL WARNA & TEMA ======= */
+  /* ======= VARIABEL WARNA & TEMA ======= */
    :root {
     /* Warna Utama */
     --primary-color: #1a73e8;
