@@ -1,1269 +1,1288 @@
-   /* ======= VARIABEL WARNA & TEMA ======= */
-   :root {
-    /* Warna Utama */
-    --primary-color: #001489;
-    --secondary-color: #0d8a6f;
-    --accent-color: #e84393;
-    --danger-color: #d72a2a;
-    --warning-color: #f1c40f;
-    --success-color: #4aaf4f;
-    --purple-color: #8e44ad;
-    --gray-color: #7f8c8d;
-    /* Warna Background */
-    --bg-light: #f8f9fa;
-    --bg-white: #ffffff;
-    /* Warna Teks */
-    --text-dark: #333333;
-    --text-muted: #6c757d;
-    /* Warna Gradien */
-    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    /* Bayangan */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.25);
-    /* Border Radius */
-    --border-radius-sm: 6px;
-    --border-radius-md: 12px;
-    --border-radius-lg: 15px;
-    --border-radius-xl: 20px;
-    --border-radius-circle: 50%;
-    /* Spacing */
-    --spacing-xs: 5px;
-    --spacing-sm: 10px;
-    --spacing-md: 15px;
-    --spacing-lg: 20px;
-    /* Transisi */
-    --transition-fast: all 0.2s ease;
-    --transition-normal: all 0.3s ease;
-    /* Ukuran Font */
-    --font-size-xs: 0.8rem;
-    --font-size-sm: 0.9rem;
-    --font-size-md: 1rem;
-    --font-size-lg: 1.2rem;
-    --font-size-xl: 1.5rem;
-   }
+/* ======= VARIABEL WARNA & TEMA ======= */
+:root {
+  /* Warna Utama */
+  --primary-color: #001489;
+  --secondary-color: #0d8a6f;
+  --accent-color: #e84393;
+  --danger-color: #d72a2a;
+  --warning-color: #f1c40f;
+  --success-color: #4aaf4f;
+  --purple-color: #8e44ad;
+  --gray-color: #7f8c8d;
 
-   /* ======= RESET & BASE STYLES ======= */
-   * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-   }
+  /* Warna Background */
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
 
-   a {
-    text-decoration: none;
-    color: inherit;
-   }
+  /* Warna Teks */
+  --text-dark: #333333;
+  --text-muted: #6c757d;
 
-   body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-light);
-    max-width: 430px;
-    margin: 0 auto;
-   }
+  /* Warna Gradien */
+  --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
 
-   .app-container {
-    position: relative;
-    min-height: 100vh;
-    background-color: var(--bg-light);
-    padding-bottom: 80px;
-    overflow-x: hidden;
-    width: 100%;
-    max-width: 430px;
-   }
+  /* Bayangan */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 15px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.25);
 
-   /* Wallet Card Styling */
-   .wallet-card {
-    background: var(--gradient-primary);
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-lg);
-    margin: var(--spacing-sm);
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
-   }
+  /* Border Radius */
+  --border-radius-sm: 6px;
+  --border-radius-md: 12px;
+  --border-radius-lg: 15px;
+  --border-radius-xl: 20px;
+  --border-radius-circle: 50%;
 
-   /* Nearby Container */
-   .nearby-container {
-    background-size: cover;
-    background-image: url("#");
-    overflow: hidden;
-    height: auto;
-    width: auto;
-   }
+  /* Spacing */
+  --spacing-xs: 5px;
+  --spacing-sm: 10px;
+  --spacing-md: 15px;
+  --spacing-lg: 20px;
 
-   /* Setting Icons Styles */
-   .setting-icon.partner-icon {
-    background: #e1f5fe;
-    color: #0288d1;
-    border-radius: 12px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-   }
+  /* Transisi */
+  --transition-fast: all 0.2s ease;
+  --transition-normal: all 0.3s ease;
 
-   .setting-icon.driver-icon {
-    background: #efebe9;
-    color: #5d4037;
-    border-radius: 12px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-   }
+  /* Ukuran Font */
+  --font-size-xs: 0.8rem;
+  --font-size-sm: 0.9rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.2rem;
+  --font-size-xl: 1.5rem;
+}
 
-   .setting-icon.terms-icon {
-    background: #f1f8e9;
-    color: #558b2f;
-    border-radius: 12px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-   }
+/* ======= RESET & BASE STYLES ======= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-   .setting-icon.logout-icon {
-    background: #ffebee;
-    color: #c62828;
-    border-radius: 12px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-   }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
-   /* ======= BUBBLE ANIMATION STYLES ======= */
-   .bubbles-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-   }
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-light);
+  max-width: 430px;
+  margin: 0 auto;
+}
 
-   .bubble {
-    position: absolute;
-    bottom: -100px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    animation: float linear infinite;
+.app-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--bg-light);
+  padding-bottom: 80px;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 430px;
+}
+
+/* Wallet Card Styling */
+.wallet-card {
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-sm);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* Nearby Container */
+.nearby-container {
+  background-size: cover;
+  background-image: url("#");
+  overflow: hidden;
+  height: auto;
+  width: auto;
+}
+
+/* Setting Icons Styles */
+.setting-icon.partner-icon {
+  background: #e1f5fe;
+  color: #0288d1;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.setting-icon.driver-icon {
+  background: #efebe9;
+  color: #5d4037;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.setting-icon.terms-icon {
+  background: #f1f8e9;
+  color: #558b2f;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.setting-icon.logout-icon {
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+/* ======= BUBBLE ANIMATION STYLES ======= */
+.bubbles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.bubble {
+  position: absolute;
+  bottom: -100px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  animation: float linear infinite;
+  opacity: 0.5;
+}
+
+/* Bubble Animation Base Styles */
+.wallet-card [class^="bubble-"] {
+  content: "";
+  position: absolute;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-circle);
+  pointer-events: none;
+  animation-name: float-bubble;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  bottom: -20px;
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
     opacity: 0.5;
-   }
+  }
 
-   /* Bubble Animation Base Styles */
-   .wallet-card [class^="bubble-"] {
-    content: "";
-    position: absolute;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius-circle);
-    pointer-events: none;
-    animation-name: float-bubble;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    bottom: -20px;
+  100% {
+    transform: translateY(-100vh);
     opacity: 0;
-   }
-
-   @keyframes float {
-    0% {
-     transform: translateY(0);
-     opacity: 0.5;
-    }
-
-    100% {
-     transform: translateY(-100vh);
-     opacity: 0;
-    }
-   }
-
-   .wallet-card .bubble-1 {
-    width: 25px;
-    height: 25px;
-    left: 12%;
-    animation-duration: 8s;
-    animation-delay: 0s;
-   }
-
-   .wallet-card .bubble-2 {
-    width: 18px;
-    height: 18px;
-    left: 28%;
-    animation-duration: 7s;
-    animation-delay: 2.5s;
-   }
-
-   .wallet-card .bubble-3 {
-    width: 22px;
-    height: 22px;
-    left: 45%;
-    animation-duration: 9s;
-    animation-delay: 1.2s;
-   }
-
-   .wallet-card .bubble-4 {
-    width: 20px;
-    height: 20px;
-    left: 35%;
-    animation-duration: 6.5s;
-    animation-delay: 3.8s;
-   }
-
-   .wallet-card .bubble-5 {
-    width: 24px;
-    height: 24px;
-    left: 60%;
-    animation-duration: 8.5s;
-    animation-delay: 0.5s;
-   }
-
-   .wallet-card .bubble-6 {
-    width: 16px;
-    height: 16px;
-    left: 75%;
-    animation-duration: 7.5s;
-    animation-delay: 4.2s;
-   }
-
-   .wallet-card .bubble-7 {
-    width: 21px;
-    height: 21px;
-    left: 85%;
-    animation-duration: 9.5s;
-    animation-delay: 2.8s;
-   }
-
-   .wallet-card .bubble-8 {
-    width: 19px;
-    height: 19px;
-    left: 15%;
-    animation-duration: 7.8s;
-    animation-delay: 1.8s;
-   }
-
-   .wallet-card .bubble-9 {
-    width: 23px;
-    height: 23px;
-    left: 50%;
-    animation-duration: 8.2s;
-    animation-delay: 3.2s;
-   }
-
-   .wallet-card .bubble-10 {
-    width: 17px;
-    height: 17px;
-    left: 70%;
-    animation-duration: 6.8s;
-    animation-delay: 0.8s;
-   }
-
-   @keyframes float-bubble {
-    0% {
-     bottom: -50px;
-     transform: translateX(0);
-     opacity: 0;
-    }
-
-    20% {
-     opacity: 0.8;
-     transform: translateX(10px);
-    }
-
-    40% {
-     transform: translateX(-10px);
-    }
-
-    60% {
-     transform: translateX(5px);
-    }
-
-    80% {
-     transform: translateX(-5px);
-     opacity: 0.4;
-    }
-
-    100% {
-     bottom: 150%;
-     transform: translateX(0);
-     opacity: 0;
-    }
-   }
-
-   @keyframes float-left {
-    0% {
-     bottom: -50px;
-     transform: translateX(0);
-     opacity: 0;
-    }
-
-    50% {
-     transform: translateX(-20px);
-     opacity: 1;
-    }
-
-    100% {
-     bottom: 150%;
-     transform: translateX(0);
-     opacity: 0;
-    }
-   }
-
-   @keyframes float-diagonal {
-    0% {
-     bottom: -50px;
-     transform: translate(0, 0);
-     opacity: 0;
-    }
-
-    50% {
-     transform: translate(-15px, 50px);
-     opacity: 1;
-    }
-
-    100% {
-     bottom: 150%;
-     transform: translate(0, 0);
-     opacity: 0;
-    }
-   }
-
-   @keyframes float-base {
-    0% {
-     bottom: -50px;
-     opacity: 0;
-    }
-
-    50% {
-     opacity: 1;
-    }
-
-    100% {
-     bottom: 150%;
-     opacity: 0;
-    }
-   }
-
-   @keyframes zigzag-movement {
-    25% {
-     transform: translateX(-20px);
-    }
-
-    50% {
-     transform: translateX(20px);
-    }
-
-    75% {
-     transform: translateX(-20px);
-    }
-
-    100% {
-     transform: translateX(0);
-    }
-   }
-
-   @keyframes spiral-movement {
-    50% {
-     transform: rotate(180deg) translateX(20px);
-    }
-
-    100% {
-     transform: rotate(360deg) translateX(0);
-    }
-   }
-
-   @keyframes wave-movement {
-    25% {
-     transform: translateX(15px);
-    }
-
-    50% {
-     transform: translateX(-15px);
-    }
-
-    75% {
-     transform: translateX(15px);
-    }
-
-    100% {
-     transform: translateX(0);
-    }
-   }
-
-   .wallet-info {
-    flex: 1;
-   }
-
-   .wallet-info h2 {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-    font-weight: 500;
-   }
-
-   .balance {
-    display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-   }
-
-   .balance i {
-    margin-right: 5px;
-   }
-
-   .point {
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-   }
-
-   .wallet-actions {
-    display: flex;
-    justify-content: space-evenly;
-    gap: 5px;
-   }
-
-   .action-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    border: none;
-    color: white;
-    padding: 8px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    cursor: pointer;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
-   }
-
-   .action-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-   }
-
-   .wallet-logo {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-   }
-
-   .logo-circle {
-    border-radius: 50%;
-    width: 45px;
-    height: 45px;
-    display: flex;
-    display: table;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    padding: 1px;
-   }
-
-   /* Category Menu Styling */
-   .category-menu {
-    padding: 15px;
-    background-color: white;
-    border-radius: 15px;
-    margin: 15px 10px;
-   }
-
-   .category-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-   }
-
-   .category-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 5px;
-    position: relative;
-   }
-
-   .category-icon i {
-    font-size: 1.7rem;
-   }
-
-   /* Kategori Icon Colors */
-   .car-icon,
-   .motor-icon,
-   .kurir-icon {
-    background-color: var(--primary-color);
-    color: white;
-   }
-
-   .makan-icon {
-    background-color: var(--secondary-color);
-    color: white;
-   }
-
-   .shop-icon {
-    background-color: var(--danger-color);
-    color: white;
-   }
-
-   .laundry-icon {
-    background-color: var(--warning-color);
-    color: white;
-   }
-
-   .pulsa-icon {
-    background-color: var(--purple-color);
-    color: white;
-   }
-
-   .lainnya-icon {
-    background-color: var(--gray-color);
-    color: white;
-   }
-
-   .hot-label {
-    position: absolute;
-    top: -5px;
-    right: -5px;
-    background-color: #ff5722;
-    color: white;
-    font-size: 0.7rem !important;
-    padding: 2px 5px;
-    border-radius: 10px;
-   }
-
-   .category-item span {
-    font-weight: 500;
-    font-size: 1rem;
-    text-align: center;
-   }
-
- /* Prayer time css */
-   .prayer-times {
-    background: var(--gradient-primary);
-    border-radius: var(--border-radius-md);
-    padding: var(--spacing-md);
-    margin: var(--spacing-md) var(--spacing-xs);
-    color: white;
-    box-shadow: var(--shadow-lg);
-    position: relative;
-    overflow: hidden;
-    backdrop-filter: blur(10px);
-    transition: var(--transition-normal);
-   }
-
-   .prayer-times::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
-    pointer-events: none;
-   }
-
-   .prayer-times:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(26, 115, 232, 0.4);
-   }
-
-   .prayer-title {
-    font-size: 1rem;
-    margin-bottom: 12px;
-    text-align: center;
-    font-weight: 600;
-   }
-
-   .prayer-date {
-    font-size: 0.8rem;
-    text-align: center;
-    margin-bottom: 10px;
+  }
+}
+
+.wallet-card .bubble-1 {
+  width: 25px;
+  height: 25px;
+  left: 12%;
+  animation-duration: 8s;
+  animation-delay: 0s;
+}
+
+.wallet-card .bubble-2 {
+  width: 18px;
+  height: 18px;
+  left: 28%;
+  animation-duration: 7s;
+  animation-delay: 2.5s;
+}
+
+.wallet-card .bubble-3 {
+  width: 22px;
+  height: 22px;
+  left: 45%;
+  animation-duration: 9s;
+  animation-delay: 1.2s;
+}
+
+.wallet-card .bubble-4 {
+  width: 20px;
+  height: 20px;
+  left: 35%;
+  animation-duration: 6.5s;
+  animation-delay: 3.8s;
+}
+
+.wallet-card .bubble-5 {
+  width: 24px;
+  height: 24px;
+  left: 60%;
+  animation-duration: 8.5s;
+  animation-delay: 0.5s;
+}
+
+.wallet-card .bubble-6 {
+  width: 16px;
+  height: 16px;
+  left: 75%;
+  animation-duration: 7.5s;
+  animation-delay: 4.2s;
+}
+
+.wallet-card .bubble-7 {
+  width: 21px;
+  height: 21px;
+  left: 85%;
+  animation-duration: 9.5s;
+  animation-delay: 2.8s;
+}
+
+.wallet-card .bubble-8 {
+  width: 19px;
+  height: 19px;
+  left: 15%;
+  animation-duration: 7.8s;
+  animation-delay: 1.8s;
+}
+
+.wallet-card .bubble-9 {
+  width: 23px;
+  height: 23px;
+  left: 50%;
+  animation-duration: 8.2s;
+  animation-delay: 3.2s;
+}
+
+.wallet-card .bubble-10 {
+  width: 17px;
+  height: 17px;
+  left: 70%;
+  animation-duration: 6.8s;
+  animation-delay: 0.8s;
+}
+
+@keyframes float-bubble {
+  0% {
+    bottom: -50px;
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  20% {
     opacity: 0.8;
-   }
+    transform: translateX(10px);
+  }
 
-   .prayer-list {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 8px 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    justify-content: flex-start;
-    margin: 0 -5px;
-    padding: 8px 5px;
-   }
+  40% {
+    transform: translateX(-10px);
+  }
 
-   .prayer-list::-webkit-scrollbar {
-    display: none;
-   }
+  60% {
+    transform: translateX(5px);
+  }
 
-   .prayer-item {
-    --prayer-shadow-color: rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-    padding: var(--spacing-sm);
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: var(--border-radius-sm);
-    transition: var(--transition-normal);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    flex: 0 0 auto;
-    min-width: 150px;
-    max-width: 200px;
-    width: calc(100% - 20px);
-    margin: 0 auto;
-    scroll-snap-align: center;
-   }
+  80% {
+    transform: translateX(-5px);
+    opacity: 0.4;
+  }
 
-   .prayer-item:hover,
-   .prayer-item.current-prayer {
-    background: rgba(255, 255, 255, 0.2);
-    transform: scale(1.02);
-   }
+  100% {
+    bottom: 150%;
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
 
-   .prayer-item.current-prayer {
-    transform: scale(1.03);
+@keyframes float-left {
+  0% {
+    bottom: -50px;
+    transform: translateX(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateX(-20px);
+    opacity: 1;
+  }
+
+  100% {
+    bottom: 150%;
+    transform: translateX(0);
+    opacity: 0;
+  }
+}
+
+@keyframes float-diagonal {
+  0% {
+    bottom: -50px;
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translate(-15px, 50px);
+    opacity: 1;
+  }
+
+  100% {
+    bottom: 150%;
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes float-base {
+  0% {
+    bottom: -50px;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 150%;
+    opacity: 0;
+  }
+}
+
+@keyframes zigzag-movement {
+  25% {
+    transform: translateX(-20px);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+  75% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes spiral-movement {
+  50% {
+    transform: rotate(180deg) translateX(20px);
+  }
+  100% {
+    transform: rotate(360deg) translateX(0);
+  }
+}
+
+@keyframes wave-movement {
+  25% {
+    transform: translateX(15px);
+  }
+  50% {
+    transform: translateX(-15px);
+  }
+  75% {
+    transform: translateX(15px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.wallet-info {
+  flex: 1;
+}
+
+.wallet-info h2 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.balance {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.balance i {
+  margin-right: 5px;
+}
+
+.balance #saldo {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.point {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.wallet-actions {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 5px;
+}
+
+.action-btn {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.wallet-logo {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.logo-circle {
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  display: table;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 1px;
+}
+
+/* Category Menu Styling */
+.category-menu {
+  padding: 15px;
+  background-color: white;
+  border-radius: 15px;
+  margin: 15px 10px;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.category-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.category-icon i {
+  font-size: 1.7rem;
+}
+
+/* Kategori Icon Colors */
+.car-icon,
+.motor-icon,
+.kurir-icon {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.makan-icon {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.shop-icon {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.laundry-icon {
+  background-color: var(--warning-color);
+  color: white;
+}
+
+.pulsa-icon {
+  background-color: var(--purple-color);
+  color: white;
+}
+
+.lainnya-icon {
+  background-color: var(--gray-color);
+  color: white;
+}
+
+.hot-label {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background-color: #ff5722;
+  color: white;
+  font-size: 0.7rem !important;
+  padding: 2px 5px;
+  border-radius: 10px;
+}
+
+.category-item span {
+  font-weight: 500;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* ======= PRAYER TIMES STYLING ======= */
+.prayer-times {
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-md);
+  padding: var(--spacing-md);
+  margin: var(--spacing-md) var(--spacing-xs);
+  color: white;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  transition: var(--transition-normal);
+}
+
+.prayer-times::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
+  pointer-events: none;
+}
+
+.prayer-times:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(26, 115, 232, 0.4);
+}
+
+.prayer-title {
+  font-size: 1rem;
+  margin-bottom: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.prayer-date {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.prayer-list {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 8px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  justify-content: flex-start;
+  margin: 0 -5px;
+  padding: 8px 5px;
+}
+
+.prayer-list::-webkit-scrollbar {
+  display: none;
+}
+
+.prayer-item {
+  --prayer-shadow-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-sm);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-normal);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  min-width: 150px;
+  max-width: 200px;
+  width: calc(100% - 20px);
+  margin: 0 auto;
+  scroll-snap-align: center;
+}
+
+.prayer-item:hover,
+.prayer-item.current-prayer {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+}
+
+.prayer-item.current-prayer {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px var(--prayer-shadow-color);
+  animation: pulsePrayer 2s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+@keyframes pulsePrayer {
+  0%,
+  100% {
     box-shadow: 0 4px 15px var(--prayer-shadow-color);
-    animation: pulsePrayer 2s ease-in-out infinite;
-    will-change: transform, box-shadow;
-   }
-
-   @keyframes pulsePrayer {
-
-    0%,
-    100% {
-     box-shadow: 0 4px 15px var(--prayer-shadow-color);
-    }
-
-    50% {
-     box-shadow: 0 4px 25px rgba(255, 255, 255, 0.4);
-    }
-   }
-
-   .prayer-item::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s ease;
-   }
-
-   .prayer-item:hover::after {
-    transform: translateX(100%);
-   }
-
-   .prayer-item i {
-    font-size: 1rem;
-    margin-right: 10px;
-   }
-
-   .prayer-name {
-    flex: 1;
-    font-weight: 500;
-   }
-
-   .prayer-time {
-    font-weight: 600;
-    background: rgba(255, 255, 255, 0.2);
-    padding: 4px 8px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-    font-size: 0.9rem;
-   }
-
-   /* Fallback untuk browser yang tidak mendukung :has() */
-   .prayer-time:hover {
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-   }
-
-   /* ======= BANNER IKLAN STYLES ======= */
-   .ads-banner-section,
-   .promo-banner,
-   .category-menu,
-   .settings-section {
-    background-color: var(--bg-white);
-    border-radius: var(--border-radius-lg);
-    margin: var(--spacing-md) var(--spacing-sm);
-    padding: 0px;
-   }
-
-   .ads-banner-title,
-   .promo-text,
-   .settings-title {
-    font-size: var(--font-size-lg);
-    font-weight: bold;
-    margin: var(--spacing-lg) var(--spacing-sm) 0;
-   }
-
-   .ads-banner-subtitle,
-   .promo-subtext {
-    font-size: var(--font-size-md);
-    color: var(--text-muted);
-    margin-left: var(--spacing-sm);
-    margin-bottom: var(--spacing-sm);
-   }
-
-   .ads-banner-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 12px;
-    padding: 0 10px 15px 10px;
-    scrollbar-width: none;
-    /* Firefox */
-    -ms-overflow-style: none;
-    /* IE and Edge */
-   }
-
-   .ads-banner-container::-webkit-scrollbar {
-    display: none;
-    /* Chrome, Safari, Opera */
-   }
-
-   .ads-banner-item {
-    flex: 0 0 auto;
-    min-width: 250px;
-    height: 120px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    scroll-snap-align: start;
-   }
-
-   .ads-banner-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-   }
-
-   .ads-banner-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-   }
-
-   .ads-banner-content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 10px;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-    color: white;
-   }
-
-   .ads-banner-content h3 {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-   }
-
-   .ads-banner-content p {
-    margin: 5px 0 0;
-    font-size: 0.8rem;
-    opacity: 0.9;
-   }
-
-   /* Promo Banner Styling */
-   .promo-banner {
-    background-color: white;
-    border-radius: 15px;
-    margin: 15px 10px;
-    padding: 0px;
-   }
-
-   .promo-text {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin: 20px 10px 0;
-   }
-
-   .promo-subtext {
-    font-size: 1rem;
-    color: #666;
-    margin-left: 10px;
-   }
-
-/* Nearme Shop */
-   .Onsyi-Row {
-    display: flex;
-    overflow-x: auto;
-    width: 100%;
-    white-space: nowrap;
-   }
-
-   .item-nearby-row {
-    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
-    border-radius: 15px;
-    background: #fff;
-    width: 120px;
-    height: auto;
-    margin-top: 0px !important;
-    margin-left: 10px !important;
-    margin-right: -1px !important;
-    margin-bottom: 20px !important;
-    min-width: 100px;
-    max-width: 120px;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    flex: 0 0 auto;
-    vertical-align: top;
-   }
-
-   .item-nearby-link {
-    width: 100%;
-    text-decoration: none;
-    color: black;
-    text-decoration-line: none !important;
-   }
-
-   .item-nearby-image {
-    border-radius: 10px !important;
-    width: 92% !important;
-    margin-top: 5% !important;
-    margin-bottom: 3% !important;
-    margin-right: 4% !important;
-    margin-left: 4% !important;
-   }
-
-   .item-nearby-title {
-    margin-top: 3px;
-    color: #333;
-    display: block;
-    font-size: 15px !important;
-    font-weight: 500;
-    width: 95%;
-    text-align: left;
-    margin-left: 5%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    text-decoration: none !important;
-   }
-
-   .item-nearby-distance {
-    margin-left: 5%;
-    margin-top: 2px;
-    color: #4aaf4f;
-    display: block;
-    text-align: left;
-    font-weight: bold;
-    font-size: 12px !important;
-    text-decoration: none !important;
-   }
-
-   .item-nearby-status {
-    margin-bottom: 5px;
-    margin-left: 5px;
-    color: none;
-    font-weight: bold;
-    font-size: 11px !important;
-   }
-
-   .item-nearby-status-note {
-    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
-    margin-left: 5%;
-    width: 80% !important;
-    text-align: center;
-    margin-top: -90%;
-    border-radius: 25px;
-    opacity: 65%;
-    height: auto;
-    background: linear-gradient(to top, #ff512f 20%, #ff0000 80%);
-    color: white;
-    font-size: 60%;
-    display: inline-block;
-    overflow: hidden;
-   }
-
-   .item-nearby-status-open {
-    margin-top: -137%;
-    float: left;
-    margin-left: -3%;
-    border-radius: 15px 0px 15px 0px;
-    opacity: 85%;
-    width: 50%;
-    height: 20px;
-    background: #ed2739;
-    color: white;
-    font-size: 12px;
-    display: none !important;
-    overflow: hidden;
-    font-weight: bold;
-    text-align: center;
-   }
-
-   /* Food Categories Styling */
-   .food-categories {
-    margin: 15px 10px;
-   }
-
-   .section-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-    padding-left: 5px;
-   }
-
-   .food-category-container {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 5px;
-    padding: 5px 0;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    margin: 0;
-   }
-
-   .food-category-container::-webkit-scrollbar {
-    display: none;
-   }
-
-   .food-category-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    width: 80px;
-    padding: 0 5px;
-   }
-
-   .food-category-icon {
-    width: 65px;
-    height: 65px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 12px;
-   }
-
-   .food-category-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.2s ease;
-   }
-
-   .food-category-item span {
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: #333;
-    text-align: center;
-    margin-top: 4px;
-   }
-
-   .food-category-icon:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-   }
-
-   .food-category-icon:hover img {
-    transform: scale(1.1);
-   }
-
-   /* Category specific styling */
-   .bakery-icon {
-    background-color: #fff3dc;
-    color: #e5a93d;
-   }
-
-   .fruits-icon {
-    background-color: #e8f5e9;
-    color: #4caf50;
-   }
-
-   .vegetables-icon {
-    background-color: #e0f7fa;
-    color: #26c6da;
-   }
-
-   .drinks-icon {
-    background-color: #fff8e1;
-    color: #ffa000;
-   }
-
-   .snacks-icon {
-    background-color: #fbe9e7;
-    color: #ff5722;
-   }
-
-   /* Profile Page Styling */
-   .profile-page {
-    padding: 15px 12px;
-    background-color: #f8f9fa;
-    min-height: calc(100vh - 70px);
-   }
-
-   .profile-avatar {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    overflow: hidden;
-    object-fit: cover;
-   }
-
-   .profile-avatar:hover {
-    transform: scale(1.05);
-   }
-
-   .profile-name {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 5px;
-   }
-
-   .text-muted {
-    color: var(--text-muted);
-    font-size: var(--font-size-sm);
-   }
-
-   .btn-upgrade {
-    background-color: var(--accent-color);
-    color: white;
-    border-radius: 25px;
-    padding: 8px 20px;
-    font-weight: 500;
-    box-shadow: 0 4px 10px rgba(232, 67, 147, 0.3);
-    transition: var(--transition-normal);
-    border: none;
-   }
-
-   .btn-upgrade:hover {
-    background-color: #d63384;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(232, 67, 147, 0.4);
-   }
-
-   .settings-section {
-    background-color: white;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-   }
-
-   .settings-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 20px;
-   }
-
-   .setting-item {
-    padding: 12px 0;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    transition: background-color 0.2s ease;
-   }
-
-   .setting-item:hover {
-    background-color: #f8f9fa;
-   }
-
-   .setting-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-   }
-
-   .setting-icon i {
-    font-size: 1.2rem;
-   }
-
-   .setting-name {
-    font-weight: 500;
-    font-size: 1rem;
-   }
-
-   .setting-status {
-    color: #6c757d;
-    font-size: 0.9rem;
-   }
-
-   /* Setting Icons Styling */
-   .profile-icon,
-   .address-icon,
-   .password-icon,
-   .referral-icon,
-   .notification-icon,
-   .privacy-icon,
-   .security-icon,
-   .account-icon,
-   .help-icon,
-   .about-icon {
-    border-radius: var(--border-radius-md);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: var(--transition-normal);
-   }
-
-   /* Light Background Icons */
-   .profile-icon {
-    background: #e3f2fd;
-    color: #1976d2;
-   }
-
-   .address-icon {
-    background: #e8f5e9;
-    color: #2e7d32;
-   }
-
-   .password-icon {
-    background: #fff3e0;
-    color: #e65100;
-   }
-
-   .referral-icon {
-    background: #f3e5f5;
-    color: #7b1fa2;
-   }
-
-   /* Colored Background Icons */
-   .notification-icon,
-   .privacy-icon,
-   .security-icon {
-    background-color: var(--accent-color);
-    color: white;
-   }
-
-   .account-icon,
-   .help-icon,
-   .about-icon {
-    background-color: #20c997;
-    color: white;
-   }
-
-   .notification-dot {
-    position: relative;
-    top: -5px;
-    left: 0;
-    font-size: 0.75rem;
-    color: white;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    width: 20px;
-    height: 20px;
-    background-color: red;
-    border-radius: 50%;
-   }
-
-   /* Navigation Active State */
-   .nav-item.active,
-   .nav-item.active i {
-    color: var(--accent-color);
-   }
-
-   /* ======= BOTTOM NAVIGATION STYLING ======= */
-   .bottom-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    max-width: 430px;
-    margin: 0 auto;
-    background-color: white;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 5px 0;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    width: 100%;
-   }
-
-   .nav-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    height: 100%;
-    font-size: 17px;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.3s ease;
-   }
-
-   .nav-item a {
-    text-decoration: none;
-    color: inherit;
-   }
-
-   .nav-item span {
-    font-size: 15px;
-   }
-
-   .nav-item:hover,
-   .nav-item.active {
-    color: #1a73e8;
-   }
-
-   .nav-item i {
-    font-size: 19px;
-    margin-bottom: 3px;
-   }
-
-   .nav-item-center {
-    transform: translateY(-15px);
-   }
-
-   .nav-circle {
-    width: 45px;
-    height: 45px;
-    background: var(--gradient-primary);
-    border-radius: var(--border-radius-circle);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: var(--shadow-sm);
-   }
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.prayer-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
+}
+
+.prayer-item:hover::after {
+  transform: translateX(100%);
+}
+
+.prayer-item i {
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+.prayer-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.prayer-time {
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.9rem;
+}
+
+/* Fallback untuk browser yang tidak mendukung :has() */
+.prayer-time:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+/* ======= BANNER IKLAN STYLES ======= */
+/* ======= BANNER SECTIONS ======= */
+.ads-banner-section,
+.promo-banner,
+.category-menu,
+.settings-section {
+  background-color: var(--bg-white);
+  border-radius: var(--border-radius-lg);
+  margin: var(--spacing-md) var(--spacing-sm);
+  padding: 0px;
+}
+
+.ads-banner-title,
+.promo-text,
+.settings-title {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  margin: var(--spacing-lg) var(--spacing-sm) 0;
+}
+
+.ads-banner-subtitle,
+.promo-subtext {
+  font-size: var(--font-size-md);
+  color: var(--text-muted);
+  margin-left: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.ads-banner-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 12px;
+  padding: 0 10px 15px 10px;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.ads-banner-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.ads-banner-item {
+  flex: 0 0 auto;
+  min-width: 250px;
+  height: 120px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: start;
+}
+
+.ads-banner-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ads-banner-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ads-banner-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  color: white;
+}
+
+.ads-banner-content h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ads-banner-content p {
+  margin: 5px 0 0;
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+/* Promo Banner Styling */
+.promo-banner {
+  background-color: white;
+  border-radius: 15px;
+  margin: 15px 10px;
+  padding: 0px;
+}
+
+.promo-text {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 20px 10px 0;
+}
+
+.promo-subtext {
+  font-size: 1rem;
+  color: #666;
+  margin-left: 10px;
+}
+
+.Onsyi-Row {
+  display: flex;
+  overflow-x: auto;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.item-nearby-row {
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  background: #fff;
+  width: 120px;
+  height: auto;
+  margin-top: 0px !important;
+  margin-left: 10px !important;
+  margin-right: -1px !important;
+  margin-bottom: 20px !important;
+  min-width: 100px;
+  max-width: 120px;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  flex: 0 0 auto;
+  vertical-align: top;
+}
+
+.item-nearby-link {
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  text-decoration-line: none !important;
+}
+
+.item-nearby-image {
+  border-radius: 10px !important;
+  width: 92% !important;
+  margin-top: 5% !important;
+  margin-bottom: 3% !important;
+  margin-right: 4% !important;
+  margin-left: 4% !important;
+}
+
+.item-nearby-title {
+  margin-top: 3px;
+  color: #333;
+  display: block;
+  font-size: 15px !important;
+  font-weight: 500;
+  width: 95%;
+  text-align: left;
+  margin-left: 5%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+
+.item-nearby-distance {
+  margin-left: 5%;
+  margin-top: 2px;
+  color: #4aaf4f;
+  display: block;
+  text-align: left;
+  font-weight: bold;
+  font-size: 12px !important;
+  text-decoration: none !important;
+}
+
+.item-nearby-status {
+  margin-bottom: 5px;
+  margin-left: 5px;
+  color: none;
+  font-weight: bold;
+  font-size: 11px !important;
+}
+
+.item-nearby-status-note {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.3);
+  margin-left: 5%;
+  width: 80% !important;
+  text-align: center;
+  margin-top: -90%;
+  border-radius: 25px;
+  opacity: 65%;
+  height: auto;
+  background: linear-gradient(to top, #ff512f 20%, #ff0000 80%);
+  color: white;
+  font-size: 60%;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.item-nearby-status-open {
+  margin-top: -137%;
+  float: left;
+  margin-left: -3%;
+  border-radius: 15px 0px 15px 0px;
+  opacity: 85%;
+  width: 50%;
+  height: 20px;
+  background: #ed2739;
+  color: white;
+  font-size: 12px;
+  display: none !important;
+  overflow: hidden;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Food Categories Styling */
+.food-categories {
+  margin: 15px 10px;
+}
+
+.section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding-left: 5px;
+}
+
+.food-category-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 5px;
+  padding: 5px 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin: 0;
+}
+
+.food-category-container::-webkit-scrollbar {
+  display: none;
+}
+
+.food-category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 80px;
+  padding: 0 5px;
+}
+
+/* Update Food Category Icons to match main category colors */
+.food-category-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--border-radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  transition: transform 0.2s ease;
+  color: white; /* Add white text color for better contrast */
+}
+
+/* Match colors with main category-icon */
+.food-category-icon.bakery-icon {
+  background: var(--primary-color); /* Blue */
+}
+
+.food-category-icon.fruits-icon {
+  background: var(--secondary-color); /* Green */
+}
+
+.food-category-icon.vegetables-icon {
+  background: var(--accent-color); /* Pink */
+}
+
+.food-category-icon.drinks-icon {
+  background: var(--danger-color); /* Red */
+}
+
+.food-category-icon.snacks-icon {
+  background: var(--warning-color); /* Yellow */
+}
+
+.food-category-icon.desserts-icon {
+  background: var(--purple-color); /* Purple */
+}
+
+/* Add hover effects */
+.food-category-item:hover .food-category-icon {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.food-category-icon img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.food-category-item span {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  margin-top: 4px;
+}
+
+.food-category-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.food-category-icon:hover img {
+  transform: scale(1.1);
+}
+
+/* Profile Page Styling */
+.profile-page {
+  padding: 15px 12px;
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 70px);
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.profile-avatar:hover {
+  transform: scale(1.05);
+}
+
+.profile-name {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.text-muted {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.btn-upgrade {
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 25px;
+  padding: 8px 20px;
+  font-weight: 500;
+  box-shadow: 0 4px 10px rgba(232, 67, 147, 0.3);
+  transition: var(--transition-normal);
+  border: none;
+}
+
+.btn-upgrade:hover {
+  background-color: #d63384;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(232, 67, 147, 0.4);
+}
+
+.settings-section {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.settings-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.setting-item {
+  padding: 12px 0;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.setting-item:hover {
+  background-color: #f8f9fa;
+}
+
+.setting-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.setting-icon i {
+  font-size: 1.2rem;
+}
+
+.setting-name {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.setting-status {
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+/* Setting Icons Styling */
+.profile-icon,
+.address-icon,
+.password-icon,
+.referral-icon,
+.notification-icon,
+.privacy-icon,
+.security-icon,
+.account-icon,
+.help-icon,
+.about-icon {
+  border-radius: var(--border-radius-md);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-normal);
+}
+
+/* Light Background Icons */
+.profile-icon {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.address-icon {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.password-icon {
+  background: #fff3e0;
+  color: #e65100;
+}
+
+.referral-icon {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+/* Colored Background Icons */
+.notification-icon,
+.privacy-icon,
+.security-icon {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.account-icon,
+.help-icon,
+.about-icon {
+  background-color: #20c997;
+  color: white;
+}
+
+/* Toggle Switch Styling */
+.form-check-input {
+  width: 3em;
+  height: 1.5em;
+  margin-top: 0;
+  background-color: #e9ecef;
+  border: none;
+}
+
+.form-check-input:checked {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(232, 67, 147, 0.25);
+  border-color: var(--accent-color);
+}
+
+.notification-dot {
+  position: relative;
+  top: -5px;
+  left: 0;
+  font-size: 0.75rem;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  background-color: red;
+  border-radius: 50%;
+}
+/* Navigation Active State */
+.nav-item.active,
+.nav-item.active i {
+  color: var(--accent-color);
+}
+
+/* ======= BOTTOM NAVIGATION STYLING ======= */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-width: 430px;
+  margin: 0 auto;
+  background-color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 5px 0;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  width: 100%;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+  font-size: 17px;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.nav-item a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-item span {
+  font-size: 15px;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  color: #1a73e8;
+}
+
+.nav-item i {
+  font-size: 19px;
+  margin-bottom: 3px;
+}
+
+.nav-item-center {
+  transform: translateY(-15px);
+}
+
+.nav-circle {
+  width: 45px;
+  height: 45px;
+  background: var(--gradient-primary);
+  border-radius: var(--border-radius-circle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
