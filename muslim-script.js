@@ -54,22 +54,33 @@ const APP_CONFIG = {
  * @param {string} pageId - ID halaman yang akan ditampilkan
  */
 function showPage(pageId) {
-  // Sembunyikan semua halaman
-  document.querySelectorAll(".page-content").forEach((page) => {
-    page.style.display = "none";
-  });
+  try {
+    console.log("Showing page:", pageId);
 
-  // Tampilkan halaman yang dipilih
-  const selectedPage = document.getElementById(pageId);
-  if (selectedPage) {
+    // Hide all pages
+    document.querySelectorAll(".page-content").forEach((page) => {
+      page.style.display = "none";
+    });
+
+    // Show selected page
+    const selectedPage = document.getElementById(pageId);
+    if (!selectedPage) {
+      throw new Error(`Page not found: ${pageId}`);
+    }
     selectedPage.style.display = "block";
-  } else {
-    console.warn(`Halaman dengan ID '${pageId}' tidak ditemukan`);
-    return;
-  }
 
-  // Update navigasi aktif
-  updateActiveNavigation(pageId);
+    // Update navigation highlighting
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.classList.remove("active");
+    });
+
+    const navItem = document.getElementById(`nav-${pageId.replace("-page", "")}`);
+    if (navItem) {
+      navItem.classList.add("active");
+    }
+  } catch (error) {
+    console.error("Error showing page:", error);
+  }
 }
 
 /**
@@ -199,19 +210,44 @@ function initAdhanAudio() {
  * Enhanced Prayer Time Service
  */
 class PrayerTimeService {
-  static async getPrayerTimes(city = APP_CONFIG.cities.DEFAULT) {
+  static async getPrayerTimes() {
     try {
-      const url = `https://api.aladhan.com/v1/timingsByCity?city=${city}&country=Malaysia&method=${APP_CONFIG.prayerMethod}`;
+      // Get user location
+      const position = await this.getCurrentPosition();
+      const { latitude, longitude } = position.coords;
+
+      console.log("Getting prayer times for:", { latitude, longitude });
+
+      const url = `https://api.aladhan.com/v1/timings/${new Date().toISOString().split("T")[0]}?latitude=${latitude}&longitude=${longitude}&method=2`;
       const response = await fetch(url);
 
-      if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
 
       const data = await response.json();
+      console.log("Prayer API response:", data);
+
       return this.formatPrayerTimes(data.data.timings);
     } catch (error) {
       console.error("Error fetching prayer times:", error);
       return null;
     }
+  }
+
+  static getCurrentPosition() {
+    return new Promise((resolve, reject) => {
+      if (!navigator.geolocation) {
+        reject(new Error("Geolocation not supported"));
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(resolve, reject, {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 300000,
+      });
+    });
   }
 
   static formatPrayerTimes(timings) {
@@ -664,25 +700,30 @@ const safeUpdatePrayerTimes = errorBoundary(updatePrayerTimesDisplay, () => {
 
 /**
  * Fungsi untuk menginisialisasi event listener
- * Menambahkan handler untuk DOMContentLoaded dan interval
- * @returns {Function} - Fungsi untuk membersihkan event listener
  */
 function initEventListeners() {
-  const cleanupFunctions = [];
-
   try {
     // Navigation listeners
-    const navItems = document.querySelectorAll(".nav-item[data-page]");
-    navItems.forEach((item) => {
-      const handler = () => navigateToPage(item.dataset.page);
-      item.addEventListener("click", handler);
-      cleanupFunctions.push(() => item.removeEventListener("click", handler));
+    document.querySelectorAll(".nav-item").forEach((item) => {
+      item.addEventListener("click", (e) => {
+        if (item.dataset.page) {
+          e.preventDefault();
+          showPage(item.dataset.page);
+        }
+      });
     });
 
-    return () => cleanupFunctions.forEach((cleanup) => cleanup());
+    // Initialize prayer times
+    initPrayerTimes().catch((error) => {
+      console.error("Failed to initialize prayer times:", error);
+      document.querySelector(".prayer-list").innerHTML = `
+        <div class="error-message">
+          Unable to load prayer times. Please check your connection.
+        </div>
+      `;
+    });
   } catch (error) {
-    console.error("Error in event listeners:", error);
-    cleanupFunctions.forEach((cleanup) => cleanup());
+    console.error("Error initializing event listeners:", error);
   }
 }
 
