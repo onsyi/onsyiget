@@ -53,14 +53,26 @@ function updateActiveNavigation(pageId) {
   }
 }
 
-// Inisialisasi aplikasi saat DOM telah dimuat
-document.addEventListener("DOMContentLoaded", function () {
-  initNavigation();
-  createBubbles();
-  updateCurrentDate();
-  initPrayerTimes();
-  requestNotificationPermission();
-});
+/**
+ * Fungsi untuk menambahkan style CSS untuk animasi loading dots
+ */
+function addLoadingDotsStyle() {
+  const styleElement = document.createElement("style");
+  styleElement.textContent = `
+    .loading-dots:after {
+      content: '.';
+      animation: dots 1.5s steps(5, end) infinite;
+    }
+    
+    @keyframes dots {
+      0%, 20% { content: '.'; }
+      40% { content: '..'; }
+      60% { content: '...'; }
+      80%, 100% { content: ''; }
+    }
+  `;
+  document.head.appendChild(styleElement);
+}
 /**
  * Fungsi untuk menampilkan tanggal saat ini dengan format lengkap
  * Menampilkan hari, tanggal, bulan dan tahun dalam Bahasa Indonesia
@@ -121,168 +133,253 @@ function requestNotificationPermission() {
 let currentPrayerTimes = null;
 let adhanAudio = null;
 
-// Inisialisasi audio dengan penanganan error
-try {
-  adhanAudio = new Audio("https://raw.githubusercontent.com/islamic-network/cdn/master/islamic/audio/adhan/mishary-rashid-alafasy-128kbps/1.mp3");
-  // Pra-muat audio untuk mengurangi delay saat pemutaran
-  adhanAudio.preload = "auto";
-  // Tangani error loading
-  adhanAudio.onerror = function () {
-    console.error("Error saat memuat file audio adzan");
-  };
-} catch (error) {
-  console.error("Browser tidak mendukung Audio API:", error);
+/**
+ * Fungsi untuk inisialisasi audio adzan
+ */
+function initAdhanAudio() {
+  try {
+    adhanAudio = new Audio();
+    adhanAudio.src = "https://raw.githubusercontent.com/islamic-network/cdn/master/islamic/audio/adhan/mishary-rashid-alafasy-128kbps/1.mp3";
+    adhanAudio.preload = "none"; // Ubah ke 'none' untuk menghemat bandwidth
+
+    // Tangani kegagalan loading
+    adhanAudio.onerror = function (e) {
+      console.error("Error loading adhan audio:", e);
+      adhanAudio = null;
+    };
+
+    // Tambahkan event listener untuk memastikan audio siap
+    adhanAudio.addEventListener("canplaythrough", () => {
+      console.log("Adhan audio ready");
+    });
+  } catch (error) {
+    console.error("Failed to initialize adhan audio:", error);
+    adhanAudio = null;
+  }
 }
+
+/**
+ * Fungsi untuk mendapatkan jadwal sholat berdasarkan koordinat
+ * @param {number} latitude - Latitude lokasi
+ * @param {number} longitude - Longitude lokasi
+ * @returns {Object} - Objek berisi waktu sholat
+ */
+async function getPrayerTimesByCoordinates(latitude, longitude) {
+  try {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth() + 1;
+    const date = today.getDate();
+
+    // Menggunakan API Aladhan untuk mendapatkan jadwal sholat
+    const response = await fetch(`https://api.aladhan.com/v1/timings/${date}-${month}-${year}?latitude=${latitude}&longitude=${longitude}&method=2`);
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch prayer times");
+    }
+
+    const data = await response.json();
+
+    if (!data.data?.timings) {
+      throw new Error("Invalid prayer times data format");
+    }
+
+    // Format waktu sholat sesuai kebutuhan aplikasi
+    const prayerTimes = {
+      fajr: data.data.timings.Fajr,
+      dhuhr: data.data.timings.Dhuhr,
+      asr: data.data.timings.Asr,
+      maghrib: data.data.timings.Maghrib,
+      isha: data.data.timings.Isha,
+    };
+
+    // Simpan di localStorage untuk cache
+    try {
+      localStorage.setItem("prayerTimes", JSON.stringify(prayerTimes));
+      localStorage.setItem("prayerTimesDate", today.toISOString().split("T")[0]);
+      localStorage.setItem("prayerTimesSource", "gps");
+    } catch (storageError) {
+      console.warn("Failed to cache prayer times:", storageError);
+    }
+
+    return prayerTimes;
+  } catch (error) {
+    console.error("Error fetching prayer times:", error);
+    throw error;
+  }
+}
+
+/**
+ * Fungsi untuk inisialisasi waktu sholat
+ */
 async function initPrayerTimes() {
   try {
     // Menggunakan koordinat default untuk Indonesia (Jakarta)
     let latitude = -6.2088;
     let longitude = 106.8456;
-    // Coba dapatkan lokasi pengguna jika diizinkan
+    let locationSource = "default";
+    let locationAccuracy = 0;
+
+    // Tampilkan pesan untuk meminta izin lokasi
+    const notifElement = document.getElementById("notification-status");
+    if (notifElement) {
+      notifElement.textContent = "Meminta akses lokasi untuk jadwal sholat yang akurat...";
+      notifElement.style.display = "block";
+      notifElement.style.color = "#3A6E3A";
+    }
+
+    // Coba dapatkan lokasi pengguna dengan akurasi tinggi khusus untuk mobile
     if (navigator.geolocation) {
       try {
+        // Deteksi apakah pengguna menggunakan perangkat mobile
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        // Gunakan pengaturan yang lebih agresif untuk mobile
+        const geoOptions = {
+          enableHighAccuracy: true, // Aktifkan akurasi tinggi untuk GPS
+          timeout: isMobile ? 30000 : 15000, // Waktu tunggu lebih lama untuk mobile (30 detik)
+          maximumAge: isMobile ? 60000 : 30000, // Cache lokasi lebih lama untuk mobile (1 menit)
+        };
+
+        console.log(`Mencoba mendapatkan lokasi dengan pengaturan: ${JSON.stringify(geoOptions)}`);
+
+        // Tambahkan indikator loading untuk mobile
+        if (isMobile && notifElement) {
+          notifElement.innerHTML = "<i class='bi bi-geo-alt'></i> Mendapatkan lokasi GPS... <span class='loading-dots'></span>";
+        }
+
         const position = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, {
-            timeout: 5000,
-            maximumAge: 60000,
-          });
+          navigator.geolocation.getCurrentPosition(resolve, reject, geoOptions);
         });
+
         latitude = position.coords.latitude;
         longitude = position.coords.longitude;
-        console.log("Menggunakan lokasi pengguna:", latitude, longitude);
-      } catch (locError) {
-        console.warn("Tidak dapat mengakses lokasi pengguna, menggunakan lokasi default:", locError);
-      }
-    }
-    // Coba gunakan API Aladhan yang lebih stabil dan mendukung lebih banyak lokasi
-    try {
-      // Format tanggal untuk API (YYYY-MM-DD)
-      const today = new Date();
-      const dateStr = today.toISOString().split("T")[0];
-      // Gunakan API Aladhan dengan parameter yang sesuai
-      const aladhanUrl = `https://api.aladhan.com/v1/timings/${dateStr}?latitude=${latitude}&longitude=${longitude}&method=11`;
-      console.log("Mencoba API Aladhan:", aladhanUrl);
-      const response = await fetch(aladhanUrl);
-      if (!response.ok) {
-        throw new Error(`API Aladhan error: ${response.status}`);
-      }
-      const data = await response.json();
-      // Validasi data dari API Aladhan
-      if (data && data.code === 200 && data.data && data.data.timings) {
-        const timings = data.data.timings;
-        // Format waktu dari API Aladhan (format 24 jam HH:MM)
-        const times = {
-          fajr: timings.Fajr || "--:--",
-          dhuhr: timings.Dhuhr || "--:--",
-          asr: timings.Asr || "--:--",
-          maghrib: timings.Maghrib || "--:--",
-          isha: timings.Isha || "--:--",
-        };
-        // Periksa apakah ada waktu yang tidak valid
-        const hasInvalidTime = Object.values(times).some((time) => time === "--:--");
-        if (hasInvalidTime) {
-          console.warn("Beberapa waktu sholat tidak valid dari API Aladhan, mencoba API alternatif");
-          throw new Error("Data waktu sholat tidak lengkap");
-        } else {
-          console.log("Berhasil mendapatkan waktu sholat dari API Aladhan:", times);
-          currentPrayerTimes = times;
-          updatePrayerTimesDisplay(currentPrayerTimes);
+        locationSource = "gps";
+        locationAccuracy = position.coords.accuracy;
 
-          // Pastikan interval tidak dibuat duplikat
-          if (window._prayerCheckInterval) {
-            clearInterval(window._prayerCheckInterval);
-          }
+        // Perbarui UI untuk menunjukkan lokasi berhasil didapatkan
+        if (notifElement) {
+          // Tampilkan akurasi lokasi untuk informasi pengguna
+          const accuracyText = locationAccuracy < 100 ? `(akurasi: ${Math.round(locationAccuracy)} meter)` : "";
 
-          // Mulai interval untuk mengecek waktu sholat setiap menit
-          window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
-          return; // Keluar dari fungsi jika berhasil
+          notifElement.innerHTML = `<i class='bi bi-geo-alt-fill'></i> Menggunakan lokasi GPS Anda ${accuracyText}`;
+          notifElement.style.color = "#3A6E3A";
+          // Sembunyikan notifikasi setelah 5 detik
+          setTimeout(() => {
+            notifElement.style.display = "none";
+          }, 5000);
         }
-      } else {
-        throw new Error("Format data API Aladhan tidak sesuai");
-      }
-    } catch (aladhanError) {
-      console.warn("Gagal menggunakan API Aladhan, mencoba API alternatif:", aladhanError);
-      // Lanjutkan ke API berikutnya jika Aladhan gagal
-    }
-    // Coba gunakan API Malaysia Prayer Times sebagai fallback
-    try {
-      const mptUrl = `https://mpt.i906.my/api/prayer/${latitude},${longitude}`;
-      console.log("Mencoba API Malaysia Prayer Times:", mptUrl);
-      const response = await fetch(mptUrl);
-      if (!response.ok) {
-        console.warn(`API MPT error: ${response.status}`);
-        throw new Error(`API MPT error: ${response.status}`);
-      }
-      const data = await response.json();
-      // Validasi data dengan lebih ketat
-      if (data && data.data && data.data.times && Array.isArray(data.data.times) && data.data.times.length >= 7) {
+
+        console.log("Menggunakan lokasi GPS pengguna:", latitude, longitude, "akurasi:", locationAccuracy, "meter");
+
+        // Simpan lokasi di localStorage untuk penggunaan berikutnya
         try {
-          // Pastikan semua timestamp valid sebelum memformat
-          const times = {
-            fajr: data.data.times[0] ? formatTime(data.data.times[0]) : "--:--",
-            dhuhr: data.data.times[2] ? formatTime(data.data.times[2]) : "--:--",
-            asr: data.data.times[3] ? formatTime(data.data.times[3]) : "--:--",
-            maghrib: data.data.times[5] ? formatTime(data.data.times[5]) : "--:--",
-            isha: data.data.times[6] ? formatTime(data.data.times[6]) : "--:--",
-          };
-          // Periksa apakah ada waktu yang tidak valid
-          const hasInvalidTime = Object.values(times).some((time) => time === "--:--" || time === "Invalid Date");
-          if (hasInvalidTime) {
-            console.warn("Beberapa waktu sholat tidak valid dari API MPT, menggunakan waktu default", times);
-            throw new Error("Data waktu sholat tidak lengkap");
-          } else {
-            console.log("Berhasil mendapatkan waktu sholat dari API MPT:", times);
-            currentPrayerTimes = times;
-            updatePrayerTimesDisplay(currentPrayerTimes);
-
-            // Pastikan interval tidak dibuat duplikat
-            if (window._prayerCheckInterval) {
-              clearInterval(window._prayerCheckInterval);
-            }
-
-            // Mulai interval untuk mengecek waktu sholat setiap menit
-            window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
-            return; // Keluar dari fungsi jika berhasil
-          }
-        } catch (formatError) {
-          console.error("Error saat memformat waktu sholat dari API MPT:", formatError);
-          throw formatError;
+          localStorage.setItem("prayerTimesLat", latitude);
+          localStorage.setItem("prayerTimesLng", longitude);
+          localStorage.setItem("prayerTimesAccuracy", locationAccuracy);
+          localStorage.setItem("prayerTimesTimestamp", Date.now());
+        } catch (storageError) {
+          console.warn("Tidak dapat menyimpan lokasi di localStorage:", storageError);
         }
-      } else {
-        console.error("Format data waktu sholat dari API MPT tidak sesuai:", data);
-        throw new Error("Format data tidak sesuai");
+
+        // Dapatkan jadwal sholat berdasarkan koordinat
+        const prayerTimes = await getPrayerTimesByCoordinates(latitude, longitude);
+
+        // Update state dan UI
+        currentPrayerTimes = prayerTimes;
+        safeUpdatePrayerTimes(prayerTimes);
+
+        if (notifElement) {
+          notifElement.innerHTML = `<i class='bi bi-geo-alt-fill'></i> Jadwal sholat sesuai lokasi Anda`;
+          notifElement.style.color = "#3A6E3A";
+          setTimeout(() => {
+            notifElement.style.display = "none";
+          }, 5000);
+        }
+      } catch (error) {
+        console.error("Error getting prayer times:", error);
+        useDefaultPrayerTimes();
       }
-    } catch (mptError) {
-      console.warn("Gagal menggunakan API MPT:", mptError);
-      // Lanjutkan ke fallback jika semua API gagal
+    } else {
+      useDefaultPrayerTimes();
     }
-    // Jika semua API gagal, gunakan waktu default
-    console.warn("Semua API gagal, menggunakan waktu sholat default");
-    useDefaultPrayerTimes();
   } catch (error) {
-    console.error("Error mengambil data waktu sholat:", error);
-    // Gunakan waktu default jika semua API gagal
+    console.error("Error in prayer times initialization:", error);
     useDefaultPrayerTimes();
   }
 }
-// Fungsi untuk menggunakan waktu sholat default jika API gagal
+
+/**
+ * Fungsi untuk menggunakan waktu sholat default jika API gagal
+ */
 function useDefaultPrayerTimes() {
   try {
     // Gunakan waktu default yang lebih sesuai dengan zona waktu pengguna
     const now = new Date();
     const isRamadhan = false; // Ini bisa diubah berdasarkan perhitungan kalender Hijriah
 
-    // Waktu default yang disesuaikan dengan zona waktu Indonesia
-    currentPrayerTimes = {
-      fajr: "04:30",
-      dhuhr: "12:15",
-      asr: "15:30",
-      maghrib: "18:10",
-      isha: "19:30",
-    };
+    // Deteksi zona waktu pengguna berdasarkan offset
+    const tzOffset = now.getTimezoneOffset() / -60; // Konversi ke jam (negatif karena getTimezoneOffset() memberikan nilai berlawanan)
 
-    console.log("Menggunakan waktu sholat default");
-    updatePrayerTimesDisplay(currentPrayerTimes);
+    // Sesuaikan waktu default berdasarkan zona waktu Indonesia
+    // WIB = UTC+7 (tzOffset = 7), WITA = UTC+8 (tzOffset = 8), WIT = UTC+9 (tzOffset = 9)
+    let defaultTimes = {};
+
+    if (tzOffset >= 8.5) {
+      // WIT (UTC+9)
+      defaultTimes = {
+        fajr: "05:00",
+        dhuhr: "12:30",
+        asr: "15:45",
+        maghrib: "18:30",
+        isha: "19:45",
+      };
+      console.log("Menggunakan waktu default untuk WIT");
+    } else if (tzOffset >= 7.5) {
+      // WITA (UTC+8)
+      defaultTimes = {
+        fajr: "04:45",
+        dhuhr: "12:15",
+        asr: "15:30",
+        maghrib: "18:20",
+        isha: "19:35",
+      };
+      console.log("Menggunakan waktu default untuk WITA");
+    } else {
+      // WIB (UTC+7) atau lainnya
+      defaultTimes = {
+        fajr: "04:30",
+        dhuhr: "12:00",
+        asr: "15:15",
+        maghrib: "18:10",
+        isha: "19:25",
+      };
+      console.log("Menggunakan waktu default untuk WIB");
+    }
+
+    // Sesuaikan waktu untuk Ramadhan jika diperlukan
+    if (isRamadhan) {
+      // Waktu imsak biasanya 10 menit sebelum Subuh
+      defaultTimes.fajr = adjustTimeByMinutes(defaultTimes.fajr, -10);
+      console.log("Menyesuaikan waktu untuk Ramadhan");
+    }
+
+    currentPrayerTimes = defaultTimes;
+    console.log("Menggunakan waktu sholat default:", currentPrayerTimes);
+
+    // Perbarui notifikasi status
+    const notifElement = document.getElementById("notification-status");
+    if (notifElement) {
+      notifElement.innerHTML = "<i class='bi bi-info-circle'></i> Menggunakan jadwal sholat perkiraan. Aktifkan GPS untuk jadwal yang akurat.";
+      notifElement.style.display = "block";
+      notifElement.style.color = "#ff9800"; // Warna oranye untuk peringatan
+      // Sembunyikan notifikasi setelah 8 detik
+      setTimeout(() => {
+        notifElement.style.display = "none";
+      }, 8000);
+    }
+
+    safeUpdatePrayerTimes(currentPrayerTimes);
 
     // Pastikan interval tidak dibuat duplikat
     if (window._prayerCheckInterval) {
@@ -294,8 +391,50 @@ function useDefaultPrayerTimes() {
 
     // Simpan referensi interval untuk mencegah duplikasi
     window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
+
+    // Simpan waktu default di localStorage sebagai fallback terakhir
+    try {
+      const today = new Date();
+      const dateStr = today.toISOString().split("T")[0];
+      localStorage.setItem("prayerTimes", JSON.stringify(currentPrayerTimes));
+      localStorage.setItem("prayerTimesDate", dateStr);
+      localStorage.setItem("prayerTimesSource", "default");
+    } catch (storageError) {
+      console.warn("Tidak dapat menyimpan waktu sholat default di localStorage:", storageError);
+    }
   } catch (error) {
     console.error("Error saat menggunakan waktu sholat default:", error);
+  }
+}
+
+/**
+ * Fungsi untuk menyesuaikan waktu dengan menambah atau mengurangi menit
+ * @param {string} timeStr - String waktu dalam format "HH:MM"
+ * @param {number} minutesToAdd - Jumlah menit yang akan ditambahkan (negatif untuk mengurangi)
+ * @returns {string} - Waktu yang telah disesuaikan dalam format "HH:MM"
+ */
+function adjustTimeByMinutes(timeStr, minutesToAdd) {
+  try {
+    if (!timeStr || typeof timeStr !== "string" || !/^\d{1,2}:\d{2}$/.test(timeStr)) {
+      return timeStr;
+    }
+
+    const [hours, minutes] = timeStr.split(":").map(Number);
+
+    // Konversi ke total menit, tambahkan penyesuaian, lalu konversi kembali ke jam:menit
+    let totalMinutes = hours * 60 + minutes + minutesToAdd;
+
+    // Tangani overflow/underflow
+    while (totalMinutes < 0) totalMinutes += 24 * 60;
+    totalMinutes = totalMinutes % (24 * 60);
+
+    const newHours = Math.floor(totalMinutes / 60);
+    const newMinutes = totalMinutes % 60;
+
+    return `${newHours.toString().padStart(2, "0")}:${newMinutes.toString().padStart(2, "0")}`;
+  } catch (error) {
+    console.error("Error saat menyesuaikan waktu:", error);
+    return timeStr;
   }
 }
 
@@ -304,86 +443,58 @@ function useDefaultPrayerTimes() {
  * Juga memainkan adzan jika waktu sholat tepat sama dengan waktu saat ini
  */
 function checkPrayerTime() {
-  if (!currentPrayerTimes) return;
+  if (!currentPrayerTimes || typeof currentPrayerTimes !== "object") {
+    console.warn("Prayer times not available");
+    return;
+  }
 
   try {
     const now = new Date();
-    let currentTime;
-
-    try {
-      // Coba gunakan toLocaleTimeString dengan opsi
-      currentTime = now.toLocaleTimeString("en-US", {
+    const currentTime = now
+      .toLocaleTimeString("en-US", {
+        hour12: false,
         hour: "2-digit",
         minute: "2-digit",
-        hour12: false,
-      });
-    } catch (formatError) {
-      // Fallback manual jika browser tidak mendukung opsi formatting
-      console.warn("Browser tidak mendukung opsi formatting waktu, menggunakan format manual", formatError);
-      const hours = now.getHours().toString().padStart(2, "0");
-      const minutes = now.getMinutes().toString().padStart(2, "0");
-      currentTime = `${hours}:${minutes}`;
+      })
+      .replace(/^24:/, "00:"); // Handle midnight
+
+    // Validasi format waktu
+    if (!/^\d{2}:\d{2}$/.test(currentTime)) {
+      throw new Error("Invalid time format");
     }
 
-    // Mapping nama waktu sholat dari kode ke nama yang ditampilkan
-    const prayerNames = {
-      fajr: "Subuh",
-      dhuhr: "Dzuhur",
-      asr: "Ashar",
-      maghrib: "Maghrib",
-      isha: "Isya",
-    };
-
-    // Hapus highlight dari semua item terlebih dahulu
-    document.querySelectorAll(".prayer-item").forEach((item) => {
-      item.classList.remove("current-prayer");
-    });
-
-    // Konversi waktu saat ini ke menit untuk perbandingan yang lebih mudah
-    const currentMinutes = convertTimeToMinutes(currentTime);
-
-    // Temukan waktu sholat berikutnya dan saat ini
-    let nextPrayer = null;
     let currentPrayer = null;
-    let minDiff = Infinity;
+    let nextPrayer = null;
 
-    for (const [key, time] of Object.entries(currentPrayerTimes)) {
-      if (!time || time === "--:--") continue;
+    // Sort prayer times untuk memudahkan pengecekan
+    const sortedPrayers = Object.entries(currentPrayerTimes)
+      .filter(([_, time]) => time && time !== "--:--")
+      .sort((a, b) => convertTimeToMinutes(a[1]) - convertTimeToMinutes(b[1]));
 
-      const prayerMinutes = convertTimeToMinutes(time);
+    // Cari waktu sholat saat ini dan berikutnya
+    for (let i = 0; i < sortedPrayers.length; i++) {
+      const [prayer, time] = sortedPrayers[i];
 
-      // Jika waktu sholat sama persis dengan waktu saat ini
       if (time === currentTime) {
-        playAdhan(prayerNames[key]);
-        currentPrayer = key;
+        currentPrayer = prayer;
+        nextPrayer = sortedPrayers[(i + 1) % sortedPrayers.length][0];
+        playAdhan(getPrayerName(prayer));
         break;
       }
 
-      // Jika waktu sholat sudah lewat tapi masih dalam hari yang sama
-      if (prayerMinutes <= currentMinutes) {
-        currentPrayer = key;
-      }
-
-      // Cari waktu sholat berikutnya
-      if (prayerMinutes > currentMinutes && prayerMinutes - currentMinutes < minDiff) {
-        minDiff = prayerMinutes - currentMinutes;
-        nextPrayer = key;
+      if (convertTimeToMinutes(time) > convertTimeToMinutes(currentTime)) {
+        nextPrayer = prayer;
+        currentPrayer = sortedPrayers[i - 1 > -1 ? i - 1 : sortedPrayers.length - 1][0];
+        break;
       }
     }
 
-    // Highlight waktu sholat saat ini
-    if (currentPrayer) {
-      // Hanya scroll saat adzan (waktu sholat sama persis dengan waktu saat ini)
-      const shouldScroll = currentTime === currentPrayerTimes[currentPrayer];
-      highlightCurrentPrayer(currentPrayer, shouldScroll);
-    } else if (nextPrayer) {
-      // Jika tidak ada waktu sholat saat ini, highlight waktu sholat berikutnya tanpa scroll
-      highlightCurrentPrayer(nextPrayer, false);
-    }
+    updatePrayerHighlight(currentPrayer, nextPrayer);
   } catch (error) {
-    console.error("Error saat memeriksa waktu sholat:", error);
+    console.error("Error checking prayer time:", error);
   }
 }
+
 /**
  * Fungsi untuk mengkonversi format waktu "HH:MM" ke menit
  * @param {string} timeStr - String waktu dalam format "HH:MM"
@@ -508,43 +619,91 @@ function highlightCurrentPrayer(prayerKey, shouldScroll = false) {
  * @returns {string} - Waktu dalam format "HH:MM"
  */
 function formatTime(timestamp) {
-  try {
-    // Periksa apakah timestamp valid dengan pengecekan yang lebih ketat
-    if (timestamp === null || timestamp === undefined || isNaN(Number(timestamp))) {
-      console.warn("Timestamp tidak valid:", timestamp);
-      return "--:--";
-    }
-
-    // Pastikan timestamp adalah angka
-    const timestampNum = Number(timestamp);
-
-    // Konversi timestamp ke Date object (timestamp dalam detik, perlu dikali 1000 untuk milidetik)
-    const date = new Date(timestampNum * 1000);
-
-    // Periksa apakah date valid
-    if (isNaN(date.getTime())) {
-      console.warn("Date tidak valid dari timestamp:", timestamp);
-      return "--:--";
-    }
-
-    // Format waktu dalam format 24 jam (HH:MM) dengan fallback untuk browser yang tidak mendukung opsi tertentu
-    try {
-      return date.toLocaleTimeString("en-US", {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false,
-      });
-    } catch (formatError) {
-      // Fallback manual jika browser tidak mendukung opsi formatting
-      console.warn("Browser tidak mendukung opsi formatting waktu, menggunakan format manual", formatError);
-      const hours = date.getHours().toString().padStart(2, "0");
-      const minutes = date.getMinutes().toString().padStart(2, "0");
-      return `${hours}:${minutes}`;
-    }
-  } catch (error) {
-    console.error("Error saat memformat waktu:", error);
+  if (!timestamp || isNaN(Number(timestamp))) {
     return "--:--";
   }
+
+  try {
+    const date = new Date(Number(timestamp) * (String(timestamp).length <= 10 ? 1000 : 1));
+
+    if (isNaN(date.getTime())) {
+      return "--:--";
+    }
+
+    // Format waktu dengan fallback
+    try {
+      return date
+        .toLocaleTimeString("en-US", {
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+        .replace(/^24:/, "00:");
+    } catch {
+      // Manual formatting fallback
+      return `${String(date.getHours()).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+    }
+  } catch (error) {
+    console.error("Error formatting time:", error);
+    return "--:--";
+  }
+}
+
+// Bagian dari fungsi initPrayerTimes
+try {
+  // Inisialisasi kode lainnya
+  initAdhanAudio();
+  initNavigation();
+  createBubbles();
+  updateCurrentDate();
+  requestNotificationPermission();
+} catch (error) {
+  // Handle any errors that occur during API calls or data processing
+  console.error("Error during prayer times initialization:", error);
+
+  // Try to use default prayer times as fallback
+  const defaultTimes = {
+    fajr: "04:30",
+    dhuhr: "12:00",
+    asr: "15:00",
+    maghrib: "18:00",
+    isha: "19:30",
+  };
+
+  currentPrayerTimes = defaultTimes;
+  safeUpdatePrayerTimes(defaultTimes);
+
+  // Update notification to show error
+  const notifElement = document.getElementById("notification-status");
+  if (notifElement) {
+    notifElement.innerHTML = "<i class='bi bi-exclamation-triangle'></i> Gagal mendapatkan jadwal sholat. Menggunakan waktu default.";
+    notifElement.style.color = "#ff6b6b";
+  }
+
+  // Fallback to default prayer times if all APIs and cached data fail
+  console.warn("Menggunakan waktu sholat default karena semua sumber data gagal");
+
+  // Gunakan defaultTimes yang sudah didefinisikan di blok catch sebelumnya
+  if (!currentPrayerTimes) {
+    currentPrayerTimes = defaultTimes;
+    safeUpdatePrayerTimes(defaultTimes);
+  }
+
+  // Update notification status
+  if (notifElement) {
+    notifElement.innerHTML = "<i class='bi bi-exclamation-triangle'></i> Menggunakan jadwal default. Periksa koneksi internet Anda.";
+    notifElement.style.color = "#ff6b6b";
+    // Hide notification after 10 seconds
+    setTimeout(() => {
+      notifElement.style.display = "none";
+    }, 10000);
+  }
+
+  // Start prayer time check interval even with default times
+  if (window._prayerCheckInterval) {
+    clearInterval(window._prayerCheckInterval);
+  }
+  window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
 }
 
 /**
@@ -759,3 +918,96 @@ function navigateToPage(page) {
     }
   }
 }
+
+/**
+ * Fungsi untuk menangani error dengan fallback
+ * @param {Function} fn - Fungsi yang akan dijalankan
+ * @param {Function|any} fallback - Fallback jika terjadi error
+ * @returns {Function} - Fungsi yang aman dijalankan
+ */
+function errorBoundary(fn, fallback) {
+  return (...args) => {
+    try {
+      return fn(...args);
+    } catch (error) {
+      console.error(`Error in ${fn.name}:`, error);
+      return typeof fallback === "function" ? fallback(...args) : fallback;
+    }
+  };
+}
+
+// Gunakan error boundary untuk fungsi-fungsi kritis
+const safeUpdatePrayerTimes = errorBoundary(updatePrayerTimesDisplay, () => {
+  // Fallback ke tampilan default
+  document.querySelectorAll(".prayer-time").forEach((el) => (el.textContent = "--:--"));
+});
+
+/**
+ * Fungsi untuk menginisialisasi event listener
+ * Menambahkan handler untuk DOMContentLoaded dan interval
+ * @returns {Function} - Fungsi untuk membersihkan event listener
+ */
+function initEventListeners() {
+  const cleanupFunctions = [];
+
+  try {
+    // DOMContentLoaded handler
+    const domLoadedHandler = () => {
+      initAdhanAudio();
+      initNavigation();
+      createBubbles();
+      updateCurrentDate();
+      initPrayerTimes();
+      requestNotificationPermission();
+    };
+
+    document.addEventListener("DOMContentLoaded", domLoadedHandler);
+    cleanupFunctions.push(() => document.removeEventListener("DOMContentLoaded", domLoadedHandler));
+
+    // Tambahkan cleanup untuk interval
+    if (window._prayerCheckInterval) {
+      clearInterval(window._prayerCheckInterval);
+    }
+    window._prayerCheckInterval = setInterval(checkPrayerTime, 60000);
+    cleanupFunctions.push(() => clearInterval(window._prayerCheckInterval));
+
+    // Return cleanup function
+    return () => cleanupFunctions.forEach((cleanup) => cleanup());
+  } catch (error) {
+    console.error("Error initializing event listeners:", error);
+    cleanupFunctions.forEach((cleanup) => cleanup());
+  }
+}
+
+// Initialize the application
+document.addEventListener("DOMContentLoaded", () => {
+  try {
+    initAdhanAudio();
+    initNavigation();
+    createBubbles();
+    updateCurrentDate();
+    initPrayerTimes();
+    requestNotificationPermission();
+  } catch (error) {
+    console.error("Error during initialization:", error);
+
+    // Use default prayer times as fallback
+    const defaultTimes = {
+      fajr: "04:30",
+      dhuhr: "12:00",
+      asr: "15:00",
+      maghrib: "18:00",
+      isha: "19:30",
+    };
+
+    currentPrayerTimes = defaultTimes;
+    safeUpdatePrayerTimes(defaultTimes);
+
+    // Update notification
+    const notifElement = document.getElementById("notification-status");
+    if (notifElement) {
+      notifElement.innerHTML = "<i class='bi bi-exclamation-triangle'></i> Failed to initialize. Using default times.";
+      notifElement.style.color = "#ff6b6b";
+    }
+  }
+});
