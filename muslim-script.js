@@ -12,6 +12,20 @@ const CONFIG = {
   },
 };
 
+const CALCULATION_METHODS = {
+  MUIS_SINGAPORE: 11, // Singapore
+  JAKIM_MALAYSIA: 3, // Malaysia
+  EGYPT: 5, // Egypt
+  KARACHI: 1, // Pakistan
+  ISNA: 2, // North America
+  MWL: 3, // Muslim World League
+  MAKKAH: 4, // Umm al-Qura, Makkah
+  KUWAIT: 6, // Kuwait
+  QATAR: 8, // Qatar
+  MUHAMMADIYAH: 14, // Muhammadiyah (Indonesia)
+  TURKEY: 13, // Turkey
+};
+
 /**
  * Fungsi untuk menampilkan halaman yang dipilih
  * @param {string} pageId - ID halaman yang akan ditampilkan
@@ -166,13 +180,14 @@ function initAdhanAudio() {
  */
 async function getPrayerTimesByCoordinates(latitude, longitude) {
   try {
+    const method = getCalculationMethod(latitude, longitude);
     const today = new Date();
     const year = today.getFullYear();
     const month = today.getMonth() + 1;
     const date = today.getDate();
+    const url = `https://api.aladhan.com/v1/timings/${date}-${month}-${year}?latitude=${latitude}&longitude=${longitude}&method=${method}&adjustment=1`;
 
-    // Menggunakan API Aladhan untuk mendapatkan jadwal sholat
-    const response = await fetch(`https://api.aladhan.com/v1/timings/${date}-${month}-${year}?latitude=${latitude}&longitude=${longitude}&method=2`);
+    const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error("Failed to fetch prayer times");
@@ -184,23 +199,27 @@ async function getPrayerTimesByCoordinates(latitude, longitude) {
       throw new Error("Invalid prayer times data format");
     }
 
-    // Format waktu sholat sesuai kebutuhan aplikasi
+    // Format waktu lokal berdasarkan timezone user
     const prayerTimes = {
-      fajr: data.data.timings.Fajr,
-      dhuhr: data.data.timings.Dhuhr,
-      asr: data.data.timings.Asr,
-      maghrib: data.data.timings.Maghrib,
-      isha: data.data.timings.Isha,
+      fajr: adjustToLocalTime(data.data.timings.Fajr),
+      dhuhr: adjustToLocalTime(data.data.timings.Dhuhr),
+      asr: adjustToLocalTime(data.data.timings.Asr),
+      maghrib: adjustToLocalTime(data.data.timings.Maghrib),
+      isha: adjustToLocalTime(data.data.timings.Isha),
     };
 
-    // Simpan di localStorage untuk cache
-    try {
-      localStorage.setItem("prayerTimes", JSON.stringify(prayerTimes));
-      localStorage.setItem("prayerTimesDate", today.toISOString().split("T")[0]);
-      localStorage.setItem("prayerTimesSource", "gps");
-    } catch (storageError) {
-      console.warn("Failed to cache prayer times:", storageError);
-    }
+    // Simpan metadata lokasi
+    const metadata = {
+      latitude,
+      longitude,
+      timezone: data.data.meta.timezone,
+      timestamp: Date.now(),
+    };
+
+    // Cache data
+    localStorage.setItem("prayerTimes", JSON.stringify(prayerTimes));
+    localStorage.setItem("prayerTimesMetadata", JSON.stringify(metadata));
+    localStorage.setItem("prayerTimesDate", today.toISOString().split("T")[0]);
 
     return prayerTimes;
   } catch (error) {
@@ -210,97 +229,131 @@ async function getPrayerTimesByCoordinates(latitude, longitude) {
 }
 
 /**
+ * Fungsi untuk menyesuaikan waktu dengan timezone lokal
+ * @param {string} timeStr - String waktu dalam format "HH:MM"
+ * @returns {string} - Waktu yang telah disesuaikan dalam format "HH:MM"
+ */
+function adjustToLocalTime(timeStr) {
+  try {
+    const [hours, minutes] = timeStr.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours, minutes, 0);
+
+    return date.toLocaleTimeString("en-US", {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  } catch (error) {
+    console.error("Error adjusting time:", error);
+    return timeStr;
+  }
+}
+
+/**
+ * Fungsi untuk validasi akurasi GPS
+ * @param {number} accuracy - Akurasi GPS dalam meter
+ * @returns {boolean} - True jika akurasi diterima, false jika tidak
+ */
+function validateGPSAccuracy(accuracy) {
+  // Jika akurasi lebih dari 1km, gunakan cache atau default
+  const MAX_ACCEPTABLE_ACCURACY = 1000; // dalam meter
+
+  if (accuracy > MAX_ACCEPTABLE_ACCURACY) {
+    console.warn(`GPS accuracy too low: ${accuracy}m`);
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Fungsi untuk mendapatkan cache prayer times
+ */
+function getCachedPrayerTimes() {
+  try {
+    const cached = localStorage.getItem("prayerTimes");
+    const metadata = localStorage.getItem("prayerTimesMetadata");
+    const date = localStorage.getItem("prayerTimesDate");
+
+    if (!cached || !metadata || !date) return null;
+
+    // Validasi tanggal cache
+    if (date !== new Date().toISOString().split("T")[0]) return null;
+
+    return JSON.parse(cached);
+  } catch (error) {
+    console.error("Error reading cache:", error);
+    return null;
+  }
+}
+
+/**
+ * Fungsi untuk menampilkan status lokasi
+ */
+function showLocationStatus(type, accuracy) {
+  const notifElement = document.getElementById("notification-status");
+  if (!notifElement) return;
+
+  let message = "";
+  let color = "";
+
+  switch (type) {
+    case "success":
+      message = `<i class='bi bi-geo-alt-fill'></i> Jadwal sholat sesuai lokasi Anda (akurasi: ${Math.round(accuracy)}m)`;
+      color = "#4aaf4f";
+      break;
+    case "cache":
+      message = "<i class='bi bi-clock-history'></i> Menggunakan jadwal sholat tersimpan";
+      color = "#ff9800";
+      break;
+    case "default":
+      message = "<i class='bi bi-exclamation-triangle'></i> Menggunakan jadwal default";
+      color = "#ff6b6b";
+      break;
+  }
+
+  notifElement.innerHTML = message;
+  notifElement.style.color = color;
+  notifElement.style.display = "block";
+
+  setTimeout(() => {
+    notifElement.style.display = "none";
+  }, 5000);
+}
+
+/**
  * Fungsi untuk inisialisasi waktu sholat
  */
 async function initPrayerTimes() {
   try {
-    // Menggunakan koordinat default untuk Indonesia (Jakarta)
-    let latitude = -6.2088;
-    let longitude = 106.8456;
-    let locationSource = "default";
-    let locationAccuracy = 0;
-
-    // Tampilkan pesan untuk meminta izin lokasi
-    const notifElement = document.getElementById("notification-status");
-    if (notifElement) {
-      notifElement.textContent = "Meminta akses lokasi untuk jadwal sholat yang akurat...";
-      notifElement.style.display = "block";
-      notifElement.style.color = "#3A6E3A";
-    }
-
-    // Coba dapatkan lokasi pengguna dengan akurasi tinggi khusus untuk mobile
     if (navigator.geolocation) {
-      try {
-        // Deteksi apakah pengguna menggunakan perangkat mobile
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-        // Gunakan pengaturan yang lebih agresif untuk mobile
-        const geoOptions = {
-          enableHighAccuracy: true, // Aktifkan akurasi tinggi untuk GPS
-          timeout: isMobile ? 30000 : 15000, // Waktu tunggu lebih lama untuk mobile (30 detik)
-          maximumAge: isMobile ? 60000 : 30000, // Cache lokasi lebih lama untuk mobile (1 menit)
-        };
-
-        console.log(`Mencoba mendapatkan lokasi dengan pengaturan: ${JSON.stringify(geoOptions)}`);
-
-        // Tambahkan indikator loading untuk mobile
-        if (isMobile && notifElement) {
-          notifElement.innerHTML = "<i class='bi bi-geo-alt'></i> Mendapatkan lokasi GPS... <span class='loading-dots'></span>";
-        }
-
-        const position = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, geoOptions);
+      const position = await new Promise((resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: true,
+          timeout: 15000,
+          maximumAge: 300000, // Cache 5 menit
         });
+      });
 
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-        locationSource = "gps";
-        locationAccuracy = position.coords.accuracy;
+      const { latitude, longitude, accuracy } = position.coords;
 
-        // Perbarui UI untuk menunjukkan lokasi berhasil didapatkan
-        if (notifElement) {
-          // Tampilkan akurasi lokasi untuk informasi pengguna
-          const accuracyText = locationAccuracy < 100 ? `(akurasi: ${Math.round(locationAccuracy)} meter)` : "";
-
-          notifElement.innerHTML = `<i class='bi bi-geo-alt-fill'></i> Menggunakan lokasi GPS Anda ${accuracyText}`;
-          notifElement.style.color = "#3A6E3A";
-          // Sembunyikan notifikasi setelah 5 detik
-          setTimeout(() => {
-            notifElement.style.display = "none";
-          }, 5000);
+      // Validasi akurasi GPS
+      if (!validateGPSAccuracy(accuracy)) {
+        // Coba gunakan cache jika ada
+        const cached = getCachedPrayerTimes();
+        if (cached) {
+          return updateUIWithPrayerTimes(cached);
         }
-
-        console.log("Menggunakan lokasi GPS pengguna:", latitude, longitude, "akurasi:", locationAccuracy, "meter");
-
-        // Simpan lokasi di localStorage untuk penggunaan berikutnya
-        try {
-          localStorage.setItem("prayerTimesLat", latitude);
-          localStorage.setItem("prayerTimesLng", longitude);
-          localStorage.setItem("prayerTimesAccuracy", locationAccuracy);
-          localStorage.setItem("prayerTimesTimestamp", Date.now());
-        } catch (storageError) {
-          console.warn("Tidak dapat menyimpan lokasi di localStorage:", storageError);
-        }
-
-        // Dapatkan jadwal sholat berdasarkan koordinat
-        const prayerTimes = await getPrayerTimesByCoordinates(latitude, longitude);
-
-        // Update state dan UI
-        currentPrayerTimes = prayerTimes;
-        safeUpdatePrayerTimes(prayerTimes);
-
-        if (notifElement) {
-          notifElement.innerHTML = `<i class='bi bi-geo-alt-fill'></i> Jadwal sholat sesuai lokasi Anda`;
-          notifElement.style.color = "#3A6E3A";
-          setTimeout(() => {
-            notifElement.style.display = "none";
-          }, 5000);
-        }
-      } catch (error) {
-        console.error("Error getting prayer times:", error);
-        useDefaultPrayerTimes();
+        return useDefaultPrayerTimes();
       }
+
+      const prayerTimes = await getPrayerTimesByCoordinates(latitude, longitude);
+      updateUIWithPrayerTimes(prayerTimes);
+
+      // Update notification
+      showLocationStatus("success", accuracy);
     } else {
+      console.warn("Geolocation not supported");
       useDefaultPrayerTimes();
     }
   } catch (error) {
@@ -646,6 +699,62 @@ function formatTime(timestamp) {
   } catch (error) {
     console.error("Error formatting time:", error);
     return "--:--";
+  }
+}
+
+// Add missing updatePrayerHighlight function
+function updatePrayerHighlight(currentPrayer, nextPrayer) {
+  try {
+    // Remove existing highlights
+    document.querySelectorAll(".prayer-item").forEach((item) => {
+      item.classList.remove("current", "next");
+    });
+
+    // Add highlight for current prayer
+    if (currentPrayer) {
+      const currentElement = document.querySelector(`[data-prayer-name="${currentPrayer}"]`);
+      if (currentElement) currentElement.classList.add("current");
+    }
+
+    // Add highlight for next prayer
+    if (nextPrayer) {
+      const nextElement = document.querySelector(`[data-prayer-name="${nextPrayer}"]`);
+      if (nextElement) nextElement.classList.add("next");
+    }
+  } catch (error) {
+    console.error("Error updating prayer highlights:", error);
+  }
+}
+
+// Fix prayer name mapping
+const PRAYER_NAMES = {
+  fajr: "Subuh",
+  dhuhr: "Dzuhur",
+  asr: "Ashar",
+  maghrib: "Maghrib",
+  isha: "Isya",
+};
+
+function getPrayerName(key) {
+  return PRAYER_NAMES[key.toLowerCase()] || key;
+}
+
+/**
+ * Fungsi untuk menentukan metode perhitungan waktu sholat berdasarkan koordinat
+ * @param {number} latitude - Latitude lokasi
+ * @param {number} longitude - Longitude lokasi
+ * @returns {number} - Metode perhitungan waktu sholat
+ */
+function getCalculationMethod(latitude, longitude) {
+  // Ini hanya contoh sederhana, bisa dikembangkan lebih lanjut
+  if (latitude >= 1.1 && latitude <= 6.9 && longitude >= 99.7 && longitude <= 119.3) {
+    return CALCULATION_METHODS.MUHAMMADIYAH; // Indonesia
+  } else if (latitude >= 1.2 && latitude <= 6.7 && longitude >= 100.1 && longitude <= 103.9) {
+    return CALCULATION_METHODS.JAKIM_MALAYSIA; // Malaysia
+  } else if (latitude >= 1.1 && latitude <= 1.5 && longitude >= 103.6 && longitude <= 104.1) {
+    return CALCULATION_METHODS.MUIS_SINGAPORE; // Singapore
+  } else {
+    return CALCULATION_METHODS.MWL; // Default international method
   }
 }
 
