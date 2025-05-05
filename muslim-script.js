@@ -46,7 +46,7 @@ const APP_CONFIG = {
     LIST: ["Kuala Lumpur", "Johor Bahru", "Penang", "Kota Kinabalu", "Kuching"],
   },
   // Update calculation method
-  prayerMethod: 2, // JAKIM Malaysia method
+  prayerMethod: 3, // JAKIM Malaysia method
 };
 
 /**
@@ -212,13 +212,24 @@ function initAdhanAudio() {
 class PrayerTimeService {
   static async getPrayerTimes() {
     try {
-      // Get user location
-      const position = await this.getCurrentPosition();
-      const { latitude, longitude } = position.coords;
+      // Default koordinat untuk Kuala Lumpur jika geolokasi gagal
+      let latitude = 3.139;
+      let longitude = 101.6869;
+      let usingDefaultLocation = false;
+      let position = null;
 
-      console.log("Getting prayer times for:", { latitude, longitude });
+      try {
+        position = await this.getCurrentPosition();
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        console.log("Getting prayer times for:", { latitude, longitude });
+      } catch (geoError) {
+        console.warn("Geolocation failed, using default location (Kuala Lumpur):", geoError);
+        usingDefaultLocation = true;
+      }
 
-      const url = `https://api.aladhan.com/v1/timings/${new Date().toISOString().split("T")[0]}?latitude=${latitude}&longitude=${longitude}&method=2`;
+      // Tambahkan timezone untuk Malaysia
+      const url = `https://api.aladhan.com/v1/timings/${new Date().toISOString().split("T")[0]}?latitude=${latitude}&longitude=${longitude}&method=${APP_CONFIG.prayerMethod}&timezone=Asia/Kuala_Lumpur`;
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -228,10 +239,22 @@ class PrayerTimeService {
       const data = await response.json();
       console.log("Prayer API response:", data);
 
+      if (!data || !data.data || !data.data.timings) {
+        throw new Error("Invalid API response structure");
+      }
+
+      // Tampilkan status lokasi
+      if (!usingDefaultLocation && position) {
+        showLocationStatus("success", position.coords.accuracy);
+      } else {
+        showLocationStatus("default");
+      }
+
       return this.formatPrayerTimes(data.data.timings);
     } catch (error) {
       console.error("Error fetching prayer times:", error);
-      return null;
+      showLocationStatus("default");
+      return APP_CONFIG.defaultPrayerTimes;
     }
   }
 
@@ -457,18 +480,46 @@ function playAdhan(prayer) {
 /**
  * Initialize prayer times with city selection
  */
+/**
+ * Fungsi untuk menggunakan waktu sholat default
+ * Digunakan ketika terjadi error dalam mendapatkan waktu sholat dari API
+ */
+function useDefaultPrayerTimes() {
+  console.log("Using default prayer times");
+  // Gunakan waktu default dari konfigurasi
+  const defaultTimes = APP_CONFIG.defaultPrayerTimes;
+
+  // Update UI dengan waktu default
+  updateUIWithPrayerTimes(defaultTimes);
+
+  // Tampilkan notifikasi bahwa menggunakan waktu default
+  showLocationStatus("default");
+}
+
+/**
+ * Initialize prayer times with city selection
+ */
 async function initPrayerTimes() {
   try {
+    // Tampilkan loading state
+    document.querySelectorAll(".prayer-time").forEach((el) => {
+      el.textContent = "Loading...";
+    });
+
     const prayerTimes = await PrayerTimeService.getPrayerTimes();
     if (!prayerTimes) throw new Error("Failed to fetch prayer times");
 
     // Update display
     updatePrayerTimesDisplay(prayerTimes);
+    updateUIWithPrayerTimes(prayerTimes);
 
     // Update prayer times hourly
     setInterval(async () => {
       const newTimes = await PrayerTimeService.getPrayerTimes();
-      if (newTimes) updatePrayerTimesDisplay(newTimes);
+      if (newTimes) {
+        updatePrayerTimesDisplay(newTimes);
+        updateUIWithPrayerTimes(newTimes);
+      }
     }, 3600000);
   } catch (error) {
     console.error("Prayer times initialization failed:", error);
@@ -752,24 +803,52 @@ const cleanup = {
 // Main initialization
 function initializeApp() {
   try {
-    const cleanupFunctions = [];
-    cleanup.clear();
+    console.log("Initializing Muslim App...");
 
-    // Add cleanup for observers
-    const saldoObserver = CurrencyService.initSaldoObserver();
-    if (saldoObserver) {
-      cleanup.addObserver(saldoObserver);
+    // Inisialisasi komponen UI
+    updateCurrentDate();
+    addLoadingDotsStyle();
+    createBubbles();
+
+    // Inisialisasi audio adzan
+    initAdhanAudio();
+
+    // Inisialisasi navigasi
+    initNavigation();
+
+    // Minta izin notifikasi
+    requestNotificationPermission();
+
+    // Inisialisasi waktu sholat
+    initPrayerTimes();
+
+    // Setup cleanup
+    const cleanupFunctions = [];
+
+    try {
+      // Add cleanup for observers if CurrencyService exists
+      if (typeof CurrencyService !== "undefined" && CurrencyService.initSaldoObserver) {
+        const saldoObserver = CurrencyService.initSaldoObserver();
+        if (saldoObserver && typeof cleanup !== "undefined") {
+          cleanup.addObserver(saldoObserver);
+        }
+      }
+    } catch (observerError) {
+      console.warn("Error setting up observers:", observerError);
     }
 
-    // Add cleanup for intervals
-    const prayerInterval = setInterval(checkPrayerTime, 60000);
-    cleanup.addInterval(prayerInterval);
+    console.log("Muslim App initialized successfully");
 
     // Return cleanup function
     return () => cleanupFunctions.forEach((fn) => fn());
   } catch (error) {
     console.error("App initialization failed:", error);
-    handleInitializationError();
+    // Fallback to default prayer times if initialization fails
+    try {
+      useDefaultPrayerTimes();
+    } catch (fallbackError) {
+      console.error("Even fallback initialization failed:", fallbackError);
+    }
   }
 }
 
