@@ -152,6 +152,177 @@ body {
   transition: all 0.3s ease;
 }
 
+/* ======= COUPON SECTION STYLES ======= */
+.coupon-section {
+  margin: var(--spacing-md) var(--spacing-sm);
+  padding: var(--spacing-sm) 0;
+}
+
+.coupon-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+  padding: 0 var(--spacing-sm);
+}
+
+.coupon-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-dark);
+}
+
+.view-all {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+}
+
+.coupon-container {
+  display: flex;
+  overflow-x: auto;
+  padding: 0 var(--spacing-sm);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  margin-top: var(--spacing-sm);
+}
+
+.coupon-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.coupon-card {
+  min-width: 250px;
+  height: 150px;
+  margin-right: 5px;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-sm);
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  /* Efek kupon dengan potongan di sisi kanan */
+  clip-path: polygon(0% 0%, 95% 0%, 100% 10%, 95% 20%, 100% 30%, 95% 40%, 100% 50%, 95% 60%, 100% 70%, 95% 80%, 100% 90%, 95% 100%, 0% 100%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coupon-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.green-card {
+  background-color: #0d8a6f;
+  color: white;
+  background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%), linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+.blue-card {
+  background-color: #001489;
+  color: white;
+  background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.05) 0%, transparent 20%), linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 50%);
+}
+
+.coupon-product {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 85px;
+  height: 100%;
+  margin-right: var(--spacing-sm);
+  padding-left: 5px;
+  position: relative;
+}
+
+.product-image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.coupon-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--spacing-sm) 0;
+  flex: 1;
+  height: 100%;
+  margin-left: var(--spacing-sm);
+  position: relative;
+}
+
+/* Garis putus-putus untuk efek kupon */
+.coupon-info::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 50%, transparent 50%);
+  background-size: 1px 10px;
+  background-repeat: repeat-y;
+}
+
+.product-name {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  margin: 0;
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+.product-desc {
+  font-size: var(--font-size-xs);
+  margin: 0;
+  opacity: 0.8;
+  max-width: 90%;
+  line-height: 1.3;
+}
+
+.coupon-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: auto;
+  padding-bottom: 5px;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: baseline;
+}
+
+.price::after {
+  content: "zł";
+  font-size: var(--font-size-sm);
+  margin-left: 2px;
+  font-weight: 500;
+}
+
+.points {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 3px 8px;
+  border-radius: 15px;
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  margin-left: var(--spacing-sm);
+  display: inline-block;
+  position: relative;
+}
+
+.points::before {
+  content: "pkt";
+  margin-right: 3px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
 /* ======= BUBBLE ANIMATION STYLES ======= */
 .bubbles-container {
   position: absolute;
@@ -587,16 +758,17 @@ body {
 }
 
 .prayer-title {
-  font-size: 1rem;
-  margin-bottom: 12px;
-  text-align: center;
+  font-size: 0.8rem;
+  margin-bottom: 0;
+  text-align: left;
   font-weight: 600;
 }
 
 .prayer-date {
-  font-size: 0.8rem;
-  text-align: center;
-  margin-bottom: 10px;
+  font-size: 0.7rem;
+  text-align: left;
+  margin-top: 0;
+  margin-bottom: 0;
   opacity: 0.8;
 }
 
@@ -606,7 +778,6 @@ body {
   gap: 8px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 8px 0;
   scrollbar-width: none;
   -ms-overflow-style: none;
   justify-content: flex-start;
@@ -631,7 +802,7 @@ body {
   overflow: hidden;
   flex: 0 0 auto;
   min-width: 150px;
-  max-width: 200px;
+  max-width: 170px;
   width: calc(100% - 20px);
   margin: 0 auto;
   scroll-snap-align: center;
@@ -648,6 +819,13 @@ body {
   box-shadow: 0 4px 15px var(--prayer-shadow-color);
   animation: pulsePrayer 2s ease-in-out infinite;
   will-change: transform, box-shadow;
+}
+
+.prayer-item.highlight {
+  background: var(--gradient-primary);
+  color: white;
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
 }
 
 @keyframes pulsePrayer {
@@ -677,12 +855,13 @@ body {
 }
 
 .prayer-item i {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-right: 10px;
 }
 
 .prayer-name {
   flex: 1;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -695,7 +874,7 @@ body {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
 }
 
 /* Fallback untuk browser yang tidak mendukung :has() */
@@ -703,8 +882,59 @@ body {
   background: rgba(255, 255, 255, 0.3);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
+/* Styling untuk dropdown pemilihan kota */
+.prayer-header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+}
+
+/* Styling untuk opsi dropdown */
+.city-dropdown option {
+  background-color: #2c3e50;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px;
+}
+
+.city-selector-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.city-dropdown {
+  padding: 6px 10px;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 4px center;
+  background-size: 16px;
+  padding-right: 24px;
+  transition: all 0.3s ease;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.city-dropdown:hover,
+.city-dropdown:focus {
+  background-color: rgba(0, 0, 0, 0.8);
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
 /* ======= BANNER IKLAN STYLES ======= */
-/* ======= BANNER SECTIONS ======= */
 .ads-banner-section,
 .promo-banner,
 .category-menu,
