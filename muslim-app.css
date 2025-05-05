@@ -103,55 +103,6 @@ body {
   width: auto;
 }
 
-/* Setting Icons Styles */
-.setting-icon.partner-icon {
-  background: #e1f5fe;
-  color: #0288d1;
-  border-radius: 12px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.setting-icon.driver-icon {
-  background: #efebe9;
-  color: #5d4037;
-  border-radius: 12px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.setting-icon.terms-icon {
-  background: #f1f8e9;
-  color: #558b2f;
-  border-radius: 12px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.setting-icon.logout-icon {
-  background: #ffebee;
-  color: #c62828;
-  border-radius: 12px;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
 /* ======= COUPON SECTION STYLES ======= */
 .coupon-section {
   margin: var(--spacing-md) var(--spacing-sm);
@@ -907,9 +858,9 @@ body {
 
 .city-dropdown {
   padding: 6px 10px;
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--border-radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: transparent;
   color: white;
   font-size: 14px;
   font-weight: 500;
@@ -932,92 +883,6 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
   border-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-}
-
-/* ======= BANNER IKLAN STYLES ======= */
-.ads-banner-section,
-.promo-banner,
-.category-menu,
-.settings-section {
-  background-color: var(--bg-white);
-  border-radius: var(--border-radius-lg);
-  margin: var(--spacing-md) var(--spacing-sm);
-  padding: 0px;
-}
-
-.ads-banner-title,
-.promo-text,
-.settings-title {
-  font-size: var(--font-size-lg);
-  font-weight: bold;
-  margin: var(--spacing-lg) var(--spacing-sm) 0;
-}
-
-.ads-banner-subtitle,
-.promo-subtext {
-  font-size: var(--font-size-md);
-  color: var(--text-muted);
-  margin-left: var(--spacing-sm);
-  margin-bottom: var(--spacing-sm);
-}
-
-.ads-banner-container {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 12px;
-  padding: 0 10px 15px 10px;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-}
-
-.ads-banner-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
-
-.ads-banner-item {
-  flex: 0 0 auto;
-  min-width: 250px;
-  height: 120px;
-  border-radius: 12px;
-  overflow: hidden;
-  position: relative;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  scroll-snap-align: start;
-}
-
-.ads-banner-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.ads-banner-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.ads-banner-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
-  color: white;
-}
-
-.ads-banner-content h3 {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-.ads-banner-content p {
-  margin: 5px 0 0;
-  font-size: 0.8rem;
-  opacity: 0.9;
 }
 
 /* Promo Banner Styling */
@@ -1410,7 +1275,54 @@ body {
   background-color: #20c997;
   color: white;
 }
+/* Setting Icons Styles */
+.setting-icon.partner-icon {
+  background: #e1f5fe;
+  color: #0288d1;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
 
+.setting-icon.driver-icon {
+  background: #efebe9;
+  color: #5d4037;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.setting-icon.terms-icon {
+  background: #f1f8e9;
+  color: #558b2f;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.setting-icon.logout-icon {
+  background: #ffebee;
+  color: #c62828;
+  border-radius: 12px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
 /* Toggle Switch Styling */
 .form-check-input {
   width: 3em;
