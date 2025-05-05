@@ -210,22 +210,49 @@ function initAdhanAudio() {
  * Enhanced Prayer Time Service
  */
 class PrayerTimeService {
-  static async getPrayerTimes() {
+  // Koordinat kota-kota di Malaysia
+  static cityCoordinates = {
+    "Kuala Lumpur": { latitude: 3.139, longitude: 101.6869 },
+    "Johor Bahru": { latitude: 1.4927, longitude: 103.7414 },
+    Penang: { latitude: 5.4141, longitude: 100.3288 },
+    "Kota Kinabalu": { latitude: 5.9804, longitude: 116.0735 },
+    Kuching: { latitude: 1.5497, longitude: 110.3409 },
+  };
+
+  static async getPrayerTimes(cityName = null) {
     try {
       // Default koordinat untuk Kuala Lumpur jika geolokasi gagal
       let latitude = 3.139;
       let longitude = 101.6869;
       let usingDefaultLocation = false;
       let position = null;
+      let selectedCity = cityName || localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
 
-      try {
-        position = await this.getCurrentPosition();
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
-        console.log("Getting prayer times for:", { latitude, longitude });
-      } catch (geoError) {
-        console.warn("Geolocation failed, using default location (Kuala Lumpur):", geoError);
-        usingDefaultLocation = true;
+      // Jika kota dipilih, gunakan koordinat kota tersebut
+      if (selectedCity && this.cityCoordinates[selectedCity]) {
+        latitude = this.cityCoordinates[selectedCity].latitude;
+        longitude = this.cityCoordinates[selectedCity].longitude;
+        console.log(`Using coordinates for ${selectedCity}:`, { latitude, longitude });
+
+        // Simpan pilihan kota di localStorage
+        localStorage.setItem("selectedCity", selectedCity);
+
+        // Update dropdown jika ada
+        const citySelector = document.getElementById("city-selector");
+        if (citySelector && citySelector.value !== selectedCity) {
+          citySelector.value = selectedCity;
+        }
+      } else {
+        // Jika tidak ada kota yang dipilih, coba gunakan geolokasi
+        try {
+          position = await this.getCurrentPosition();
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+          console.log("Getting prayer times for:", { latitude, longitude });
+        } catch (geoError) {
+          console.warn("Geolocation failed, using default location (Kuala Lumpur):", geoError);
+          usingDefaultLocation = true;
+        }
       }
 
       // Tambahkan timezone untuk Malaysia
@@ -244,7 +271,9 @@ class PrayerTimeService {
       }
 
       // Tampilkan status lokasi
-      if (!usingDefaultLocation && position) {
+      if (selectedCity && this.cityCoordinates[selectedCity]) {
+        showLocationStatus("city", selectedCity);
+      } else if (!usingDefaultLocation && position) {
         showLocationStatus("success", position.coords.accuracy);
       } else {
         showLocationStatus("default");
@@ -506,7 +535,12 @@ async function initPrayerTimes() {
       el.textContent = "Loading...";
     });
 
-    const prayerTimes = await PrayerTimeService.getPrayerTimes();
+    // Inisialisasi dropdown kota
+    initCitySelector();
+
+    // Ambil kota dari localStorage atau gunakan default
+    const savedCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+    const prayerTimes = await PrayerTimeService.getPrayerTimes(savedCity);
     if (!prayerTimes) throw new Error("Failed to fetch prayer times");
 
     // Update display
@@ -515,7 +549,8 @@ async function initPrayerTimes() {
 
     // Update prayer times hourly
     setInterval(async () => {
-      const newTimes = await PrayerTimeService.getPrayerTimes();
+      const currentCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+      const newTimes = await PrayerTimeService.getPrayerTimes(currentCity);
       if (newTimes) {
         updatePrayerTimesDisplay(newTimes);
         updateUIWithPrayerTimes(newTimes);
@@ -528,11 +563,41 @@ async function initPrayerTimes() {
 }
 
 /**
- * Fungsi untuk menampilkan status lokasi
- * @param {string} type - Jenis status lokasi ('success', 'cache', 'default')
- * @param {number|null} accuracy - Akurasi lokasi dalam meter (opsional)
+ * Inisialisasi dropdown pemilihan kota
  */
-function showLocationStatus(type, accuracy = null) {
+function initCitySelector() {
+  const citySelector = document.getElementById("city-selector");
+  if (!citySelector) return;
+
+  // Set nilai awal dari localStorage atau default
+  const savedCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+  citySelector.value = savedCity;
+
+  // Tambahkan event listener untuk perubahan kota
+  citySelector.addEventListener("change", async function () {
+    const selectedCity = this.value;
+    console.log(`City changed to: ${selectedCity}`);
+
+    // Tampilkan loading state
+    document.querySelectorAll(".prayer-time").forEach((el) => {
+      el.textContent = "Loading...";
+    });
+
+    // Dapatkan waktu sholat untuk kota yang dipilih
+    const prayerTimes = await PrayerTimeService.getPrayerTimes(selectedCity);
+    if (prayerTimes) {
+      updatePrayerTimesDisplay(prayerTimes);
+      updateUIWithPrayerTimes(prayerTimes);
+    }
+  });
+}
+
+/**
+ * Fungsi untuk menampilkan status lokasi
+ * @param {string} type - Jenis status lokasi ('success', 'cache', 'default', 'city')
+ * @param {number|string|null} param - Akurasi lokasi dalam meter atau nama kota (opsional)
+ */
+function showLocationStatus(type, param = null) {
   const notifElement = document.getElementById("notification-status");
   if (!notifElement) return;
 
@@ -541,12 +606,16 @@ function showLocationStatus(type, accuracy = null) {
 
   switch (type) {
     case "success":
-      message = `<i class='bi bi-geo-alt-fill'></i> Using location based prayer times (accuracy: ${Math.round(accuracy)}m)`;
+      message = `<i class='bi bi-geo-alt-fill'></i> Using location based prayer times (accuracy: ${Math.round(param)}m)`;
       color = "#4aaf4f";
       break;
     case "cache":
       message = "<i class='bi bi-clock-history'></i> Using cached prayer times";
       color = "#ff9800";
+      break;
+    case "city":
+      message = `<i class='bi bi-geo-alt-fill'></i> Using prayer times for ${param}`;
+      color = "#4aaf4f";
       break;
     case "default":
       message = "<i class='bi bi-exclamation-triangle'></i> Using default prayer times";
