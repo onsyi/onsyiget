@@ -82,7 +82,8 @@ body {
 
 /* Wallet Card Styling */
 .wallet-card {
-  background: var(--gradient-primary);
+  background: url('https://res.cloudinary.com/dyqa4pm1z/image/upload/v1746528844/gf_yaiqhu.jpg') no-repeat center center;
+  background-size: cover;
   border-radius: var(--border-radius-lg);
   padding: var(--spacing-lg);
   margin: var(--spacing-sm);
