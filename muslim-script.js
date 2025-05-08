@@ -14,10 +14,10 @@ const APP_CONFIG = {
   // Prayer settings
   prayerNames: {
     fajr: "Subuh",
-    dhuhr: "Dzuhur",
-    asr: "Ashar",
+    dhuhr: "Zohor",
+    asr: "Asar",
     maghrib: "Maghrib",
-    isha: "Isya",
+    isha: "Isyak",
   },
   // Default times
   defaultPrayerTimes: {
@@ -43,7 +43,38 @@ const APP_CONFIG = {
   // Add Malaysian cities
   cities: {
     DEFAULT: "Kuala Lumpur",
-    LIST: ["Kuala Lumpur", "Johor Bahru", "Penang", "Kota Kinabalu", "Kuching"],
+    LIST: [
+      "Kuala Lumpur",
+      "Johor Bahru",
+      "Penang",
+      "Kota Kinabalu",
+      "Kuching",
+      "Ipoh",
+      "Melaka",
+      "Shah Alam",
+      "Kota Bharu",
+      "Kuala Terengganu",
+      "Seremban",
+      "Alor Setar",
+      "Putrajaya",
+      "Miri",
+      "Sandakan",
+      "Petaling Jaya",
+      "Subang Jaya",
+      "Klang",
+      "Kajang",
+      "Batu Pahat",
+      "Tawau",
+      "Sibu",
+      "Kulim",
+      "Bintulu",
+      "Kangar",
+      "Labuan",
+      "Kluang",
+      "Taiping",
+      "Butterworth",
+      "Kuantan",
+    ],
   },
   // Update calculation method
   prayerMethod: 3, // JAKIM Malaysia method
@@ -217,6 +248,33 @@ class PrayerTimeService {
     Penang: { latitude: 5.4141, longitude: 100.3288 },
     "Kota Kinabalu": { latitude: 5.9804, longitude: 116.0735 },
     Kuching: { latitude: 1.5497, longitude: 110.3409 },
+    // Tambahan kota-kota di Malaysia
+    Ipoh: { latitude: 4.5975, longitude: 101.0901 },
+    Melaka: { latitude: 2.1896, longitude: 102.2501 },
+    "Shah Alam": { latitude: 3.0738, longitude: 101.5183 },
+    "Kota Bharu": { latitude: 6.1331, longitude: 102.2386 },
+    "Kuala Terengganu": { latitude: 5.3302, longitude: 103.1408 },
+    Seremban: { latitude: 2.7297, longitude: 101.9381 },
+    "Alor Setar": { latitude: 6.1264, longitude: 100.3685 },
+    Putrajaya: { latitude: 2.9264, longitude: 101.6964 },
+    Miri: { latitude: 4.3995, longitude: 113.9914 },
+    Sandakan: { latitude: 5.8402, longitude: 118.1179 },
+    // Kota-kota tambahan di Malaysia
+    "Petaling Jaya": { latitude: 3.1073, longitude: 101.6067 },
+    "Subang Jaya": { latitude: 3.0564, longitude: 101.5856 },
+    Klang: { latitude: 3.0449, longitude: 101.4455 },
+    Kajang: { latitude: 2.9927, longitude: 101.7909 },
+    "Batu Pahat": { latitude: 1.8548, longitude: 102.9326 },
+    Tawau: { latitude: 4.2498, longitude: 117.8871 },
+    Sibu: { latitude: 2.3, longitude: 111.8167 },
+    Kulim: { latitude: 5.3649, longitude: 100.5616 },
+    Bintulu: { latitude: 3.1667, longitude: 113.0333 },
+    Kangar: { latitude: 6.4414, longitude: 100.1986 },
+    Labuan: { latitude: 5.2831, longitude: 115.2308 },
+    Kluang: { latitude: 2.0251, longitude: 103.3328 },
+    Taiping: { latitude: 4.8517, longitude: 100.7454 },
+    Butterworth: { latitude: 5.3991, longitude: 100.3638 },
+    Kuantan: { latitude: 3.8077, longitude: 103.326 },
   };
 
   static async getPrayerTimes(cityName = null) {
@@ -227,6 +285,10 @@ class PrayerTimeService {
       let usingDefaultLocation = false;
       let position = null;
       let selectedCity = cityName || localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+
+      // Dapatkan tanggal hari ini untuk memastikan waktu sholat akurat
+      const today = new Date();
+      const formattedDate = today.toISOString().split("T")[0]; // Format YYYY-MM-DD
 
       // Jika kota dipilih, gunakan koordinat kota tersebut
       if (selectedCity && this.cityCoordinates[selectedCity]) {
@@ -249,6 +311,14 @@ class PrayerTimeService {
           latitude = position.coords.latitude;
           longitude = position.coords.longitude;
           console.log("Getting prayer times for:", { latitude, longitude });
+
+          // Coba temukan kota terdekat berdasarkan koordinat pengguna
+          const nearestCity = this.findNearestCity(latitude, longitude);
+          if (nearestCity) {
+            console.log(`Nearest city detected: ${nearestCity}`);
+            // Simpan kota terdekat di localStorage
+            localStorage.setItem("nearestCity", nearestCity);
+          }
         } catch (geoError) {
           console.warn("Geolocation failed, using default location (Kuala Lumpur):", geoError);
           usingDefaultLocation = true;
@@ -256,7 +326,7 @@ class PrayerTimeService {
       }
 
       // Tambahkan timezone untuk Malaysia
-      const url = `https://api.aladhan.com/v1/timings/${new Date().toISOString().split("T")[0]}?latitude=${latitude}&longitude=${longitude}&method=${APP_CONFIG.prayerMethod}&timezone=Asia/Kuala_Lumpur`;
+      const url = `https://api.aladhan.com/v1/timings/${formattedDate}?latitude=${latitude}&longitude=${longitude}&method=${APP_CONFIG.prayerMethod}&timezone=Asia/Kuala_Lumpur`;
       const response = await fetch(url);
 
       if (!response.ok) {
@@ -300,6 +370,49 @@ class PrayerTimeService {
         maximumAge: 300000,
       });
     });
+  }
+
+  // Fungsi untuk menemukan kota terdekat berdasarkan koordinat pengguna
+  static findNearestCity(latitude, longitude) {
+    if (!latitude || !longitude) return null;
+
+    let nearestCity = null;
+    let shortestDistance = Infinity;
+
+    // Hitung jarak ke setiap kota
+    Object.entries(this.cityCoordinates).forEach(([city, coords]) => {
+      const distance = this.calculateDistance(latitude, longitude, coords.latitude, coords.longitude);
+
+      if (distance < shortestDistance) {
+        shortestDistance = distance;
+        nearestCity = city;
+      }
+    });
+
+    // Jika jarak terlalu jauh (>50km), mungkin pengguna tidak berada di dekat kota di Malaysia
+    // Dalam hal ini, kita akan menggunakan kota default
+    if (shortestDistance > 50) {
+      console.log(`Nearest city is ${nearestCity} but distance is ${shortestDistance.toFixed(2)}km, using default city`);
+      return APP_CONFIG.cities.DEFAULT;
+    }
+
+    console.log(`Nearest city detected: ${nearestCity} (${shortestDistance.toFixed(2)}km away)`);
+    return nearestCity;
+  }
+
+  // Fungsi untuk menghitung jarak antara dua koordinat (Haversine formula)
+  static calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius bumi dalam kilometer
+    const dLat = this.deg2rad(lat2 - lat1);
+    const dLon = this.deg2rad(lon2 - lon1);
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const distance = R * c; // Jarak dalam kilometer
+    return distance;
+  }
+
+  static deg2rad(deg) {
+    return deg * (Math.PI / 180);
   }
 
   static formatPrayerTimes(timings) {
@@ -383,6 +496,19 @@ function updatePrayerTimesDisplay(prayerTimes) {
     const timeElement = document.getElementById("current-time");
     if (timeElement) {
       timeElement.textContent = `${currentTime.hours}:${currentTime.minutes}:${currentTime.seconds}`;
+    }
+
+    // Tampilkan informasi lokasi
+    const selectedCity = localStorage.getItem("selectedCity") || localStorage.getItem("nearestCity") || APP_CONFIG.cities.DEFAULT;
+    const locationElement = document.getElementById("location-info");
+    if (locationElement) {
+      locationElement.textContent = selectedCity;
+    }
+
+    // Perbarui tanggal jika belum diperbarui
+    const dateElement = document.getElementById("current-date");
+    if (dateElement && dateElement.textContent === "Loading...") {
+      updateCurrentDate();
     }
 
     // Highlight next prayer
@@ -526,6 +652,38 @@ function useDefaultPrayerTimes() {
 }
 
 /**
+ * Fungsi untuk memperbarui tampilan tanggal saat ini
+ */
+function updateCurrentDate() {
+  try {
+    const dateElement = document.getElementById("current-date");
+    if (!dateElement) return;
+
+    const now = new Date();
+
+    // Format tanggal dalam Bahasa Indonesia
+    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+    let dateString;
+
+    try {
+      // Coba gunakan formatter Bahasa Indonesia
+      dateString = now.toLocaleDateString("ms-MY", options);
+    } catch (localeError) {
+      console.warn("Locale not supported, using default format", localeError);
+      // Fallback ke format manual
+      const days = ["Ahad", "Isnin", "Selasa", "Rabu", "Khamis", "Jumaat", "Sabtu"];
+      const months = ["Januari", "Februari", "Mac", "April", "Mei", "Jun", "Julai", "Ogos", "September", "Oktober", "November", "Disember"];
+
+      dateString = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    }
+
+    dateElement.textContent = dateString;
+  } catch (error) {
+    console.error("Error updating current date:", error);
+  }
+}
+
+/**
  * Initialize prayer times with city selection
  */
 async function initPrayerTimes() {
@@ -534,6 +692,41 @@ async function initPrayerTimes() {
     document.querySelectorAll(".prayer-time").forEach((el) => {
       el.textContent = "Loading...";
     });
+
+    // Perbarui tampilan tanggal
+    updateCurrentDate();
+
+    // Perbarui tanggal setiap hari pada tengah malam
+    const updateDateAtMidnight = () => {
+      const now = new Date();
+      const night = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate() + 1, // besok
+        0,
+        0,
+        0 // 00:00:00
+      );
+      const msToMidnight = night.getTime() - now.getTime();
+
+      // Set timeout untuk memperbarui tanggal pada tengah malam
+      setTimeout(() => {
+        updateCurrentDate();
+        // Perbarui waktu sholat untuk tanggal baru
+        const currentCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+        PrayerTimeService.getPrayerTimes(currentCity).then((times) => {
+          if (times) {
+            updatePrayerTimesDisplay(times);
+            updateUIWithPrayerTimes(times);
+          }
+        });
+        // Set ulang untuk malam berikutnya
+        updateDateAtMidnight();
+      }, msToMidnight);
+    };
+
+    // Mulai pembaruan tanggal otomatis
+    updateDateAtMidnight();
 
     // Inisialisasi dropdown kota
     initCitySelector();
@@ -569,14 +762,81 @@ function initCitySelector() {
   const citySelector = document.getElementById("city-selector");
   if (!citySelector) return;
 
-  // Set nilai awal dari localStorage atau default
-  const savedCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+  // Kosongkan dropdown terlebih dahulu
+  citySelector.innerHTML = "";
+
+  // Tambahkan semua kota dari konfigurasi ke dropdown (diurutkan abjad)
+  const sortedCities = [...APP_CONFIG.cities.LIST].sort();
+  sortedCities.forEach((city) => {
+    const option = document.createElement("option");
+    option.value = city;
+    option.textContent = city;
+    citySelector.appendChild(option);
+  });
+
+  // Coba gunakan kota terdekat jika tersedia
+  const nearestCity = localStorage.getItem("nearestCity");
+
+  // Set nilai awal dari localStorage, kota terdekat, atau default
+  const savedCity = localStorage.getItem("selectedCity") || nearestCity || APP_CONFIG.cities.DEFAULT;
   citySelector.value = savedCity;
+
+  // Jika tidak ada kota yang tersimpan, coba gunakan geolokasi
+  if (!localStorage.getItem("selectedCity") && !nearestCity) {
+    try {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          // Cari kota terdekat berdasarkan koordinat
+          const nearestCity = PrayerTimeService.findNearestCity(latitude, longitude);
+          if (nearestCity) {
+            localStorage.setItem("nearestCity", nearestCity);
+            localStorage.setItem("selectedCity", nearestCity);
+            citySelector.value = nearestCity;
+
+            // Perbarui waktu sholat berdasarkan kota terdekat
+            const prayerTimes = await PrayerTimeService.getPrayerTimes(nearestCity);
+            if (prayerTimes) {
+              updatePrayerTimesDisplay(prayerTimes);
+              updateUIWithPrayerTimes(prayerTimes);
+              showLocationStatus("city", nearestCity);
+            }
+          }
+        },
+        (error) => {
+          console.warn("Geolocation failed, using default city:", error);
+          // Gunakan kota default
+          const defaultCity = APP_CONFIG.cities.DEFAULT;
+          localStorage.setItem("selectedCity", defaultCity);
+          citySelector.value = defaultCity;
+          showLocationStatus("default");
+        },
+        APP_CONFIG.geoOptions
+      );
+    } catch (geoError) {
+      console.warn("Geolocation not supported, using default city");
+      // Gunakan kota default
+      const defaultCity = APP_CONFIG.cities.DEFAULT;
+      localStorage.setItem("selectedCity", defaultCity);
+      citySelector.value = defaultCity;
+      showLocationStatus("default");
+    }
+  }
+
+  // Perbarui waktu sholat berdasarkan kota yang dipilih
+  PrayerTimeService.getPrayerTimes(savedCity).then((prayerTimes) => {
+    if (prayerTimes) {
+      updatePrayerTimesDisplay(prayerTimes);
+      updateUIWithPrayerTimes(prayerTimes);
+      showLocationStatus("city", savedCity);
+    }
+  });
 
   // Tambahkan event listener untuk perubahan kota
   citySelector.addEventListener("change", async function () {
     const selectedCity = this.value;
     console.log(`City changed to: ${selectedCity}`);
+    localStorage.setItem("selectedCity", selectedCity);
 
     // Tampilkan loading state
     document.querySelectorAll(".prayer-time").forEach((el) => {
@@ -588,6 +848,7 @@ function initCitySelector() {
     if (prayerTimes) {
       updatePrayerTimesDisplay(prayerTimes);
       updateUIWithPrayerTimes(prayerTimes);
+      showLocationStatus("city", selectedCity);
     }
   });
 }
@@ -599,26 +860,32 @@ function initCitySelector() {
  */
 function showLocationStatus(type, param = null) {
   const notifElement = document.getElementById("notification-status");
+  const locationInfoElement = document.getElementById("location-info");
   if (!notifElement) return;
 
   let message = "";
+  let locationInfo = "";
   let color = "";
 
   switch (type) {
     case "success":
-      message = `<i class='bi bi-geo-alt-fill'></i> Using location based prayer times (accuracy: ${Math.round(param)}m)`;
+      message = `<i class='bi bi-geo-alt-fill'></i> Menggunakan lokasi saat ini (akurasi: ${Math.round(param)}m)`;
+      locationInfo = `<i class='bi bi-geo-alt'></i> Lokasi saat ini`;
       color = "#4aaf4f";
       break;
     case "cache":
-      message = "<i class='bi bi-clock-history'></i> Using cached prayer times";
+      message = "<i class='bi bi-clock-history'></i> Menggunakan waktu sholat tersimpan";
+      locationInfo = `<i class='bi bi-clock-history'></i> Data tersimpan`;
       color = "#ff9800";
       break;
     case "city":
-      message = `<i class='bi bi-geo-alt-fill'></i> Using prayer times for ${param}`;
+      message = `<i class='bi bi-geo-alt-fill'></i> Menggunakan waktu sholat untuk ${param}`;
+      locationInfo = `<i class='bi bi-building'></i> ${param}`;
       color = "#4aaf4f";
       break;
     case "default":
-      message = "<i class='bi bi-exclamation-triangle'></i> Using default prayer times";
+      message = "<i class='bi bi-exclamation-triangle'></i> Menggunakan waktu sholat default";
+      locationInfo = `<i class='bi bi-building'></i> ${APP_CONFIG.cities.DEFAULT}`;
       color = "#ff6b6b";
       break;
   }
@@ -626,6 +893,10 @@ function showLocationStatus(type, param = null) {
   notifElement.innerHTML = message;
   notifElement.style.color = color;
   notifElement.style.display = "block";
+
+  if (locationInfoElement) {
+    locationInfoElement.innerHTML = locationInfo;
+  }
 
   setTimeout(() => {
     notifElement.style.display = "none";
