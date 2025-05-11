@@ -86,29 +86,12 @@ const APP_CONFIG = {
  */
 function showPage(pageId) {
   try {
-    console.log("Showing page:", pageId);
-
-    // Hide all pages
-    document.querySelectorAll(".page-content").forEach((page) => {
-      page.style.display = "none";
-    });
-
-    // Show selected page
-    const selectedPage = document.getElementById(pageId);
-    if (!selectedPage) {
-      throw new Error(`Page not found: ${pageId}`);
-    }
-    selectedPage.style.display = "block";
-
-    // Update navigation highlighting
-    document.querySelectorAll(".nav-item").forEach((item) => {
-      item.classList.remove("active");
-    });
-
-    const navItem = document.getElementById(`nav-${pageId.replace("-page", "")}`);
-    if (navItem) {
-      navItem.classList.add("active");
-    }
+    // Jika pageId sudah memiliki suffix '-page', gunakan langsung
+    // Jika tidak, tambahkan suffix '-page'
+    const page = pageId.endsWith("-page") ? pageId.replace("-page", "") : pageId;
+    
+    // Gunakan fungsi navigateToPage yang lebih lengkap
+    navigateToPage(page);
   } catch (error) {
     console.error("Error showing page:", error);
   }
@@ -279,18 +262,16 @@ class PrayerTimeService {
 
   static async getPrayerTimes(cityName = null) {
     try {
-      // Default koordinat untuk Kuala Lumpur jika geolokasi gagal
+      // Default koordinat untuk Kuala Lumpur jika tidak ada kota yang dipilih
       let latitude = 3.139;
       let longitude = 101.6869;
-      let usingDefaultLocation = false;
-      let position = null;
       let selectedCity = cityName || localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
 
       // Dapatkan tanggal hari ini untuk memastikan waktu sholat akurat
       const today = new Date();
       const formattedDate = today.toISOString().split("T")[0]; // Format YYYY-MM-DD
 
-      // Jika kota dipilih, gunakan koordinat kota tersebut
+      // Gunakan koordinat kota yang dipilih
       if (selectedCity && this.cityCoordinates[selectedCity]) {
         latitude = this.cityCoordinates[selectedCity].latitude;
         longitude = this.cityCoordinates[selectedCity].longitude;
@@ -305,24 +286,14 @@ class PrayerTimeService {
           citySelector.value = selectedCity;
         }
       } else {
-        // Jika tidak ada kota yang dipilih, coba gunakan geolokasi
-        try {
-          position = await this.getCurrentPosition();
-          latitude = position.coords.latitude;
-          longitude = position.coords.longitude;
-          console.log("Getting prayer times for:", { latitude, longitude });
+        // Jika tidak ada kota yang valid, gunakan kota default
+        console.log(`No valid city selected, using default city: ${APP_CONFIG.cities.DEFAULT}`);
+        selectedCity = APP_CONFIG.cities.DEFAULT;
+        latitude = this.cityCoordinates[selectedCity].latitude;
+        longitude = this.cityCoordinates[selectedCity].longitude;
 
-          // Coba temukan kota terdekat berdasarkan koordinat pengguna
-          const nearestCity = this.findNearestCity(latitude, longitude);
-          if (nearestCity) {
-            console.log(`Nearest city detected: ${nearestCity}`);
-            // Simpan kota terdekat di localStorage
-            localStorage.setItem("nearestCity", nearestCity);
-          }
-        } catch (geoError) {
-          console.warn("Geolocation failed, using default location (Kuala Lumpur):", geoError);
-          usingDefaultLocation = true;
-        }
+        // Simpan kota default di localStorage
+        localStorage.setItem("selectedCity", selectedCity);
       }
 
       // Tambahkan timezone untuk Malaysia
@@ -343,8 +314,6 @@ class PrayerTimeService {
       // Tampilkan status lokasi
       if (selectedCity && this.cityCoordinates[selectedCity]) {
         showLocationStatus("city", selectedCity);
-      } else if (!usingDefaultLocation && position) {
-        showLocationStatus("success", position.coords.accuracy);
       } else {
         showLocationStatus("default");
       }
@@ -499,7 +468,7 @@ function updatePrayerTimesDisplay(prayerTimes) {
     }
 
     // Tampilkan informasi lokasi
-    const selectedCity = localStorage.getItem("selectedCity") || localStorage.getItem("nearestCity") || APP_CONFIG.cities.DEFAULT;
+    const selectedCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
     const locationElement = document.getElementById("location-info");
     if (locationElement) {
       locationElement.textContent = selectedCity;
@@ -651,43 +620,21 @@ function useDefaultPrayerTimes() {
   showLocationStatus("default");
 }
 
-/**
- * Fungsi untuk memperbarui tampilan tanggal saat ini
- */
-function updateCurrentDate() {
-  try {
-    const dateElement = document.getElementById("current-date");
-    if (!dateElement) return;
-
-    const now = new Date();
-
-    // Format tanggal dalam Bahasa Indonesia
-    const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-    let dateString;
-
-    try {
-      // Coba gunakan formatter Bahasa Indonesia
-      dateString = now.toLocaleDateString("ms-MY", options);
-    } catch (localeError) {
-      console.warn("Locale not supported, using default format", localeError);
-      // Fallback ke format manual
-      const days = ["Ahad", "Isnin", "Selasa", "Rabu", "Khamis", "Jumaat", "Sabtu"];
-      const months = ["Januari", "Februari", "Mac", "April", "Mei", "Jun", "Julai", "Ogos", "September", "Oktober", "November", "Disember"];
-
-      dateString = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
-    }
-
-    dateElement.textContent = dateString;
-  } catch (error) {
-    console.error("Error updating current date:", error);
-  }
-}
+// Fungsi updateCurrentDate sudah didefinisikan sebelumnya
 
 /**
  * Initialize prayer times with city selection
  */
 async function initPrayerTimes() {
   try {
+    // Cek apakah ada waktu sholat yang tersimpan di cache
+    const cachedTimes = getCachedPrayerTimes();
+    if (cachedTimes) {
+      console.log("Using cached prayer times");
+      currentPrayerTimes = cachedTimes;
+      updatePrayerTimesDisplay(cachedTimes);
+    }
+
     // Tampilkan loading state
     document.querySelectorAll(".prayer-time").forEach((el) => {
       el.textContent = "Loading...";
@@ -733,6 +680,16 @@ async function initPrayerTimes() {
 
     // Ambil kota dari localStorage atau gunakan default
     const savedCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+
+    // Gunakan kota default jika tidak ada kota yang dipilih
+    if (!localStorage.getItem("selectedCity")) {
+      const defaultCity = APP_CONFIG.cities.DEFAULT;
+      localStorage.setItem("selectedCity", defaultCity);
+      showLocationStatus("default");
+    } else {
+      showLocationStatus("city", savedCity);
+    }
+
     const prayerTimes = await PrayerTimeService.getPrayerTimes(savedCity);
     if (!prayerTimes) throw new Error("Failed to fetch prayer times");
 
@@ -854,52 +811,39 @@ function initCitySelector() {
 }
 
 /**
- * Fungsi untuk menampilkan status lokasi
- * @param {string} type - Jenis status lokasi ('success', 'cache', 'default', 'city')
- * @param {number|string|null} param - Akurasi lokasi dalam meter atau nama kota (opsional)
+ * Tampilkan status lokasi
  */
-function showLocationStatus(type, param = null) {
+function showLocationStatus(status, detail = null) {
   const notifElement = document.getElementById("notification-status");
-  const locationInfoElement = document.getElementById("location-info");
   if (!notifElement) return;
 
   let message = "";
-  let locationInfo = "";
-  let color = "";
+  let icon = "";
 
-  switch (type) {
-    case "success":
-      message = `<i class='bi bi-geo-alt-fill'></i> Menggunakan lokasi saat ini (akurasi: ${Math.round(param)}m)`;
-      locationInfo = `<i class='bi bi-geo-alt'></i> Lokasi saat ini`;
-      color = "#4aaf4f";
-      break;
-    case "cache":
-      message = "<i class='bi bi-clock-history'></i> Menggunakan waktu sholat tersimpan";
-      locationInfo = `<i class='bi bi-clock-history'></i> Data tersimpan`;
-      color = "#ff9800";
-      break;
+  switch (status) {
     case "city":
-      message = `<i class='bi bi-geo-alt-fill'></i> Menggunakan waktu sholat untuk ${param}`;
-      locationInfo = `<i class='bi bi-building'></i> ${param}`;
-      color = "#4aaf4f";
+      message = `Menggunakan lokasi: ${detail}`;
+      icon = "<i class='bi bi-geo-alt'></i>";
       break;
     case "default":
-      message = "<i class='bi bi-exclamation-triangle'></i> Menggunakan waktu sholat default";
-      locationInfo = `<i class='bi bi-building'></i> ${APP_CONFIG.cities.DEFAULT}`;
-      color = "#ff6b6b";
+      message = "Menggunakan lokasi default (Kuala Lumpur)";
+      icon = "<i class='bi bi-info-circle'></i>";
       break;
+    default:
+      message = "Silakan pilih kota Anda dari dropdown";
+      icon = "<i class='bi bi-question-circle'></i>";
   }
 
-  notifElement.innerHTML = message;
-  notifElement.style.color = color;
-  notifElement.style.display = "block";
+  notifElement.innerHTML = `${icon} ${message}`;
+  notifElement.style.display = "flex";
 
-  if (locationInfoElement) {
-    locationInfoElement.innerHTML = locationInfo;
-  }
-
+  // Sembunyikan notifikasi setelah 5 detik
   setTimeout(() => {
-    notifElement.style.display = "none";
+    notifElement.style.opacity = "0";
+    setTimeout(() => {
+      notifElement.style.display = "none";
+      notifElement.style.opacity = "1";
+    }, 500);
   }, 5000);
 }
 
@@ -1008,61 +952,30 @@ function initNavigation() {
 }
 
 /**
- * Fungsi untuk menangani navigasi antar halaman
- * @param {string} page - ID halaman yang akan ditampilkan (tanpa suffix '-page')
+ * Fungsi untuk navigasi antar halaman
+ * @param {string} pageId - ID halaman yang akan ditampilkan
  */
-function navigateToPage(page) {
-  if (!page) {
-    console.error("Halaman tidak ditentukan");
-    return;
-  }
-
+function navigateToPage(pageId) {
   try {
-    // Validasi input
-    if (typeof page !== "string") {
-      console.error("Parameter halaman harus berupa string");
-      return;
-    }
-
-    // Tambahkan suffix '-page' ke ID halaman
-    const pageId = `${page}-page`;
-
-    // Periksa apakah halaman ada sebelum mencoba menampilkannya
-    const pageElement = document.getElementById(pageId);
-    if (!pageElement) {
-      console.warn(`Halaman dengan ID '${pageId}' tidak ditemukan`);
-      // Tampilkan halaman default jika halaman yang diminta tidak ditemukan
-      if (APP_CONFIG && APP_CONFIG.defaultPage) {
-        console.log(`Menampilkan halaman default: ${APP_CONFIG.defaultPage}`);
-        showPage(APP_CONFIG.defaultPage);
-      }
-      return;
-    }
-
-    // Gunakan fungsi showPage yang sudah ada untuk menampilkan halaman
-    showPage(pageId);
-
-    // Scroll ke atas halaman dengan penanganan error
-    try {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-    } catch (scrollError) {
-      // Fallback untuk browser yang tidak mendukung opsi behavior
-      console.warn("Browser tidak mendukung smooth scrolling, menggunakan scrollTo standar", scrollError);
-      window.scrollTo(0, 0);
+    // Tambahkan suffix '-page' jika belum ada
+    const fullPageId = pageId.endsWith('-page') ? pageId : `${pageId}-page`;
+    
+    // Sembunyikan semua halaman
+    document.querySelectorAll('.page-content').forEach(page => {
+      page.style.display = 'none';
+    });
+    
+    // Tampilkan halaman yang dipilih
+    const targetPage = document.getElementById(fullPageId);
+    if (targetPage) {
+      targetPage.style.display = 'block';
+      // Update navigasi aktif
+      updateActiveNavigation(fullPageId);
+    } else {
+      console.error(`Page with ID ${fullPageId} not found`);
     }
   } catch (error) {
-    console.error("Error saat navigasi halaman:", error);
-    // Tampilkan halaman default jika terjadi error
-    if (APP_CONFIG && APP_CONFIG.defaultPage) {
-      try {
-        showPage(APP_CONFIG.defaultPage);
-      } catch (fallbackError) {
-        console.error("Error saat menampilkan halaman default:", fallbackError);
-      }
-    }
+    console.error('Error navigating to page:', error);
   }
 }
 
@@ -1140,6 +1053,44 @@ const cleanup = {
   },
 };
 
+/**
+ * Inisialisasi dropdown pemilih kota
+ */
+function initCitySelector() {
+  const citySelector = document.getElementById("city-selector");
+  if (!citySelector) return;
+
+  // Kosongkan dropdown terlebih dahulu
+  citySelector.innerHTML = "";
+
+  // Tambahkan opsi untuk setiap kota
+  APP_CONFIG.cities.LIST.forEach((city) => {
+    const option = document.createElement("option");
+    option.value = city;
+    option.textContent = city;
+    citySelector.appendChild(option);
+  });
+
+  // Set nilai default dari localStorage atau default kota
+  const savedCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
+  citySelector.value = savedCity;
+
+  // Tambahkan event listener untuk perubahan kota
+  citySelector.addEventListener("change", async function () {
+    const selectedCity = this.value;
+    console.log(`City changed to: ${selectedCity}`);
+
+    // Simpan pilihan kota di localStorage
+    localStorage.setItem("selectedCity", selectedCity);
+
+    // Perbarui waktu sholat berdasarkan kota yang dipilih
+    currentPrayerTimes = await PrayerTimeService.getPrayerTimes(selectedCity);
+    updatePrayerTimesDisplay(currentPrayerTimes);
+  });
+
+  console.log("City selector initialized");
+}
+
 // Main initialization
 function initializeApp() {
   try {
@@ -1149,6 +1100,9 @@ function initializeApp() {
     updateCurrentDate();
     addLoadingDotsStyle();
     createBubbles();
+
+    // Inisialisasi dropdown pemilih kota
+    initCitySelector();
 
     // Inisialisasi audio adzan
     initAdhanAudio();
@@ -1195,23 +1149,7 @@ function initializeApp() {
 // Start the app
 document.addEventListener("DOMContentLoaded", initializeApp);
 
-/**
- * Fungsi untuk memformat waktu string secara konsisten
- * @param {string} timeStr - String waktu dalam format "HH:MM"
- * @returns {string} - Waktu yang diformat dalam format "HH:MM"
- */
-function formatTimeString(timeStr) {
-  try {
-    const [hours, minutes] = timeStr.split(":").map(Number);
-    if (isNaN(hours) || isNaN(minutes)) {
-      throw new Error("Invalid time format");
-    }
-    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}`;
-  } catch (error) {
-    console.error("Error formatting time:", error);
-    return "--:--";
-  }
-}
+// Fungsi formatTimeString sudah diimplementasikan sebagai metode statis di kelas PrayerTimeService
 
 /**
  * Retrieves cached prayer times from localStorage
