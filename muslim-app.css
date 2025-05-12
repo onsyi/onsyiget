@@ -222,6 +222,21 @@ body {
   animation-delay: 0.8s;
 }
 
+/* Animasi untuk elemen floating */
+@keyframes float-base {
+  0% {
+    bottom: -50px;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 150%;
+    opacity: 0;
+  }
+}
+
 @keyframes float-bubble {
   0% {
     bottom: -50px;
@@ -288,20 +303,6 @@ body {
   100% {
     bottom: 150%;
     transform: translate(0, 0);
-    opacity: 0;
-  }
-}
-
-@keyframes float-base {
-  0% {
-    bottom: -50px;
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    bottom: 150%;
     opacity: 0;
   }
 }
@@ -550,15 +551,20 @@ body {
   gap: 8px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
   justify-content: flex-start;
   margin: 0 -5px;
   padding: 8px 5px;
+  /* Menggunakan class utilitas untuk scrollbar */
 }
 
-.prayer-list::-webkit-scrollbar {
-  display: none;
+/* ======= UTILITY CLASSES ======= */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .prayer-item {
@@ -810,13 +816,8 @@ body {
   display: flex;
   overflow-x: auto;
   padding: 0 var(--spacing-sm);
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
   margin-top: var(--spacing-sm);
-}
-
-.coupon-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  /* Menggunakan class utilitas untuk scrollbar */
 }
 
 .coupon-card {
@@ -941,6 +942,7 @@ body {
   overflow-x: auto;
   width: 100%;
   white-space: nowrap;
+  /* Menggunakan class utilitas untuk scrollbar */
 }
 
 .item-nearby-row {
@@ -1062,13 +1064,8 @@ body {
   scroll-snap-type: x mandatory;
   gap: 5px;
   padding: 5px 0;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
   margin: 0;
-}
-
-.food-category-container::-webkit-scrollbar {
-  display: none;
+  /* Menggunakan class utilitas untuk scrollbar */
 }
 
 .food-category-item {
