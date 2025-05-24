@@ -19,14 +19,7 @@ const APP_CONFIG = {
     maghrib: "Maghrib",
     isha: "Isyak",
   },
-  // Default times
-  defaultPrayerTimes: {
-    fajr: "04:30",
-    dhuhr: "12:00",
-    asr: "15:00",
-    maghrib: "18:00",
-    isha: "19:30",
-  },
+
   // Calculation methods
   calculationMethods: {
     MUIS_SINGAPORE: 11,
@@ -687,15 +680,22 @@ function playAdhan(prayer) {
  * Digunakan ketika terjadi error dalam mendapatkan waktu sholat dari API
  */
 function useDefaultPrayerTimes() {
-  console.log("Using default prayer times");
-  // Gunakan waktu default dari konfigurasi
-  const defaultTimes = APP_CONFIG.defaultPrayerTimes;
+  console.log("Using prayer times from prayer-times.js");
+  // Gunakan waktu dari prayer-times.js
+  const prayerData = window.loadPrayerTimes()[0];
+  const defaultTimes = {
+    fajr: prayerData.prayer_times.Subuh,
+    dhuhr: prayerData.prayer_times.Zohor,
+    asr: prayerData.prayer_times.Asar,
+    maghrib: prayerData.prayer_times.Maghrib,
+    isha: prayerData.prayer_times.Isyak,
+  };
 
-  // Update UI dengan waktu default
+  // Update UI dengan waktu dari prayer-times.js
   updateUIWithPrayerTimes(defaultTimes);
 
-  // Tampilkan notifikasi bahwa menggunakan waktu default
-  showLocationStatus("default");
+  // Tampilkan notifikasi bahwa menggunakan waktu dari prayer-times.js
+  showLocationStatus("kota-bharu");
 }
 
 // Fungsi updateCurrentDate sudah didefinisikan sebelumnya
@@ -1272,14 +1272,14 @@ function initializeApp() {
 // Inisialisasi aplikasi
 document.addEventListener("DOMContentLoaded", function () {
   console.log("App initialized");
-  
+
   // Deteksi apakah aplikasi berjalan di Android
   const isAndroid = /Android/i.test(navigator.userAgent);
   console.log("App initialization - Running on Android:", isAndroid);
-  
+
   // Inisialisasi aplikasi
   initializeApp();
-  
+
   // Jika di Android, pastikan waktu sholat dimuat dengan benar
   if (isAndroid) {
     // Tambahkan sedikit penundaan untuk memastikan DOM telah sepenuhnya dimuat
@@ -1287,7 +1287,7 @@ document.addEventListener("DOMContentLoaded", function () {
       try {
         const savedCity = localStorage.getItem("selectedCity") || APP_CONFIG.cities.DEFAULT;
         console.log("Loading prayer times for city:", savedCity);
-        
+
         // Coba muat waktu sholat
         currentPrayerTimes = await PrayerTimeService.getPrayerTimes(savedCity);
         updatePrayerTimesDisplay(currentPrayerTimes);
