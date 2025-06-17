@@ -1,4 +1,37 @@
-      /* Css Tab Akun */
+        @import url("https://fonts.googleapis.com/css2?family=DynaPuff&family=Poppins:wght@300;400;500&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700&family=Rubik+Burned&family=Rubik+Distressed&display=swap");
+
+      :root {
+        --OnsyiBg: #f5f9ff;
+        --OnsyiB1: #2095f2;
+        --OnsyiB2: #2196f3;
+        --OnsyiB3: #43a6f7;
+        --gradient3: linear-gradient(310deg, rgba(2, 0, 36, 1) 0%, rgba(113, 69, 209, 1) 16%, rgba(65, 10, 186, 1) 100%);
+        --gradient: repeating-linear-gradient(-45deg, #ff00e0 0%, #ff9800 7.14%, #ff9800 14.28%, #094d9e 21.4%, #5993cd 28.56%, #ff9800 35.7%, #ff9800 42.84%, #ff9800 50%);
+        --gradient2: repeating-linear-gradient(-45deg, #63a7e6 0%, #094d9e 7.14%, #5993cd 14.28%, #63a7e6 21.4%, #5993cd 28.56%, #5993cd 35.7%, #094d9e 42.84%, #63a7e6 50%);
+      }
+
+      body {
+        background: var(--OnsyiB2) !important;
+        font-family: "Poppins", sans-serif !important;
+        font-weight: 500;
+        margin: 0;
+        height: 100%;
+        text-transform: capitalize !important;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html {
+        box-sizing: border-box;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+/* Css Tab Akun */
       .sidebar {
         width: auto;
         background: #fff;
