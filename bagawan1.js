@@ -237,7 +237,7 @@ function generateProductHTML(data) {
                 <img class="OnsyiImageSlide" src="${element.Gambar}" alt="${element.Nama}" onerror="this.src='https://via.placeholder.com/140x140?text=No+Image'">
                 <t class="stars">⭐4.8</t>
               </div>
-              <t class="OnsyLogo">onsyi</t>
+              <t class="OnsyLogo">Bagawan</t>
               <txt class="OnsyiLabelSlideFloatFD">Promo</txt>
               <div class="OnsyititleSlide">${element.Nama}</div>
               <div class="card-price-container">
