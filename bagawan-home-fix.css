@@ -1123,8 +1123,10 @@ img {
 .bottom-nav {
   position: fixed;
   bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin: 0 auto;
+  right: 0;
+  left: 0;
+  transform: translateX(0%);
   background: #ffffff;
   z-index: 1000;
   width: 90%;
@@ -1136,21 +1138,21 @@ img {
 
 .nav-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  position: relative;
+  width: 100%;
 }
 
 .nav-item {
+  flex: 1 1 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
-  color: #94a3b8;
-  padding: 5px;
-  border-radius: 16px;
-  transition: all 0.2s ease;
-  position: relative;
+  justify-content: center;
+  min-width: 0;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
 .nav-item:hover,
@@ -1179,13 +1181,15 @@ img {
 .cart-icon {
   width: 40px;
   height: 40px;
-  margin: -2px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
   transition: all 0.2s ease;
 }
 
-.nav-item:hover .cart-icon,
-.nav-item.active .cart-icon {
-  transform: translateY(-2px) scale(1.1);
+.nav-item.cart {
+  z-index: 2;
 }
 
 /* Active state background */
