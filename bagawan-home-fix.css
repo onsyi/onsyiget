@@ -366,6 +366,7 @@ img {
   font-size: 13px;
   color: #2196f3;
   overflow: hidden;
+  width: 70px;
   text-overflow: ellipsis;
   white-space: nowrap;
   line-height: 1.3;
