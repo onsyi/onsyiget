@@ -56,9 +56,15 @@ function initializeScrollToTop() {
   if (elements.scroll) {
     elements.scroll.addEventListener("click", function (e) {
       e.preventDefault();
-      $("html, body").animate({ scrollTop: 0 }, 600, "swing");
+      if (typeof $ === "function" && $("html, body").animate) {
+        $("html, body").animate({ scrollTop: 0 }, 600, "swing");
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
       return false;
     });
+  } else {
+    console.warn("#scroll element not found or not initialized");
   }
 }
 
