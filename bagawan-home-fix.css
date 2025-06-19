@@ -476,12 +476,10 @@ img {
   height: 30px;
   object-fit: contain;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .menu-item:hover .menu-icon img {
   transform: scale(1.1);
-  filter: drop-shadow(0 4px 8px rgba(33, 150, 243, 0.2));
 }
 
 .menu-label {
@@ -1125,7 +1123,7 @@ img {
 .bottom-nav {
   position: fixed;
   bottom: 16px;
-  left: 48%;
+  left: 50%;
   transform: translateX(-50%);
   background: #ffffff;
   z-index: 1000;
@@ -1385,12 +1383,10 @@ img {
   height: 30px;
   object-fit: contain;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .menu-popup-item:hover .menu-popup-icon img {
   transform: scale(1.1);
-  filter: drop-shadow(0 4px 8px rgba(33, 150, 243, 0.2));
 }
 
 .menu-popup-label {
@@ -1422,8 +1418,6 @@ img {
   bottom: 0;
   background: rgba(0, 0, 0, 0.6);
   z-index: 999;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
 }
 
 .menu-overlay.active {
