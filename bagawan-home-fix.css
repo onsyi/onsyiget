@@ -25,9 +25,11 @@
   padding: 0;
 }
 
-html {
+html,
+body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth !important;
 }
 
 body {
@@ -195,7 +197,7 @@ img {
 .profile-container {
   width: 94%;
   max-width: 400px;
-  margin: 5.5rem auto 1.5rem;
+  margin: 3.5rem auto 1.5rem;
   padding: 1.25rem;
   background: var(--bg-light);
   border: 2px solid var(--border-dark);
@@ -323,7 +325,7 @@ img {
 /* ===== MENU NAVIGATION ===== */
 .menu-container {
   padding: 0px;
-  margin: 0.3rem auto;
+  margin: -1rem auto;
   background: var(--bg-white);
   border-radius: 15px;
   box-shadow: 0 2px 10px var(--shadow-light);
@@ -363,6 +365,10 @@ img {
   display: block;
   font-size: 13px;
   color: #2196f3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.3;
   font-weight: 500;
   margin-top: 4px;
   margin-bottom: 0;
@@ -406,9 +412,9 @@ img {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-  padding: 15px;
+  padding: 10px;
   background: linear-gradient(145deg, #f8f9fa, #ffffff);
-  border-radius: 24px;
+  border-radius: 25px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(33, 150, 243, 0.1);
 }
 
@@ -489,10 +495,6 @@ img {
   z-index: 1;
   padding: 6px 12px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .menu-item:hover .menu-label {
@@ -504,7 +506,7 @@ img {
 
 /* ===== AD BANNER ===== */
 .banner-container {
-  width: 94%;
+  width: 100%;
   max-width: 400px;
   margin: 0 auto;
   padding: 15px;
@@ -520,6 +522,8 @@ img {
   scroll-snap-type: x mandatory;
   padding-bottom: 10px;
   padding-top: 5px;
+  scroll-behavior: smooth;
+  will-change: scroll-position;
 }
 
 .banner-scroll-wrapper a {
@@ -863,6 +867,8 @@ img {
   margin: 0 auto;
   width: 94%;
   max-width: 400px;
+  scroll-behavior: smooth;
+  will-change: scroll-position;
 }
 
 .Onsyi-Row::-webkit-scrollbar {
@@ -903,9 +909,9 @@ img {
   margin: 0 auto;
   padding: 0px;
   border-radius: 12px;
-  min-height: 290px;
+  min-height: 250px;
   position: relative;
-  width: 94%;
+  width: 100%;
   max-width: 400px;
 }
 
@@ -952,16 +958,16 @@ img {
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
   float: left;
   border-radius: 15px;
-  width: 42% !important;
-  height: 230px;
-  margin-left: 5% !important;
+  width: 45% !important;
+  height: auto;
+  margin-left: 3.5% !important;
   margin-right: 0px !important;
   margin-top: 4% !important;
-  margin-bottom: 10px !important;
+  margin-bottom: 0px !important;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  min-width: 50px;
+  min-width: 100px;
   max-width: 47%;
   overflow: hidden;
   text-decoration: none;
@@ -1019,14 +1025,14 @@ img {
   box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
   background: #fff;
-  width: 120px;
+  width: 140px;
   height: auto;
   margin-left: 15px !important;
   margin-right: 0px !important;
   margin-top: 1% !important;
   margin-bottom: 20px !important;
-  min-width: 100px;
-  max-width: 120px;
+  min-width: 120px;
+  max-width: 140px;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
   flex: 0 0 auto; /* Fix flex-shrink issue */
@@ -1119,11 +1125,11 @@ img {
 .bottom-nav {
   position: fixed;
   bottom: 16px;
-  left: 50%;
+  left: 48%;
   transform: translateX(-50%);
   background: #ffffff;
   z-index: 1000;
-  width: 92%;
+  width: 90%;
   max-width: 400px;
   border-radius: 25px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -1143,7 +1149,7 @@ img {
   align-items: center;
   text-decoration: none;
   color: #94a3b8;
-  padding: 8px 12px;
+  padding: 5px;
   border-radius: 16px;
   transition: all 0.2s ease;
   position: relative;
@@ -1155,9 +1161,9 @@ img {
 }
 
 .nav-icon {
-  width: 24px;
-  height: 24px;
-  margin-bottom: 4px;
+  width: 30px;
+  height: 30px;
+  margin-bottom: 0;
   transition: all 0.2s ease;
 }
 
@@ -1167,14 +1173,14 @@ img {
 }
 
 .nav-text {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
   margin-top: 2px;
 }
 
 .cart-icon {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   margin: -2px 0;
   transition: all 0.2s ease;
 }
@@ -1398,10 +1404,6 @@ img {
   z-index: 1;
   padding: 6px 12px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .menu-popup-item:hover .menu-popup-label {
@@ -1462,239 +1464,6 @@ img {
   }
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-/* For screens smaller than 430px */
-@media (max-width: 430px) {
-  body {
-    margin-top: 60px;
-    margin-bottom: 70px;
-  }
-
-  #header2 {
-    padding: 6px 10px;
-  }
-
-  .form-control {
-    padding: 8px 35px 8px 10px;
-    font-size: 13px;
-  }
-
-  .rounded-image3 {
-    width: 28px;
-    height: 28px;
-  }
-
-  .profile-container {
-    width: 92%;
-    padding: 1rem;
-    margin: 4rem auto 1rem;
-  }
-
-  .nama {
-    font-size: 0.9rem;
-    max-width: 10rem;
-  }
-
-  .poin {
-    font-size: 0.875rem;
-  }
-
-  .topup,
-  .withdraw {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.7rem;
-    min-width: 70px;
-  }
-
-  .menu-container {
-    margin: 0.2rem auto;
-  }
-
-  .menu-section {
-    padding: 15px;
-  }
-
-  .menu-title {
-    font-size: 14px;
-  }
-
-  .navigasi {
-    gap: 8px;
-    padding: 12px;
-  }
-
-  .menu-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .menu-icon img {
-    width: 25px;
-    height: 25px;
-  }
-
-  .menu-label {
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-
-  .banner-container {
-    padding: 10px;
-  }
-
-  .ad-banner {
-    width: 250px;
-    height: 130px;
-  }
-
-  .header-container {
-    margin: 8px auto;
-    height: 60px;
-    padding: 12px;
-  }
-
-  .judul2 {
-    font-size: 14px !important;
-  }
-
-  #clock div {
-    min-width: 24px;
-    height: 24px;
-    padding: 3px 8px;
-  }
-
-  #days,
-  #hours,
-  #minutes,
-  #seconds {
-    font-size: 12px;
-  }
-
-  .countdown-text {
-    font-size: 11px;
-  }
-
-  .cardOnsyiSlide,
-  .OnsyiCard {
-    width: 120px;
-  }
-
-  .product-image-container,
-  .OnsyiImage {
-    height: 120px;
-  }
-
-  .OnsyititleSlide,
-  .OnsyiText-Judul {
-    font-size: 13px;
-    padding: 6px 8px 3px;
-  }
-
-  .OnsyiPriceSlide,
-  .OnsyiText-Harga {
-    font-size: 13px;
-    margin-bottom: 25px;
-  }
-
-  .OnsyiPriceSlideDisk {
-    font-size: 11px;
-  }
-
-  .bottom-nav {
-    bottom: 12px;
-    width: 94%;
-    padding: 4px;
-  }
-
-  .nav-item {
-    padding: 6px 8px;
-  }
-
-  .nav-icon {
-    width: 20px;
-    height: 20px;
-  }
-
-  .cart-icon {
-    width: 26px;
-    height: 26px;
-  }
-
-  .nav-text {
-    font-size: 10px;
-  }
-
-  .menu-popup {
-    padding: 20px 15px;
-  }
-
-  .menu-popup-title {
-    font-size: 18px;
-  }
-
-  .menu-popup-grid {
-    gap: 8px;
-    padding: 12px;
-  }
-
-  .menu-popup-icon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .menu-popup-icon img {
-    width: 25px;
-    height: 25px;
-  }
-
-  .menu-popup-label {
-    font-size: 11px;
-    padding: 4px 8px;
-  }
-}
-
-/* For very small screens (320px and below) */
-@media (max-width: 320px) {
-  .profile-container {
-    width: 90%;
-    padding: 0.75rem;
-  }
-
-  .nama {
-    font-size: 0.85rem;
-    max-width: 8rem;
-  }
-
-  .menu-icon {
-    width: 45px;
-    height: 45px;
-  }
-
-  .menu-icon img {
-    width: 22px;
-    height: 22px;
-  }
-
-  .ad-banner {
-    width: 220px;
-    height: 110px;
-  }
-
-  .cardOnsyiSlide,
-  .OnsyiCard {
-    width: 110px;
-  }
-
-  .product-image-container,
-  .OnsyiImage {
-    height: 110px;
-  }
-
-  .bottom-nav {
-    width: 96%;
-  }
-}
-
 .banner-container .view-all-btn {
   margin-top: -8px;
 }
@@ -1734,4 +1503,12 @@ img {
 }
 #header2:not(.header-transparent) .rounded-image3 {
   filter: brightness(0) invert(0) grayscale(0) contrast(1);
+}
+
+.Onsyi-Row,
+.Onsyi-Rowe,
+.banner-scroll-wrapper {
+  scroll-behavior: smooth;
+  will-change: scroll-position;
+  -webkit-overflow-scrolling: touch;
 }
