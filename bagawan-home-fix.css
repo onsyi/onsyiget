@@ -13,9 +13,10 @@
   --border-dark: #000000;
   --border-profile: #eaecf0;
   --shadow-light: rgba(0, 0, 0, 0.1);
-  --status-red: #ff0000;
+  --status-red: #fa4b8b;
   --promo-yellow: #ffeb3b;
-  --promo-orange: #ff512f;
+  --promo-orange: #fa4b8b;
+  --primary-pink: #fa4b8b;
 }
 
 /* ===== BASE STYLES ===== */
@@ -134,7 +135,7 @@ img {
 
 .form-control:focus {
   outline: none;
-  border-color: #2196f3;
+  border-color: var(--primary-pink);
   box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
 }
 
@@ -147,12 +148,12 @@ img {
   border: none;
   padding: 6px;
   cursor: pointer;
-  color: #ffffff;
+  color: var(--primary-pink);
   transition: color 0.3s ease;
 }
 
 .search-button:hover {
-  color: #2196f3;
+  color: var(--primary-pink);
 }
 
 .search-icon {
@@ -178,7 +179,7 @@ img {
   top: -2px;
   right: 50%;
   transform: translateX(50%);
-  background: #ff4444;
+  background: #fa4b8b;
   color: white;
   border-radius: 50%;
   padding: 1px 4px;
@@ -233,7 +234,7 @@ img {
   margin: 0;
   font-size: 0.9375rem;
   font-weight: 700;
-  color: var(--primary-blue);
+  color: var(--primary-pink);
   letter-spacing: 0.3px;
 }
 
@@ -264,8 +265,8 @@ img {
 
 .withdraw {
   background: var(--bg-white);
-  color: var(--primary-blue);
-  border: 1px solid var(--primary-blue);
+  color: var(--primary-pink);
+  border: 1px solid var(--primary-pink);
   order: 2;
 }
 
@@ -365,7 +366,7 @@ img {
 .menu-title .lokasi {
   display: block;
   font-size: 13px;
-  color: #2196f3;
+  color: var(--primary-pink);
   overflow: hidden;
   width: 70px;
   text-overflow: ellipsis;
@@ -380,7 +381,7 @@ img {
   font-family: "Poppins", sans-serif;
   font-size: 12px;
   font-weight: 500;
-  color: var(--primary-blue);
+  color: var(--primary-pink);
   text-decoration: none;
   padding: 6px 12px;
   background: rgba(33, 150, 243, 0.1);
@@ -499,7 +500,7 @@ img {
 
 .menu-item:hover .menu-label {
   background: #ffffff;
-  color: var(--primary-blue);
+  color: var(--primary-pink);
   box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
   transform: translateY(2px);
 }
@@ -583,7 +584,7 @@ img {
 }
 
 #clock div {
-  background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+  background: linear-gradient(45deg, #fa4b8b, #ffb6d5);
   padding: 4px 10px;
   border-radius: 6px;
   min-width: 27px;
@@ -603,7 +604,7 @@ img {
 }
 
 #clock div:nth-child(4) {
-  background: linear-gradient(45deg, #fa709a, #fee140);
+  background: linear-gradient(45deg, #fa4b8b, #ffb6d5);
 }
 
 #days,
@@ -728,7 +729,7 @@ img {
   margin: 0;
   font-weight: 700;
   font-size: 15px;
-  background: var(--primary-blue);
+  background: var(--primary-pink);
   color: var(--text-white);
   padding: 4px 12px;
   border-radius: 50px;
@@ -1016,7 +1017,7 @@ img {
   color: #fff;
   display: block !important;
   font-size: 15px !important;
-  background: #ff0000;
+  background: #fa4b8b;
   width: 92% !important;
   border-radius: 15px;
 }
@@ -1112,7 +1113,7 @@ img {
   opacity: 85%;
   width: 50%;
   height: 20px;
-  background: #ed2739;
+  background: linear-gradient(to top, #fa4b8b 20%, #fa4b8b 80%);
   color: white;
   font-size: 12px;
   display: none !important;
@@ -1135,7 +1136,7 @@ img {
   max-width: 400px;
   border-radius: 25px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 10px;
+  padding: 5px;
 }
 
 .nav-container {
@@ -1159,7 +1160,7 @@ img {
 
 .nav-item:hover,
 .nav-item.active {
-  color: #2196f3;
+  color: var(--primary-pink);
 }
 
 .nav-icon {
@@ -1254,7 +1255,7 @@ img {
 .menu-popup-title {
   font-size: 20px;
   font-weight: 600;
-  color: var(--primary-blue);
+  color: var(--primary-pink);
   margin: 0;
   display: flex;
   align-items: center;
@@ -1266,7 +1267,7 @@ img {
   display: inline-block;
   width: 4px;
   height: 20px;
-  background: var(--primary-blue);
+  background: var(--primary-pink);
   border-radius: 2px;
 }
 
@@ -1274,7 +1275,7 @@ img {
   background: rgba(33, 150, 243, 0.1);
   border: none;
   font-size: 22px;
-  color: var(--primary-blue);
+  color: var(--primary-pink);
   cursor: pointer;
   padding: 8px;
   width: 40px;
@@ -1380,7 +1381,7 @@ img {
 
 .menu-popup-item:hover .menu-popup-label {
   background: #ffffff;
-  color: var(--primary-blue);
+  color: var(--primary-pink);
   box-shadow: 0 4px 12px rgba(33, 150, 243, 0.1);
   transform: translateY(2px);
 }
