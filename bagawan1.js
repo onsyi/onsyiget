@@ -330,7 +330,7 @@ function initializeApp() {
       halaman: 1,
       apiEndpoints: {
         products: "https://onsyime.my.id/dianteer.php",
-        food: "https://onsyime.my.id/food.php",
+        food: "https://onsyime.my.id/bagawan-officialstore.php",
       },
     };
     // Initialize all features
