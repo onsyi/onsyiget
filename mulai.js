@@ -143,6 +143,10 @@ window.addEventListener("DOMContentLoaded", function () {
   if (cardSinopsis && modalSinopsis)
     cardSinopsis.onclick = function (e) {
       e.preventDefault();
+      if (modalMulai) modalMulai.classList.remove("active");
+      if (modalVideo) modalVideo.classList.remove("active");
+      if (modalMateri) modalMateri.classList.remove("active");
+      console.log("Buka modal Sinopsis dari card");
       modalSinopsis.classList.add("active");
     };
   if (closeModalSinopsis && modalSinopsis)
@@ -186,4 +190,69 @@ window.addEventListener("DOMContentLoaded", function () {
     bantuanWhatsapp.onclick = function () {
       window.open("https://wa.me/", "_blank");
     };
+  var navBtnHome = document.getElementById("navBtnHome"),
+    navBtnMateri = document.getElementById("navBtnMateri"),
+    navBtnSinopsis = document.getElementById("navBtnSinopsis");
+  if (navBtnHome && modalVideo && modalMateri && modalSinopsis) {
+    navBtnHome.onclick = function () {
+      // Tutup semua modal lain, buka modal video
+      if (modalMateri) modalMateri.classList.remove("active");
+      if (modalSinopsis) modalSinopsis.classList.remove("active");
+      if (modalMulai) modalMulai.classList.remove("active");
+      modalVideo.classList.add("active");
+    };
+  }
+  if (navBtnMateri && modalMateri && modalVideo && modalSinopsis) {
+    navBtnMateri.onclick = function () {
+      if (modalVideo) modalVideo.classList.remove("active");
+      if (modalSinopsis) modalSinopsis.classList.remove("active");
+      if (modalMulai) modalMulai.classList.remove("active");
+      modalMateri.classList.add("active");
+    };
+  }
+  if (navBtnSinopsis && modalSinopsis && modalVideo && modalMateri) {
+    navBtnSinopsis.onclick = function () {
+      if (modalVideo) modalVideo.classList.remove("active");
+      if (modalMateri) modalMateri.classList.remove("active");
+      if (modalMulai) modalMulai.classList.remove("active");
+      modalSinopsis.classList.add("active");
+    };
+  }
+  // Navbar shortcut untuk semua modal
+  function openModalVideo() {
+    if (modalMateri) modalMateri.classList.remove("active");
+    if (modalSinopsis) modalSinopsis.classList.remove("active");
+    if (modalMulai) modalMulai.classList.remove("active");
+    if (modalVideo) modalVideo.classList.add("active");
+  }
+  function openModalMateri() {
+    if (modalVideo) modalVideo.classList.remove("active");
+    if (modalSinopsis) modalSinopsis.classList.remove("active");
+    if (modalMulai) modalMulai.classList.remove("active");
+    if (modalMateri) modalMateri.classList.add("active");
+  }
+  function openModalSinopsis() {
+    if (modalVideo) modalVideo.classList.remove("active");
+    if (modalMateri) modalMateri.classList.remove("active");
+    if (modalMulai) modalMulai.classList.remove("active");
+    if (modalSinopsis) modalSinopsis.classList.add("active");
+  }
+  // Modal Video
+  if (navBtnHome) navBtnHome.onclick = openModalVideo;
+  if (navBtnMateri) navBtnMateri.onclick = openModalMateri;
+  if (navBtnSinopsis) navBtnSinopsis.onclick = openModalSinopsis;
+  // Modal Sinopsis
+  var navBtnHome2 = document.getElementById("navBtnHome2"),
+    navBtnMateri2 = document.getElementById("navBtnMateri2"),
+    navBtnSinopsis2 = document.getElementById("navBtnSinopsis2");
+  if (navBtnHome2) navBtnHome2.onclick = openModalVideo;
+  if (navBtnMateri2) navBtnMateri2.onclick = openModalMateri;
+  if (navBtnSinopsis2) navBtnSinopsis2.onclick = openModalSinopsis;
+  // Modal Materi
+  var navBtnHome3 = document.getElementById("navBtnHome3"),
+    navBtnMateri3 = document.getElementById("navBtnMateri3"),
+    navBtnSinopsis3 = document.getElementById("navBtnSinopsis3");
+  if (navBtnHome3) navBtnHome3.onclick = openModalVideo;
+  if (navBtnMateri3) navBtnMateri3.onclick = openModalMateri;
+  if (navBtnSinopsis3) navBtnSinopsis3.onclick = openModalSinopsis;
 });
