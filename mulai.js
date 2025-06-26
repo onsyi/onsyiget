@@ -153,4 +153,37 @@ window.addEventListener("DOMContentLoaded", function () {
     modalSinopsis.addEventListener("click", function (e) {
       if (e.target === modalSinopsis) modalSinopsis.classList.remove("active");
     });
+  // Bantuan item actions
+  var bantuanKeluar = document.getElementById("bantuanKeluar"),
+    bantuanMenu = document.getElementById("bantuanMenu"),
+    bantuanKembali = document.getElementById("bantuanKembali"),
+    bantuanInstagram = document.getElementById("bantuanInstagram"),
+    bantuanYoutube = document.getElementById("bantuanYoutube"),
+    bantuanWhatsapp = document.getElementById("bantuanWhatsapp");
+  if (bantuanKeluar)
+    bantuanKeluar.onclick = function () {
+      if (sidebar) sidebar.classList.remove("active");
+      if (overlay) overlay.classList.remove("active");
+      if (modalBantuan) modalBantuan.classList.remove("active");
+    };
+  if (bantuanMenu)
+    bantuanMenu.onclick = function () {
+      if (modalMulai) modalMulai.classList.add("active");
+    };
+  if (bantuanKembali)
+    bantuanKembali.onclick = function () {
+      window.location.href = "/";
+    };
+  if (bantuanInstagram)
+    bantuanInstagram.onclick = function () {
+      window.open("https://instagram.com/", "_blank");
+    };
+  if (bantuanYoutube)
+    bantuanYoutube.onclick = function () {
+      window.open("https://youtube.com/", "_blank");
+    };
+  if (bantuanWhatsapp)
+    bantuanWhatsapp.onclick = function () {
+      window.open("https://wa.me/", "_blank");
+    };
 });
