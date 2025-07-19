@@ -1,4 +1,4 @@
-// Global variables
+    // Global variables
 let elements = {};
 let config = {};
 
@@ -157,7 +157,7 @@ function handleProductSuccess(data) {
     if (!data) throw new Error("No data received");
     if (!Array.isArray(data)) throw new Error("Invalid data format: expected array");
     if (data.length === 0) {
-      elements.promo.innerHTML = '<div class="col"><div class="no-products">Tidak ada produk tersedia</div></div>';
+      elements.promo.innerHTML = '<div class="produk-grid"><div class="no-products">Tidak ada produk tersedia</div></div>';
       return;
     }
     const xhtml = generateProductHTML(data);
@@ -180,36 +180,36 @@ function handleProductError(err) {
 
 function generateProductHTML(data) {
   try {
-    let xhtml = '<div class="col">';
+    let xhtml = '<div class="promo-cards-row">';
     data.forEach((element) => {
       if (!element || !element.Harga || !element.Nama || !element.Gambar) {
         console.warn("Invalid product data:", element);
         return;
       }
       try {
-        const hargaNormal = element.Harga.substring(3).replace(/,/g, "");
-        if (isNaN(hargaNormal)) {
-          console.warn("Invalid price format:", element.Harga);
-          return;
-        }
-        const hargadiskon = formatPrice(parseInt(hargaNormal * config.persenKu + parseInt(hargaNormal)));
-        const productId = element.Gambar.substr(-17, 13);
+        const hargaDiskon = element.HargaDiskon && element.HargaDiskon.trim() !== "" ? `<p class='item-price-before-discount'>${element.HargaDiskon}</p>` : "";
+        const stok = element.Stok || "Habis";
+        const rating = element.Rating ? element.Rating : "4.9";
+        const produkLink = element.Link && element.Link.startsWith("http") ? element.Link : `https://jgjk.mobi/p/${element.Gambar.substr(-17, 13)}`;
         xhtml += `
-          <div class="cardOnsyiSlide">
-            <a href="https://jgjk.mobi/p/${productId}">
-              <div class="product-image-container">
-                <img class="OnsyiImageSlide" src="${element.Gambar}" alt="${element.Nama}" onerror="this.src='https://via.placeholder.com/140x140?text=No+Image'">
-                <t class="stars">⭐4.8</t>
+          <a href="${produkLink}" class="promo-card-item promo-card-item-link" target="_blank">
+            <div class="image-container">
+              <div class="ribbon">Hot</div>
+              <span class="promo-label"><i class='fa fa-star'></i> ${rating}</span>
+              <span class="promo-badge">Stok: ${stok}</span>
+              <img src="${element.Gambar}" alt="${element.Nama}" />
+            </div>
+            <div class="promo-card-content">
+              <div class="product-name">${element.Nama}</div>
+              ${hargaDiskon}
+              <div class="product-price">${element.Harga}</div>
+              <div class="card-action-row-promo">
+                <button class="promo-beli-btn" onclick="event.stopPropagation(); window.open('${produkLink}', '_blank');">
+                  <i class="fa fa-plus"></i>
+                </button>
               </div>
-              <t class="OnsyLogo">Bagawan</t>
-              <txt class="OnsyiLabelSlideFloatFD">Promo</txt>
-              <div class="OnsyititleSlide">${element.Nama}</div>
-              <div class="card-price-container">
-                <div class="OnsyiPriceSlideDisk"><del>Rp${hargadiskon}</del></div>
-                <div class="OnsyiPriceSlide bx-flashing">${element.Harga}</div>
-              </div>
-            </a>
-          </div>
+            </div>
+          </a>
         `;
       } catch (err) {
         console.error("Error processing product:", element, err);
@@ -219,7 +219,7 @@ function generateProductHTML(data) {
     return xhtml;
   } catch (err) {
     console.error("Error generating product HTML:", err);
-    return '<div class="col"><div class="error-message">Error loading products</div></div>';
+    return '<div class="promo-cards-row"><div class="error-message">Error loading products</div></div>';
   }
 }
 
@@ -250,17 +250,29 @@ function loadFoodProducts() {
             return;
           }
           try {
-            xhtml += `<div class="col-6">
-              <a href="https://jgjk.mobi/p/${element.Gambar.substr(-17, 13)}">
-                <div class="OnsyiCard">
-                  <t class="OnsyiLabelHot bx-flashing">Fresh</t>
-                  <t class="OnsyiLogo"></t>
-                  <img class="OnsyiImage" src="${element.Gambar}" onerror="this.src='https://via.placeholder.com/140x140?text=No+Image'">
-                  <h6 class="OnsyiText-Judul">${element.Nama}</h6>
-                  <b class="OnsyiText-Harga">🔥${element.Harga}</b>
+            const hargaDiskon = element.HargaDiskon && element.HargaDiskon.trim() !== "" ? `<p class='item-price-before-discount'>${element.HargaDiskon}</p>` : "";
+            const stok = element.Stok || "Habis";
+            const rating = element.Rating ? element.Rating : "4.9";
+            const produkLink = element.Link && element.Link.startsWith("http") ? element.Link : `https://jgjk.mobi/p/${element.Gambar.substr(-17, 13)}`;
+            xhtml += `
+              <a href="${produkLink}" class="promo-card-item promo-card-item-link" target="_blank">
+                <div class="image-container">
+                  <span class="promo-label"><i class='fa fa-star'></i> ${rating}</span>
+                  <span class="promo-badge">Stok: ${stok}</span>
+                  <img src="${element.Gambar}" alt="${element.Nama}" />
+                </div>
+                <div class="promo-card-content">
+                  <div class="product-name">${element.Nama}</div>
+                  ${hargaDiskon}
+                  <div class="product-price">${element.Harga}</div>
+                  <div class="card-action-row-promo">
+                    <button class="promo-beli-btn" onclick="event.stopPropagation(); window.open('${produkLink}', '_blank');">
+                      <i class="fa fa-plus"></i>
+                    </button>
+                  </div>
                 </div>
               </a>
-            </div>`;
+            `;
           } catch (err) {
             console.error("Error processing food product:", element, err);
           }
@@ -310,7 +322,6 @@ function initializeMenuPopup() {
 // ===================== APP INITIALIZATION =====================
 function initializeApp() {
   try {
-    // Define elements object
     elements = {
       days: document.getElementById("days"),
       hours: document.getElementById("hours"),
@@ -323,34 +334,28 @@ function initializeApp() {
       searchButton: document.getElementById("ybcari"),
       searchInput: document.querySelector("input[name='ycari']"),
     };
-    // Configuration
     config = {
       countdownDeadline: new Date("dec 01, 2025 23:59:59"),
       persenKu: 1100,
       halaman: 1,
       apiEndpoints: {
-        products: "https://onsyime.my.id/dianteer.php",
-        food: "https://onsyime.my.id/bagawan-officialstore.php",
+        products: "https://onsyime.my.id/onsyi.php", // official store
+        food: "https://onsyime.my.id/onsyi.php", // flashsale
       },
     };
-    // Initialize all features
     initializeScrollToTop();
     initializeHeaderBackground();
     initializeSearch();
-    initializeMenuPopup();
-    // Load products and start countdown
     if (elements.promo) loadProducts();
     if (elements.hasil) loadFoodProducts();
     if (elements.days) setInterval(updateCountdown, 1000);
   } catch (err) {
-    console.error("Initialization error:", err);
-    showError("Terjadi Kesalahan", "Gagal menginisialisasi aplikasi. Silakan refresh halaman.");
+    console.error("App initialization error:", err);
   }
 }
-
 document.addEventListener("DOMContentLoaded", initializeApp);
 
-// Header transparan saat di atas, solid saat scroll
+// Efek header transparan saat refresh, putih saat scroll
 window.addEventListener("DOMContentLoaded", function () {
   var header = document.getElementById("header2");
   function updateHeaderTransparency() {
