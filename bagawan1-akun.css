@@ -3,7 +3,7 @@
       :root {
         --OnsyiBg: #f5f9ff;
         --OnsyiB1: #2095f2;
-        --OnsyiB2: #2196f3;
+        --OnsyiB2: #1f3a93;
         --OnsyiB3: #43a6f7;
         --gradient3: linear-gradient(310deg, rgba(2, 0, 36, 1) 0%, rgba(113, 69, 209, 1) 16%, rgba(65, 10, 186, 1) 100%);
         --gradient: repeating-linear-gradient(-45deg, #ff00e0 0%, #ff9800 7.14%, #ff9800 14.28%, #094d9e 21.4%, #5993cd 28.56%, #ff9800 35.7%, #ff9800 42.84%, #ff9800 50%);
