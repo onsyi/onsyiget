@@ -339,7 +339,7 @@ function initializeApp() {
       persenKu: 1100,
       halaman: 1,
       apiEndpoints: {
-        products: "https://onsyime.my.id/onsyi.php", // official store
+        products: "https://onsyime.my.id/bagawan-officialstore.php", // official store
         food: "https://onsyime.my.id/onsyi.php", // flashsale
       },
     };
