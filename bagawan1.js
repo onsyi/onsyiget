@@ -340,7 +340,7 @@ function initializeApp() {
       halaman: 1,
       apiEndpoints: {
         products: "https://onsyime.my.id/bagawan-officialstore.php", // official store
-        food: "https://onsyime.my.id/onsyi.php", // flashsale
+        food: "https://onsyime.my.id/bagawanx-food.php", // flashsale
       },
     };
     initializeScrollToTop();
