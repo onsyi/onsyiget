@@ -2018,8 +2018,8 @@ img {
   text-align: left !important;
   width: 92% !important;
   color: #333 !important;
-  font-size: 80% !important;
-  font-weight: 400 !important;
+  font-size: 90% !important;
+  font-weight: 500 !important;
   margin: 0 !important;
   padding: 8px 5% 0 5% !important;
   white-space: nowrap !important;
@@ -2041,17 +2041,89 @@ img {
   text-align: left !important;
   color: #1c1b1b !important;
   font-size: 80% !important;
-  font-weight: 400 !important;
+  font-weight: bold !important;
   margin: 0 !important;
   padding: 8px 5% 0 5% !important;
+}
+
+.OnsyiCard3 .star3 {
+  margin: 4px auto !important;
+  padding: 2px 10px !important;
+  background: var(--gradient1) !important;
+  width: 100% !important;
+  color: #fff !important;
+  font-size: 60% !important;
+  text-align: center !important;
+  font-weight: 500 !important;
+}
+
+.OnsyiNew3 {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  opacity: 95%;
+  width: auto;
+  min-width: 60px;
+  background: #820c0c;
+  color: #fff;
+  font-size: 70%;
+  text-align: center;
+  padding: 4px 8px;
+  border-radius: 8px;
+  z-index: 10;
+}
+
+.cart3 {
+  margin: -8% 10% 10%;
+  float: right;
+  color: #fff;
+  font-size: 17px;
+  background: #820c0c;
+  border-radius: 7px;
+  padding: 5px;
+}
+
+#selanjutnyaBtn {
+  width: 50% !important;
+  text-align: center;
+  margin: 5% 25% 15%;
+  border-radius: 20px;
+  border: none;
+  background: var(--gradient1);
+  box-shadow: 5px 5px 11px #d0d2d6, -5px -5px 11px #ffffff;
+  color: #fff;
+}
+
+#lastPageMessage {
+  display: none;
+  text-align: center;
+  color: #0e2342;
+  font-weight: bold;
+  margin-bottom: 15%;
+}
+
+/* Responsive untuk mobile */
+@media (max-width: 480px) {
+  .container3 .col-6 {
+    flex: 0 0 calc(50% - 8px);
+    max-width: calc(50% - 8px);
+  }
+
+  .container3 .row {
+    gap: 12px;
+  }
+
+  .container3 .col-6 {
+    margin-bottom: 12px;
+  }
 }
 /* CSS khusus untuk spacing text produk - dengan specificity tinggi */
 .container3 .OnsyiCard3 .OnsyiText-Judul3 {
   text-align: left !important;
   width: 92% !important;
   color: #333 !important;
-  font-size: 80% !important;
-  font-weight: 400 !important;
+  font-size: 90% !important;
+  font-weight: 500 !important;
   margin: 0 !important;
   padding: 8px 5% 0 5% !important;
   white-space: nowrap !important;
@@ -2075,18 +2147,19 @@ img {
   text-align: left !important;
   color: #1c1b1b !important;
   font-size: 80% !important;
-  font-weight: 400 !important;
+  font-weight: bold !important;
   margin: 0 !important;
   padding: 8px 5% 0 5% !important;
   display: block !important;
 }
+
 /* CSS dengan ID unik untuk memastikan tidak ada override */
 #empat .OnsyiCard3 .OnsyiText-Judul3 {
   text-align: left !important;
   width: 92% !important;
   color: #333 !important;
-  font-size: 80% !important;
-  font-weight: 400 !important;
+  font-size: 90% !important;
+  font-weight: 500 !important;
   margin: 0 !important;
   padding: 8px 5% 0 5% !important;
   white-space: nowrap !important;
@@ -2110,7 +2183,7 @@ img {
   text-align: left !important;
   color: #1c1b1b !important;
   font-size: 80% !important;
-  font-weight: 400 !important;
+  font-weight: bold !important;
   margin: 0 !important;
   padding: 8px 5% 0 5% !important;
   display: block !important;
