@@ -1,6 +1,9 @@
-// Global variables
+// Global variables for pagination
 let elements = {};
 let config = {};
+let currentPage = 1;
+let allProducts = [];
+let displayedProducts = [];
 
 // ===================== UTILITY FUNCTIONS =====================
 function sanitizeInput(input) {
@@ -523,13 +526,23 @@ function get_data() {
   $.ajax({
     url: "https://onsyime.my.id/bagawanx-food.php",
     data: {
-      halaman: halaman,
+      halaman: currentPage,
     },
     method: "POST",
     dataType: "JSON",
     success: function (data) {
+      // Add new products to allProducts array
+      if (data && data.length > 0) {
+        allProducts = allProducts.concat(data);
+      }
+      
+      // Display only 10 products per page
+      const startIndex = (currentPage - 1) * 10;
+      const endIndex = startIndex + 10;
+      displayedProducts = allProducts.slice(startIndex, endIndex);
+      
       let xhtml = "";
-      data.forEach(function (element) {
+      displayedProducts.forEach(function (element) {
         xhtml += '<div class="col-6 mb-3 d-flex justify-content-center">';
         xhtml += '<a href="https://jgjk.mobi/p/' + element.Gambar.substr(-17, 13) + '" style="text-decoration: none; width: 100%;">';
         xhtml += '<div class="OnsyiCard3" style="width: 100%; height: 100%;">';
@@ -537,25 +550,57 @@ function get_data() {
         xhtml += '<img class="OnsyiImage3" src="' + element.Gambar + '" style="width: 100%; height: auto;">';
         xhtml += '<div class="star3"><i class="fa-solid fa-star" style="color: #fff; font-size: 13px;"></i> 4.6 • 300+ rating</div>';
         xhtml += '<h6 class="OnsyiText-Judul3">' + element.Nama + "</h6>";
-        xhtml += '<span class="thin3">Mitra Antarek</span>';
+        // Use product description or location as fallback with word limit
+        const deskripsi = element.Deskripsi || element.Lokasi || "Deskripsi produk tidak tersedia";
+        const fittedDesc = getFittedDescription(deskripsi);
+        const stok = element.Stok || "Habis";
+        xhtml += '<span class="thin3">' + fittedDesc + '</span>';
+        xhtml += '<div class="OnsyiText-Harga3">Stok: ' + stok + '</div>';
         xhtml += '<div class="OnsyiText-Harga3">' + element.Harga + "</div>";
         xhtml += "</div>";
         xhtml += "</a></div>";
       });
 
-      document.getElementById("empat").innerHTML += xhtml;
+      // If this is the first page, replace content; otherwise, append
+      if (currentPage === 1) {
+        document.getElementById("empat").innerHTML = xhtml;
+      } else {
+        document.getElementById("empat").innerHTML += xhtml;
+      }
 
-      if (data.length === 0) {
+      // Hide button if no more products to load
+      if (data.length === 0 || displayedProducts.length < 10) {
         document.getElementById("selanjutnyaBtn").style.display = "none";
         document.getElementById("lastPageMessage").style.display = "block";
       }
+      
+      // Increment page for next load
+      currentPage++;
     },
+    error: function() {
+      // Handle error case
+      if (currentPage === 1) {
+        document.getElementById("empat").innerHTML = '<div class="col-12"><p class="text-center">Gagal memuat produk. Silakan coba lagi.</p></div>';
+      }
+    }
   });
-  halaman++;
 }
 
+// Modify the button click handler to use the updated function
 $(document).ready(function () {
+  // Reset pagination when page loads
+  currentPage = 1;
+  allProducts = [];
+  displayedProducts = [];
+  
+  // Load initial data
   get_data();
+  
+  // Add click handler for the "Selanjutnya" button
+  document.getElementById("selanjutnyaBtn").addEventListener("click", function(e) {
+    e.preventDefault();
+    get_data();
+  });
 });
 
 // Fungsi untuk membuka halaman tab
@@ -595,3 +640,28 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+
+// Fungsi untuk membatasi deskripsi produk
+function limitDescription(description, maxWords) {
+  if (!description) return "";
+  
+  const words = description.split(" ");
+  if (words.length <= maxWords) {
+    return words.join(" ");
+  }
+  
+  return words.slice(0, maxWords).join(" ") + "...";
+}
+
+// Fungsi untuk mendapatkan deskripsi yang sesuai dengan ukuran card
+function getFittedDescription(description) {
+  // Coba dengan 3 kata dulu
+  let fittedDesc = limitDescription(description, 3);
+  
+  // Jika deskripsi terlalu panjang (lebih dari 30 karakter), gunakan 2 kata saja
+  if (fittedDesc.length > 30) {
+    fittedDesc = limitDescription(description, 2);
+  }
+  
+  return fittedDesc;
+}
