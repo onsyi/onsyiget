@@ -521,7 +521,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Fungsi untuk mendapatkan data tambahan
 function get_data() {
   $.ajax({
-    url: "https://onsyime.my.id/bagawanx-food.php",
+    url: "https://onsyime.my.id/bagawan-mart.php",
     data: {
       halaman: halaman,
     },
