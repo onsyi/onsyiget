@@ -546,7 +546,7 @@ function get_data() {
         xhtml += '<div class="col-6 mb-3 d-flex justify-content-center">';
         xhtml += '<a href="https://jgjk.mobi/p/' + element.Gambar.substr(-17, 13) + '" style="text-decoration: none; width: 100%;">';
         xhtml += '<div class="OnsyiCard3" style="width: 100%; height: 100%;">';
-        xhtml += '<span class="OnsyiNew3">UMKM</span>';
+        xhtml += '<span class="OnsyiNew3"></span>';
         xhtml += '<img class="OnsyiImage3" src="' + element.Gambar + '" style="width: 100%; height: auto;">';
         xhtml += '<div class="star3"><i class="fa-solid fa-star" style="color: #fff; font-size: 13px;"></i> 4.6 • 300+ rating</div>';
         xhtml += '<h6 class="OnsyiText-Judul3">' + element.Nama + "</h6>";
