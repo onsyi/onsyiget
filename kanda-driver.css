@@ -1,7 +1,8 @@
-/* ===== CSS VARIABLES ===== */
+ /* ===== CSS VARIABLES ===== */
   :root {
     --primary-color: #00aed5;
     --primary-light: #43d0f0;
+    --primary-1: #f39c12;
     --primary-dark: #a55419;
     --secondary-color: #2d4a5c;
     --accent-color: #f4a261;
@@ -252,7 +253,7 @@
     border-radius: 15px;
     margin: 23% auto 0;
     box-shadow: 3px 3px 5px #c7c9cc, -3px -3px 5px #ffffff;
-    background: linear-gradient(to top, var(--primary-color) 20%, var(--primary-light) 80%);
+    background: linear-gradient(to top, var(--primary-color) 20%, var(--primary-1) 80%);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
