@@ -64,20 +64,6 @@ function initializeDarkMode() {
   }
 }
 
-// Cart functionality
-function updateCartCount(count) {
-  const cartBadge = document.querySelector('.cart-badge');
-  if (cartBadge) {
-    cartBadge.textContent = count;
-    
-    // Add animation effect
-    cartBadge.style.transform = 'scale(1.2)';
-    setTimeout(() => {
-      cartBadge.style.transform = 'scale(1)';
-    }, 200);
-  }
-}
-
 // Service item click handlers
 function initializeServiceItems() {
   const serviceItems = document.querySelectorAll('.service-item');
@@ -201,16 +187,6 @@ function addTransitions() {
   document.head.appendChild(style);
 }
 
-// Partner Registration Function
-function openPartnerRegistration() {
-  // Open Google form or registration page
-  const registrationUrl = 'https://forms.google.com/'; // Replace with actual Google form URL
-  window.open(registrationUrl, '_blank');
-  
-  // Optional: Add analytics or tracking
-  console.log('Partner registration clicked');
-}
-
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
   initializeDarkMode();
@@ -218,7 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initializeServiceItems();
   initializeBalanceItems();
   initializeHeaderIcons();
-  initializeProfileNavigation();
   addTransitions();
   
   console.log('Shopee Mobile UI initialized successfully!');
@@ -227,63 +202,5 @@ document.addEventListener('DOMContentLoaded', function() {
 // Export functions for external use
 window.ShopeeUI = {
   setActiveNav,
-  toggleDarkMode,
-  updateCartCount
+  toggleDarkMode
 };
-
-
-// Profile Page Navigation Functions
-function showProfilePage() {
-  const profilePage = document.querySelector('.profile-page');
-  const mainContentWrapper = document.querySelector('.main-content-wrapper');
-  
-  if (profilePage && mainContentWrapper) {
-    // Hide main content and show profile page
-    mainContentWrapper.style.display = 'none';
-    profilePage.style.display = 'block';
-    
-    // Add profile-active class to body
-    document.body.classList.add('profile-active');
-  }
-}
-
-function hideProfile() {
-  const profilePage = document.querySelector('.profile-page');
-  const mainContentWrapper = document.querySelector('.main-content-wrapper');
-  
-  if (profilePage && mainContentWrapper) {
-    // Show main content and hide profile page
-    mainContentWrapper.style.display = 'block';
-    profilePage.style.display = 'none';
-    
-    // Remove profile-active class from body
-    document.body.classList.remove('profile-active');
-    
-    // Reset navigation to home
-    const homeNavItem = document.querySelector('.nav-item[onclick*="showHomePage"]');
-    if (homeNavItem) {
-      setActiveNav(homeNavItem);
-    }
-  }
-}
-
-function showHomePage() {
-  // Use the same logic as hideProfile for consistency
-  hideProfile();
-}
-
-function initializeProfileNavigation() {
-  // Ensure profile page is hidden on load
-  const profilePage = document.querySelector('.profile-page');
-  if (profilePage) {
-    profilePage.style.display = 'none';
-  }
-  
-  // Remove any existing profile-active class
-  document.body.classList.remove('profile-active');
-}
-
-// Initialize profile navigation when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  initializeProfileNavigation();
-});
